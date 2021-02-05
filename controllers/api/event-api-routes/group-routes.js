@@ -57,3 +57,17 @@ router.get('/:zip', (req, res) => {
             res.status(500).json(err);
         })
 });
+
+router.post('/', (req, res) => {
+    Group.create({
+        group_title: req.body.group_title,
+        group_text: req.body.group_text,
+        group_zip: req.body.group_zip,
+        user_id: req.body.user_id
+    })
+        .then(dbGroupData => res.json(dbGroupData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+});
