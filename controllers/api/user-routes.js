@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Group, Group_Users } = require('../../models');
 
 router.get('/', (req, res) => {
     User.findAll({
@@ -16,7 +16,24 @@ router.get('/:id', (req, res) => {
     User.findOne({
         where: {
             id: req.params.id
-        }
+        },
+        include: [
+            {
+                model: Group,
+                attributes: [
+                    'id',
+                    'group_title',
+                    'group_text',
+                    'group_zip',
+                ]
+            },
+            {
+                model: Group,
+                attributes: ['group_title'],
+                through: Group_Users,
+                as: 'group_user'
+            }
+        ]
     })
         .then(dbUserData => {
             if (!dbUserData) {
