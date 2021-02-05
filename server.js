@@ -5,7 +5,7 @@ const path = require('path');
 const session = require('express-session');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -29,6 +29,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
 });
