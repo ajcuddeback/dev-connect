@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
-const { UPDATE } = require('sequelize/types/lib/query-types');
 
 class User extends Model {
     checkPassword(loginPw) {
