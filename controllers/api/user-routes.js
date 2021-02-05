@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Group, Group_Users } = require('../../models');
+const { User, Group, Group_Users, Event, Event_Users } = require('../../models');
 
 router.get('/', (req, res) => {
     User.findAll({
@@ -32,6 +32,12 @@ router.get('/:id', (req, res) => {
                 attributes: ['group_title'],
                 through: Group_Users,
                 as: 'group_user'
+            },
+            {
+                model: Event,
+                attributes: ['event_title'],
+                through: Event_Users,
+                as: 'event_user'
             }
         ]
     })
