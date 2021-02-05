@@ -71,3 +71,12 @@ router.post('/', (req, res) => {
             res.status(500).json(err);
         })
 });
+
+router.put('/add-user', (req, res) => {
+    Group.addUser({ ...req.body }, { User, Group, Event, Group_Users })
+        .then(updatedGroupData => res.json(updatedGroupData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err)
+        })
+})

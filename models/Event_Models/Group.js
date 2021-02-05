@@ -2,7 +2,27 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 
-class Group extends Model { }
+class Group extends Model {
+    static addUser(body, models) {
+        return models.Group_Users.create({
+            user_id: body.user_id,
+            group_id: body.group_id
+        }).then(() => {
+            return Group.findOne({
+                where: {
+                    id: body.group_id
+                },
+                attributes: [
+                    'id',
+                    'group_title',
+                    'group_text',
+                    'group_zip',
+                    [sequelize.literal('(SELECT COUNT(*) FROM group_users WHERE group.id = group_users.group_id)'), 'users']
+                ]
+            });
+        });
+    }
+}
 
 Group.init(
     {
