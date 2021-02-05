@@ -1,8 +1,8 @@
 const User = require('./User');
-const Group = require('./Group');
-const Event = require('./Event');
-const Group_Users = require('./Group_User');
-const Event_Users = require('./Event_User');
+const Group = require('./Event_Models/Group');
+const Event = require('./Event_Models/Event');
+const Group_Users = require('./Event_Models/Group_User');
+const Event_Users = require('./Event_Models/Event_User');
 
 // User to Group Associations
 User.hasMany(Group, {
