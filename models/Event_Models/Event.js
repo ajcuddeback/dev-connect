@@ -2,7 +2,28 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../config/connection');
 
 
-class Event extends Model { }
+class Event extends Model {
+    static addUser(body, models) {
+        return models.Event_Users.create({
+            user_id: body.user_id,
+            event_id: body.event_id
+        }).then(() => {
+            return Event.findOne({
+                where: {
+                    id: body.event_id
+                },
+                attributes: [
+                    'id',
+                    'event_title',
+                    'event_text',
+                    'event_location',
+                    'event_time',
+                    [sequelize.literal('(SELECT COUNT(*) FROM event_users WHERE event.id = event_users.event_id)'), 'users']
+                ]
+            });
+        });
+    }
+}
 
 Event.init(
     {
