@@ -97,8 +97,30 @@ router.put('/:id', (req, res) => {
         .then(dbGroupData => {
             if (!dbGroupData) {
                 res.status(404).json({ message: "No group found at this id!" });
-                return
+                return;
             }
+
+            res.json(dbGroupData)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+});
+
+router.delete('/:id', (req, res) => {
+    Group.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then(dbGroupData => {
+            if (!dbGroupData) {
+                res.status(404).json({ message: "No group found at this id!" });
+                return;
+            }
+
+            res.json(dbGroupData);
         })
         .catch(err => {
             console.log(err);
