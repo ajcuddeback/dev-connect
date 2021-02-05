@@ -79,5 +79,13 @@ Event.hasMany(Event_Users, {
     foreignKey: 'event_id'
 });
 
+Event.belongsTo(Group, {
+    foreignKey: 'group_id'
+});
 
-module.exports = { User, Group, Event }
+Group.hasMany(Event, {
+    foreignKey: 'group_id'
+});
+
+
+module.exports = { User, Group, Event, Group_Users, Event_Users }
