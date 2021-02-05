@@ -1,10 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+class Event extends Model { }
 
-class Group extends Model { }
-
-Group.init(
+Event.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -12,23 +11,27 @@ Group.init(
             primaryKey: true,
             autoIncrement: true
         },
-        group_title: {
+        event_title: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        group_text: {
+        event_text: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
+        event_location: {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        group_zip: {
-            type: DataTypes.INTEGER,
+        event_time: {
+            type: DataTypes.STRING,
             allowNull: false
         },
-        user_id: {
+        group_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'user',
+                model: 'group',
                 key: 'id'
             }
         }
@@ -40,6 +43,6 @@ Group.init(
         underscored: true,
         modelName: 'group'
     }
-)
+);
 
-module.exports = Group;
+module.exports = Event;
