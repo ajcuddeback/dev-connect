@@ -1,4 +1,4 @@
-const router = require('express').Router;
+const router = require('express').Router();
 const { User, Group, Event, Group_Users } = require('../../../models');
 const sequelize = require('../../../config/connection')
 
@@ -73,10 +73,13 @@ router.post('/', (req, res) => {
 });
 
 router.put('/add-user', (req, res) => {
+    console.log(req.body, "HELLOOOO")
     Group.addUser({ ...req.body }, { User, Group, Event, Group_Users })
         .then(updatedGroupData => res.json(updatedGroupData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err)
         })
-})
+});
+
+module.exports = router;

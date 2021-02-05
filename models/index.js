@@ -15,13 +15,13 @@ Group.belongsTo(User, {
 
 User.belongsToMany(Group, {
     through: Group_Users,
-    as: 'group_users',
+    as: 'group_user',
     foreignKey: 'user_id'
 });
 
 Group.belongsToMany(User, {
     through: Group_Users,
-    as: 'group_users',
+    as: 'group_user',
     foreignKey: 'group_id'
 });
 
@@ -53,13 +53,13 @@ Event.belongsTo(User, {
 
 User.belongsToMany(Event, {
     through: Event_Users,
-    as: 'event_users',
+    as: 'event_user',
     foreignKey: 'user_id'
 });
 
 Event.belongsToMany(User, {
     through: Event_Users,
-    as: 'event_users',
+    as: 'event_user',
     foreignKey: 'event_id'
 });
 
