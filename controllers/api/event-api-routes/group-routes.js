@@ -35,7 +35,7 @@ router.get('/:zip', (req, res) => {
             'group_title',
             'group_text',
             'group_zip',
-            [sequelize.literal('(SELECT COUNT(*) FROM group_users WHERE group.id = group_users.group_id)'), 'users']
+            [sequelize.literal('(SELECT COUNT(*) FROM group_users WHERE group.id = group_users.group_id)'), 'users_count'],
         ],
         include: [
             {
@@ -46,7 +46,7 @@ router.get('/:zip', (req, res) => {
     })
         .then(dbGroupData => {
             if (!dbGroupData) {
-                res.status(404).json('No Events found at this zip code!');
+                res.status(404).json({ message: 'No Events found at this zip code!' });
                 return;
             }
 
@@ -73,7 +73,6 @@ router.post('/', (req, res) => {
 });
 
 router.put('/add-user', (req, res) => {
-    console.log(req.body, "HELLOOOO")
     Group.addUser({ ...req.body }, { User, Group, Event, Group_Users })
         .then(updatedGroupData => res.json(updatedGroupData))
         .catch(err => {
@@ -81,5 +80,30 @@ router.put('/add-user', (req, res) => {
             res.status(500).json(err)
         })
 });
+
+router.put('/:id', (req, res) => {
+    Group.update(
+        {
+            group_title: req.body.group_title,
+            group_text: req.body.group_text,
+            group_zip: req.body.group_zip
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbGroupData => {
+            if (!dbGroupData) {
+                res.status(404).json({ message: "No group found at this id!" });
+                return
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+})
 
 module.exports = router;
