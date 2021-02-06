@@ -1,0 +1,15 @@
+<section class="group-content-wrapper">
+    <div class="group-info-wrapper">
+        <h2 class="group-name">{{groups.title}}</h2>
+        <p>{{groups.text}}</p>
+    </div>
+    <div class="group-event-wrapper">
+        <ol>
+            {{#each groups.events}}
+            <li>
+                {{> events}}
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+</section>

@@ -58,16 +58,16 @@ router.get('/group-home/:id', (req, res) => {
         ]
     })
         .then(dbGroupData => {
-            const groups = dbGroupData.map(group => group.get({ plain: true }));
-
-            res.render('group-near-user', {
+            const groups = dbGroupData.get({ plain: true })
+            res.render('group-home', {
                 groups
             });
+
         })
         .catch(err => {
             console.log(err);
             res.status(500).json(err)
         })
-})
+});
 
 module.exports = router;
