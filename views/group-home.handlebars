@@ -1,7 +1,13 @@
+<div class=" hidden attend-event-succeess">
+    <p>You are now successfully attending this event!</p>
+</div>
+<div class="hidden attend-event-fail">
+    <p>You are already attending this event!</p>
+</div>
 <section class="group-content-wrapper">
     <div class="group-info-wrapper">
-        <h2 class="group-name">{{groups.title}}</h2>
-        <p>{{groups.text}}</p>
+        <h2 class="group-name">{{groups.group_title}}</h2>
+        <p>{{groups.group_text}}</p>
     </div>
     <div class="group-event-wrapper">
         <ol>
@@ -13,3 +19,4 @@
         </ol>
     </div>
 </section>
+<script src="/javascript/join-event.js"></script>
