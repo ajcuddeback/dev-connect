@@ -20,7 +20,10 @@ async function joinGroupFormHandler(event) {
     if (response.ok) {
         document.location.replace(`/meet/group-home/${group_id}`)
     } else {
-        alert(response.statusText);
+        document.querySelector('.join-group-fail').classList.remove('hidden');
+        setTimeout(function () {
+            document.querySelector('.join-group-fail').classList.add('hidden');
+        }, 3000)
     }
 }
 document.querySelector('.join-group').addEventListener('click', joinGroupFormHandler); 
