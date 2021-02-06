@@ -1,4 +1,3 @@
-const { response } = require("express");
 
 function joinGroupFormHandler(event) {
     event.preventDefault();
@@ -16,7 +15,7 @@ function joinGroupFormHandler(event) {
     });
 
     if (response.ok) {
-        document.location.replace('/meet/group-home')
+        document.location.replace(`/meet/group-home/${group_id}`)
     } else {
         alert(response.statusText);
     }
