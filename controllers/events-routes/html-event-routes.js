@@ -65,10 +65,12 @@ router.get('/group-home/:id', (req, res) => {
     })
         .then(dbGroupData => {
             const groups = dbGroupData.get({ plain: true })
-            console.log(groups)
             let isMember = false;
+            console.log(groups)
             groups.group_user.forEach(user => {
-                if (req.session.user_id === user.id) {
+                console.log(user)
+                // the 1 will come from the session!
+                if (1 === user.id) {
                     isMember = true;
                 }
             });

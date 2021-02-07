@@ -1,3 +1,5 @@
+{{#if isMember}}
+
 <div class=" hidden attend-event-succeess">
     <p>You are now successfully attending this event!</p>
 </div>
@@ -20,3 +22,8 @@
     </div>
 </section>
 <script src="/javascript/join-event.js"></script>
+{{else}}
+
+<h2>You arent a part of this group!</h2>
+<p>Want to be a part of this group? Go to groups <a href="/meet">home page!</a></p>
+{{/if}}
