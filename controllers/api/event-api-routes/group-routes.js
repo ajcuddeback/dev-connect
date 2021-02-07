@@ -24,7 +24,40 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         })
 });
+router.get('/:id', (req, res) => {
+    Group.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'group_title',
+            'group_text',
+            'group_zip',
+            [sequelize.literal('(SELECT COUNT(*) FROM group_users WHERE group.id = group_users.group_id)'), 'users_count'],
+        ],
+        include: [
+            {
+                model: Event,
+                attributes: ['id', 'event_title', 'event_text', 'event_location', 'event_time'],
+            },
+            {
+                model: User,
+                attributes: ['id', 'first_name'],
+                through: Group_Users,
+                as: 'group_user'
+            }
+        ]
+    })
+        .then(dbGroupData => {
+            res.json(dbGroupData)
 
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err)
+        })
+});
 router.get('/:zip', (req, res) => {
     Group.findAll({
         where: {

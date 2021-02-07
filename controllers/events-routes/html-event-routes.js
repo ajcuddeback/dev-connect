@@ -54,13 +54,27 @@ router.get('/group-home/:id', (req, res) => {
             {
                 model: Event,
                 attributes: ['id', 'event_title', 'event_text', 'event_location', 'event_time'],
+            },
+            {
+                model: User,
+                attributes: ['id', 'first_name'],
+                through: Group_Users,
+                as: 'group_user'
             }
         ]
     })
         .then(dbGroupData => {
             const groups = dbGroupData.get({ plain: true })
+            console.log(groups)
+            let isMember = false;
+            groups.group_user.forEach(user => {
+                if (req.session.user_id === user.id) {
+                    isMember = true;
+                }
+            });
             res.render('group-home', {
-                groups
+                groups,
+                isMember
             });
 
         })
@@ -70,4 +84,49 @@ router.get('/group-home/:id', (req, res) => {
         })
 });
 
+router.get('/my-groups', (req, res) => {
+    User.findOne({
+        where: {
+            // This will be taken from the session
+            id: 1
+        },
+        include: [
+            {
+                model: Group,
+                attributes: [
+                    'id',
+                    'group_title',
+                    'group_text',
+                    'group_zip',
+                ]
+            },
+            {
+                model: Group,
+                attributes: ['id', 'group_title'],
+                through: Group_Users,
+                as: 'group_user'
+            },
+            {
+                model: Event,
+                attributes: ['id', 'event_title'],
+                through: Event_Users,
+                as: 'event_user'
+            }
+        ]
+    })
+        .then(dbUserData => {
+            console.log(dbUserData)
+            const user = dbUserData.get({ plain: true });
+            console.log(user)
+            console.log(user.group_user[0].group_title)
+
+            res.render('my-groups', {
+                user
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+});
 module.exports = router;

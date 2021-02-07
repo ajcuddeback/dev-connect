@@ -1,0 +1,10 @@
+<section class="my-groups-wrapper">
+    <h2>{{user.first_name}}'s groups</h2>
+    <ol>
+        {{#each user.group_user}}
+        <li>
+            {{> user-groups}}
+        </li>
+        {{/each}}
+    </ol>
+</section>
