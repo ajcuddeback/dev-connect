@@ -3,7 +3,7 @@ const { User, Group, Event, Group_Users, Event_Users } = require('../../models')
 const sequelize = require('../../config/connection')
 
 router.get('/', (req, res) => {
-    res.render('meethome')
+    res.render('Events-meethome')
 });
 
 router.get('/get-zip/:zip', (req, res) => {
@@ -28,7 +28,7 @@ router.get('/get-zip/:zip', (req, res) => {
         .then(dbGroupData => {
             const groups = dbGroupData.map(group => group.get({ plain: true }));
 
-            res.render('group-near-user', {
+            res.render('Events-group-near-user', {
                 groups
             });
         })
@@ -74,7 +74,7 @@ router.get('/group-home/:id', (req, res) => {
                     isMember = true;
                 }
             });
-            res.render('group-home', {
+            res.render('Events-group-home', {
                 groups,
                 isMember
             });
@@ -117,12 +117,12 @@ router.get('/my-groups', (req, res) => {
         ]
     })
         .then(dbUserData => {
-            console.log(dbUserData)
+
             const user = dbUserData.get({ plain: true });
-            console.log(user)
+
             console.log(user.group_user[0].group_title)
 
-            res.render('my-groups', {
+            res.render('Events-my-groups', {
                 user
             });
         })
@@ -131,4 +131,50 @@ router.get('/my-groups', (req, res) => {
             res.status(500).json(err);
         })
 });
+
+router.get('/my-events', (req, res) => {
+    User.findOne({
+        where: {
+            // This will be taken from the session
+            id: 1
+        },
+        include: [
+            {
+                model: Group,
+                attributes: [
+                    'id',
+                    'group_title',
+                    'group_text',
+                    'group_zip',
+                ]
+            },
+            {
+                model: Group,
+                attributes: ['id', 'group_title'],
+                through: Group_Users,
+                as: 'group_user'
+            },
+            {
+                model: Event,
+                attributes: ['id', 'event_title'],
+                through: Event_Users,
+                as: 'event_user'
+            }
+        ]
+    })
+        .then(dbUserData => {
+
+            const user = dbUserData.get({ plain: true });
+            console.log(user.event_user[0].event_title)
+
+            res.render('Events-my-events', {
+                user
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+});
+
 module.exports = router;

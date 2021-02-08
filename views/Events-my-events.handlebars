@@ -1,0 +1,10 @@
+<section class="my-events-wrapper">
+    <h2>{{user.first_name}}'s events'</h2>
+    <ol>
+        {{#each user.event_user}}
+        <li>
+            {{> user-events}}
+        </li>
+        {{/each}}
+    </ol>
+</section>
