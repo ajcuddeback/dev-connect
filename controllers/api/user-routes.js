@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { User, Group, Group_Users, Event, Event_Users } = require('../../models');
+const fetch = require('node-fetch');
+require('dotenv').config()
 
 router.get('/', (req, res) => {
     User.findAll({
@@ -64,17 +66,26 @@ router.post('/', (req, res) => {
         password: req.body.password
     })
         .then(dbUserData => {
-            req.session.save(() => {
-                req.session.user_id = dbUserData.id;
-                req.session.username = dbUserData.username;
-                req.session.loggedIn = true;
+            const apiUrl = "http://api.ipstack.com/72.184.50.98?access_key=" + process.env.GEOAPIKEY;
+            fetch(apiUrl).then((response) => {
+                if (response.ok) {
+                    response.json().then((data) => {
+                        req.session.save(() => {
+                            req.session.user_id = dbUserData.id;
+                            req.session.username = dbUserData.username;
+                            req.session.loggedIn = true;
+                            req.session.zip = data.zip;
+                            console.log(req.session)
+                            res.json(dbUserData);
+                        });
+                    })
+                }
+            })
 
-                res.json(dbUserData);
-            });
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json(err)
         })
 });
 

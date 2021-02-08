@@ -3,6 +3,7 @@ const { User, Group, Event, Group_Users } = require('../../../models');
 const sequelize = require('../../../config/connection')
 
 router.get('/', (req, res) => {
+    console.log(req.session)
     Group.findAll({
         attributes: [
             'id',

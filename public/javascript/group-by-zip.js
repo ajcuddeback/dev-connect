@@ -6,4 +6,10 @@ async function groupByZipHandler(event) {
     document.location.replace(`/meet/get-zip/${zip}`)
 };
 
+function groupUsersZipHandler() {
+
+    document.location.replace(`/meet/get-zip/`)
+};
+
 document.querySelector('.find-group-form').addEventListener('submit', groupByZipHandler);
+document.querySelector('.use-location').addEventListener('click', groupUsersZipHandler);
