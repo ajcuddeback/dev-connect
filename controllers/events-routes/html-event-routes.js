@@ -4,7 +4,7 @@ const sequelize = require('../../config/connection')
 
 router.get('/', (req, res) => {
     res.render('Events-meethome')
-    console.log()
+    console.log(req.session)
 });
 
 router.get('/get-zip/:zip', (req, res) => {
@@ -40,11 +40,12 @@ router.get('/get-zip/:zip', (req, res) => {
 });
 
 router.get('/get-zip/', (req, res) => {
+    console.log(req.session)
     Group.findAll({
 
-        where: {
-            group_zip: req.session.zip
-        },
+        // where: {
+        //     group_zip: req.session.zip
+        // },
         attributes: [
             'id',
             'group_title',

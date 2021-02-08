@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
 const apiRoutes = require('./api');
-const eventRouts = require('./events-routes/html-event-routes')
+const eventRoutes = require('./events-routes/html-event-routes');
 
 router.use('/api', apiRoutes);
-router.use('/meet', eventRouts)
+router.use('/meet', eventRoutes);
 
 router.use((req, res) => {
     res.status(404).end();

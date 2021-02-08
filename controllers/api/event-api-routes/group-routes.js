@@ -26,6 +26,7 @@ router.get('/', (req, res) => {
         })
 });
 router.get('/:id', (req, res) => {
+    console.log(req.session)
     Group.findOne({
         where: {
             id: req.params.id
