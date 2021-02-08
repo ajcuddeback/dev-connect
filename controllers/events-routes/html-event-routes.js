@@ -211,4 +211,49 @@ router.get('/my-events', (req, res) => {
         })
 });
 
+router.get('/dashboard', (req, res) => {
+    User.findOne({
+        where: {
+            // This will be taken from the session
+            id: 1
+        },
+        include: [
+            {
+                model: Group,
+                attributes: [
+                    'id',
+                    'group_title',
+                    'group_text',
+                    'group_zip',
+                ]
+            },
+            {
+                model: Group,
+                attributes: ['id', 'group_title'],
+                through: Group_Users,
+                as: 'group_user'
+            },
+            {
+                model: Event,
+                attributes: ['id', 'event_title'],
+                through: Event_Users,
+                as: 'event_user'
+            }
+        ]
+    })
+        .then(dbUserData => {
+
+            const user = dbUserData.get({ plain: true });
+            console.log(user.event_user[0].event_title)
+
+            res.render('Events-my-events', {
+                user
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+})
+
 module.exports = router;
