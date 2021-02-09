@@ -284,12 +284,13 @@ router.get('/dashboard/:id', (req, res) => {
     })
         .then(dbGroupData => {
             const group = dbGroupData.get({ plain: true })
+            console.log(group)
             let isOwner = false;
             // 1 will be the req.session.user_id
             if (group.user_id === 1) {
                 isOwner = true;
             }
-            res.render('Events-group-home', {
+            res.render('Events-owner-group', {
                 group,
                 isOwner
             });
