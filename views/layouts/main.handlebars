@@ -12,14 +12,8 @@
 
     </div>
     <nav>
-        <a href='/login'>login</a>
-        <ul>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
-        </ul>
-        <div></div>
+        {{#if loggedIn}}
+        <button id="logout" class="">logout</button>
         <div class="bubble links">
             <ul>
                 <li><a href="/meet-dashboard">Meet Up Dashboard</a></li>
@@ -27,9 +21,21 @@
                 <li><a href="/my-events">My Events</a></li>
                 <li><a href="/my-questions">My Questions</a></li>
                 <li><a href="/my-posts">My Posts</a></li>
-                <li><button class="Logout">Logout</button></li>
+
             </ul>
+            {{else}}
+
+            <ul>
+                <li><a href='/login'>login</a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+            </ul>
+            <div></div>
+
         </div>
+        {{/if}}
     </nav>
 </header>
 
@@ -43,9 +49,9 @@
         </footer>
     </div>
 
-    {{!-- {{#if loggedIn}}
+    {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
-    {{/if}} --}}
+    {{/if}}
 </body>
 
 </html>
