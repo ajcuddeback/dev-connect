@@ -1,0 +1,10 @@
+<h2 class="dashboard-header">Dashboard</h2>
+<h3>Please pick which group you would like to manage: </h3>
+
+<ol>
+    {{#each user.groups}}
+    <li>
+        {{> owner-groups}}
+    </li>
+    {{/each}}
+</ol>

@@ -75,7 +75,7 @@ router.post('/', (req, res) => {
                             req.session.username = dbUserData.username;
                             req.session.loggedIn = true;
                             req.session.zip = data.zip;
-                            console.log(req.session)
+                            console.log(req.session);
                             res.json(dbUserData);
                         });
                     })
