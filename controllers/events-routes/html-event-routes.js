@@ -57,7 +57,6 @@ router.get("/get-zip/:zip", (req, res) => {
 });
 
 router.get("/get-zip/", (req, res) => {
-    console.log(req.session);
     Group.findAll({
         where: {
             group_zip: req.session.zip,
@@ -142,7 +141,7 @@ router.get("/group-home/:id", (req, res) => {
             groups.group_user.forEach((user) => {
                 console.log(user);
                 // the 1 will come from the session!
-                if (1 === user.id) {
+                if (req.session.user_id === user.id) {
                     isMember = true;
                 }
             });
@@ -160,8 +159,7 @@ router.get("/group-home/:id", (req, res) => {
 router.get("/my-groups", (req, res) => {
     User.findOne({
         where: {
-            // This will be taken from the session
-            id: 1,
+            id: req.session.user_id
         },
         include: [
             {
@@ -200,8 +198,7 @@ router.get("/my-groups", (req, res) => {
 router.get("/my-events", (req, res) => {
     User.findOne({
         where: {
-            // This will be taken from the session
-            id: 1,
+            id: req.session.user_id
         },
         include: [
             {
@@ -240,8 +237,7 @@ router.get("/my-events", (req, res) => {
 router.get("/dashboard", (req, res) => {
     User.findOne({
         where: {
-            // This will be taken from the session
-            id: 1,
+            id: req.session.user_id
         },
         include: [
             {
@@ -253,20 +249,13 @@ router.get("/dashboard", (req, res) => {
                 attributes: ["id", "group_title"],
                 through: Group_Users,
                 as: "group_user",
-            },
-            {
-                model: Event,
-                attributes: ["id", "event_title"],
-                through: Event_Users,
-                as: "event_user",
-            },
+            }
         ],
     })
         .then((dbUserData) => {
             const user = dbUserData.get({ plain: true });
-            console.log(user.event_user[0].event_title);
 
-            res.render("Events-my-events", {
+            res.render("Events-dashboard", {
                 user,
             });
         })
@@ -308,7 +297,7 @@ router.get('/dashboard/:id', (req, res) => {
             console.log(group)
             let isOwner = false;
             // 1 will be the req.session.user_id
-            if (group.user_id === 1) {
+            if (group.user_id === req.session.user_id) {
                 isOwner = true;
             }
             res.render('Events-owner-group', {

@@ -2,7 +2,6 @@ async function joinEventFormHandler(event) {
     event.preventDefault();
 
     const event_id = document.querySelector('.join-event-btn').dataset.id;
-    console.log(event_id)
     const user_id = 1
 
     const response = await fetch(`/api/events/add-user`, {

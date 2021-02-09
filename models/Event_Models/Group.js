@@ -3,9 +3,9 @@ const sequelize = require('../../config/connection');
 
 
 class Group extends Model {
-    static addUser(body, models) {
+    static addUser(body, user_id, models) {
         return models.Group_Users.create({
-            user_id: body.user_id,
+            user_id: user_id,
             group_id: body.group_id
         }).then(() => {
             return Group.findOne({

@@ -141,7 +141,8 @@ router.post('/', (req, res) => {
 });
 
 router.put('/add-user', (req, res) => {
-    Group.addUser({ ...req.body }, { User, Group, Event, Group_Users })
+    let user_id = req.session.user_id
+    Group.addUser({ ...req.body }, user_id, { User, Group, Event, Group_Users })
         .then(updatedGroupData => res.json(updatedGroupData))
         .catch(err => {
             console.log(err);
