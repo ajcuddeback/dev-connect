@@ -66,8 +66,7 @@ router.post("/", (req, res) => {
     })
         .then((dbUserData) => {
             const apiUrl =
-                "http://api.ipstack.com/72.184.50.98?access_key=" +
-                process.env.GEOAPIKEY;
+                "https://ipgeolocation.abstractapi.com/v1/?api_key=" + process.env.GEOAPIKEY;
             fetch(apiUrl).then((response) => {
                 if (response.ok) {
                     response.json().then((data) => {
@@ -75,8 +74,7 @@ router.post("/", (req, res) => {
                             req.session.user_id = dbUserData.id;
                             req.session.username = dbUserData.username;
                             req.session.loggedIn = true;
-                            req.session.zip = data.zip;
-                            console.log(req.session);
+                            req.session.zip = data.postal_code;
                             res.json(dbUserData);
                         });
                     });
@@ -110,9 +108,7 @@ router.post("/login", (req, res) => {
                 return;
             }
 
-            const apiUrl =
-                "http://api.ipstack.com/72.184.50.98?access_key=" +
-                process.env.GEOAPIKEY;
+            const apiUrl = "https://ipgeolocation.abstractapi.com/v1/?api_key=" + process.env.GEOAPIKEY;
             fetch(apiUrl).then((response) => {
                 if (response.ok) {
                     response.json().then((data) => {
@@ -120,8 +116,7 @@ router.post("/login", (req, res) => {
                             req.session.user_id = dbUserData.id;
                             req.session.username = dbUserData.username;
                             req.session.loggedIn = true;
-                            req.session.zip = data.zip;
-                            console.log(req.session);
+                            req.session.zip = data.postal_code;
                             res.json(dbUserData);
                         });
                     });
