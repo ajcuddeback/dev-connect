@@ -1,0 +1,23 @@
+{{#if isOwner}}
+<section class="group-content-wrapper">
+    <div class="group-info-wrapper">
+        <h2 class="group-name">{{group.group_title}}</h2>
+        <p>{{group.group_text}}</p>
+    </div>
+    <div class="group-event-wrapper">
+        <ol>
+            {{#each group.events}}
+            <li>
+                {{> dashboard-events}}
+            </li>
+            {{/each}}
+        </ol>
+        <a href="/meet/add-event">Add an Event</a>
+    </div>
+</section>
+<script src="/javascript/join-event.js"></script>
+{{else}}
+
+<h2>You do not own this group!</h2>
+<p>Want to make your own group? Go to your<a href="/meet/dashboard"> dashboard!</a></p>
+{{/if}}
