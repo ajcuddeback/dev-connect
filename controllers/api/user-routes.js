@@ -108,15 +108,21 @@ router.post('/login', (req, res) => {
                 return;
             }
 
-            req.session.save(() => {
-                req.session.user_id = dbUserData.id;
-                req.session.username = dbUserData.username;
-                req.session.loggedIn = true;
-
-                res.json({ user: dbUserData, message: 'You are no logged in!' });
-            });
-
-
+            const apiUrl = "http://api.ipstack.com/72.184.50.98?access_key=" + process.env.GEOAPIKEY;
+            fetch(apiUrl).then((response) => {
+                if (response.ok) {
+                    response.json().then((data) => {
+                        req.session.save(() => {
+                            req.session.user_id = dbUserData.id;
+                            req.session.username = dbUserData.username;
+                            req.session.loggedIn = true;
+                            req.session.zip = data.zip;
+                            console.log(req.session);
+                            res.json({ user: dbUserData, message: 'You are no logged in!' });
+                        });
+                    })
+                }
+            })
         })
         .catch(err => {
             console.log(err);

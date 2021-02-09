@@ -40,12 +40,11 @@ router.get('/get-zip/:zip', (req, res) => {
 });
 
 router.get('/get-zip/', (req, res) => {
-    console.log(req.session)
     Group.findAll({
 
-        // where: {
-        //     group_zip: req.session.zip
-        // },
+        where: {
+            group_zip: req.session.zip
+        },
         attributes: [
             'id',
             'group_title',
