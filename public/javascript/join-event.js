@@ -1,14 +1,15 @@
-async function joinEventFormHandler(event) {
-    event.preventDefault();
-
-    const event_id = document.querySelector('.join-event-btn').dataset.id;
-    const user_id = 1
+async function joinEventFormHandler(e) {
+    const item = e.target;
+    let event_id;
+    if (item.classList[0] === 'join-event-btn') {
+        event_id = item.dataset.id;
+    };
+    console.log(event_id)
 
     const response = await fetch(`/api/events/add-user`, {
         method: 'PUT',
         body: JSON.stringify({
-            event_id,
-            user_id
+            event_id
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -27,4 +28,4 @@ async function joinEventFormHandler(event) {
         }, 3000)
     }
 }
-document.querySelector('.join-event-btn').addEventListener('click', joinEventFormHandler);
+document.querySelector('.group-event-wrapper').addEventListener('click', joinEventFormHandler);

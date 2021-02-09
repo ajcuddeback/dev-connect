@@ -3,9 +3,9 @@ const sequelize = require('../../config/connection');
 
 
 class Event extends Model {
-    static addUser(body, models) {
+    static addUser(body, user_id, models) {
         return models.Event_Users.create({
-            user_id: body.user_id,
+            user_id: user_id,
             event_id: body.event_id
         }).then(() => {
             return Event.findOne({

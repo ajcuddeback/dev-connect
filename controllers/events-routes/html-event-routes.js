@@ -216,12 +216,16 @@ router.get("/my-events", (req, res) => {
                 attributes: ["id", "event_title"],
                 through: Event_Users,
                 as: "event_user",
+                include: {
+                    model: Group,
+                    attributes: ["id", "group_title", "group_text", "group_zip"]
+                }
             },
         ],
     })
         .then((dbUserData) => {
             const user = dbUserData.get({ plain: true });
-            console.log(user.event_user[0].event_title);
+            console.log(user.event_user[0].group);
 
             res.render("Events-my-events", {
                 user,
