@@ -1,10 +1,6 @@
 async function joinGroupFormHandler(e) {
-    const item = e.target;
-    let group_id;
-    if (item.classList[0] === 'join-group') {
-        group_id = item.dataset.id;
-    };
-    console.log(group_id)
+
+    const group_id = e.target.dataset.id
 
     const response = await fetch(`/api/groups/add-user`, {
         method: 'PUT',
@@ -25,4 +21,8 @@ async function joinGroupFormHandler(e) {
         }, 3000)
     }
 }
-document.querySelector('.groups-near-user-wrapper').addEventListener('click', joinGroupFormHandler); 
+// document.querySelector('.groups-near-user-wrapper').addEventListener('click', joinGroupFormHandler); 
+document.querySelectorAll('.join-group').forEach(button => {
+    button.addEventListener('click', joinGroupFormHandler);
+});
+
