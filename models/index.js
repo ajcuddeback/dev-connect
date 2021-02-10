@@ -4,7 +4,9 @@ const Event = require('./Event_Models/Event');
 const Group_Users = require('./Event_Models/Group_User');
 const Event_Users = require('./Event_Models/Event_User');
 const Question = require('./Question_Models/Question');
-const Answer = require('./Question_Models/Answer')
+const Answer = require('./Question_Models/Answer');
+const QuestionTag = require('./Question_Models/QuestionTag');
+const Tag = require('./Question_Models/Tag');
 
 // User to Group Associations
 User.hasMany(Group, {
@@ -119,4 +121,5 @@ Tag.belongsToMany(Question, {
 });
 
 
-module.exports = { User, Group, Event, Group_Users, Event_Users, Question, Answer }
+module.exports = { User, Group, Event, Group_Users, Event_Users, 
+    Question, Answer, QuestionTag, Tag }
