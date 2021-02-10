@@ -131,7 +131,7 @@ router.post('/', (req, res) => {
         group_title: req.body.group_title,
         group_text: req.body.group_text,
         group_zip: req.body.group_zip,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     })
         .then(dbGroupData => res.json(dbGroupData))
         .catch(err => {

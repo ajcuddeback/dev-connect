@@ -309,6 +309,6 @@ router.get('/dashboard/:id', (req, res) => {
                 isOwner
             });
         })
-})
+});
 
 module.exports = router;
