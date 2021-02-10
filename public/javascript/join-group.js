@@ -21,8 +21,7 @@ async function joinGroupFormHandler(e) {
         }, 3000)
     }
 }
-// document.querySelector('.groups-near-user-wrapper').addEventListener('click', joinGroupFormHandler); 
+
 document.querySelectorAll('.join-group').forEach(button => {
     button.addEventListener('click', joinGroupFormHandler);
 });
-
