@@ -3,6 +3,8 @@ const Group = require('./Event_Models/Group');
 const Event = require('./Event_Models/Event');
 const Group_Users = require('./Event_Models/Group_User');
 const Event_Users = require('./Event_Models/Event_User');
+const Question = require('./Question_Models/Question');
+const Answer = require('./Question_Models/Answer')
 
 // User to Group Associations
 User.hasMany(Group, {
@@ -87,5 +89,34 @@ Group.hasMany(Event, {
     foreignKey: 'group_id'
 });
 
+// Question and Answer Associations
+User.hasMany(Question, {
+    foreignKey: 'user_id'
+});
 
-module.exports = { User, Group, Event, Group_Users, Event_Users }
+Question.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+Question.hasMany(Answer, {
+    foreignKey: 'answer_id'
+});
+
+Answer.belongsTo(Question, {
+    foreignKey: 'question_id'
+});
+
+Question.belongsToMany(Tag, {
+    through: QuestionTag,
+    as: 'question_tags',
+    foreignKey: 'question_id'
+});
+
+Tag.belongsToMany(Question, {
+    through: QuestionTag,
+    as: 'question_tags',
+    foreignKey: 'tag_id'
+});
+
+
+module.exports = { User, Group, Event, Group_Users, Event_Users, Question, Answer }
