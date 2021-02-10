@@ -311,4 +311,7 @@ router.get('/dashboard/:id', (req, res) => {
         })
 });
 
+router.get('/add-group', (req, res) => {
+    res.render('Events-create-group')
+});
 module.exports = router;
