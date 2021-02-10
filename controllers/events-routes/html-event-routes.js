@@ -344,4 +344,47 @@ router.get('/add-event/:id', (req, res) => {
         });
 
 });
+
+router.get('/edit-event/:id', (req, res) => {
+    Event.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'event_title',
+            'event_text',
+            'event_location',
+            'event_time',
+            [sequelize.literal('(SELECT COUNT(*) FROM event_users WHERE event.id = event_users.event_id)'), 'users_count'],
+        ],
+        include: [
+            {
+                model: Group,
+                attributes: ['id', 'group_title', 'group_text', 'group_zip',],
+                include: {
+                    model: User,
+                    attributes: ['id']
+                }
+            }
+        ]
+    })
+        .then(dbEventData => {
+            const event = dbEventData.get({ plain: true });
+            let isOwner = false;
+            if (event.group.user.id === req.session.user_id) {
+                isOwner = true;
+            };
+
+            res.render('Events-edit-event', {
+                event,
+                isOwner
+            });
+
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 module.exports = router;
