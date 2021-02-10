@@ -322,12 +322,21 @@ router.get('/add-event/:id', (req, res) => {
         },
         attributes: [
             'id',
-            'group_title'
+            'group_title',
+            'user_id'
         ]
     })
         .then(dbGroupData => {
-            const group = dbGroupData.get({ plain: true })
-            res.render('Events-add-event', group)
+            const group = dbGroupData.get({ plain: true });
+            let isOwner = false;
+            // 1 will be the req.session.user_id
+            if (group.user_id === req.session.user_id) {
+                isOwner = true;
+            }
+            res.render('Events-add-event', {
+                group,
+                isOwner
+            })
         })
         .catch(err => {
             console.log(err);
