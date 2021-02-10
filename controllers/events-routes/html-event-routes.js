@@ -314,4 +314,25 @@ router.get('/dashboard/:id', (req, res) => {
 router.get('/add-group', (req, res) => {
     res.render('Events-create-group')
 });
+
+router.get('/add-event/:id', (req, res) => {
+    Group.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'group_title'
+        ]
+    })
+        .then(dbGroupData => {
+            const group = dbGroupData.get({ plain: true })
+            res.render('Events-add-event', group)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+
+});
 module.exports = router;

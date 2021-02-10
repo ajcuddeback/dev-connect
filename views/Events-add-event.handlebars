@@ -1,14 +1,15 @@
 <section class="add-event-wrapper">
-    <h2>Add Event</h2>
+    <h2>Add Event to {{group_title}}</h2>
     <form class="add-event-from">
         <div class="col-1">
             <input type="text" name="event-title" class="event-title" placeholder="Name of Event" />
             <input type="text" name="time-and-date" class="time-and-date" placeholder="Time and Date of Event" />
-            <input type="text" name="event-location" class="event-location" />
+            <input type="text" name="event-location" class="event-location" placeholder="Adress of event" />
 
         </div>
         <div class="col-2">
-            <textarea name="event-info" id="event-info" cols="30" rows="10"></textarea>
+            <textarea name="event-info" id="event-info" cols="30"
+                rows="10">Add information about this event here</textarea>
         </div>
         <button class="confirm-add-event" type="submit">Add Event</button>
     </form>
