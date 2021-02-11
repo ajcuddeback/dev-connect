@@ -1,5 +1,11 @@
 const router = require("express").Router();
-const { Product, Category, Tag, ProductTag } = require("../../../models");
+const {
+  Product,
+  Category,
+  Tag,
+  ProductTag,
+} = require("../../../models/Store_Models");
+// const sequelize = require("../../../config/connection");
 
 // The `/api/products` endpoint
 
