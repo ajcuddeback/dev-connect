@@ -1,7 +1,7 @@
 <div class="hidden join-group-fail">
     <p>You are already part of this group</p>
 </div>
-
+{{#if groups}}
 <section class="groups-near-user-wrapper">
     <ol>
         {{#each groups}}
@@ -11,5 +11,11 @@
         {{/each}}
     </ol>
 </section>
+{{else}}
+<section class="no-groups-wrapper">
+    <h1>Oh no!</h1>
+    <p>It looks like there are no groups in your area!</p>
+</section>
+{{/if}}
 
 <script src="/javascript/join-group.js"></script>

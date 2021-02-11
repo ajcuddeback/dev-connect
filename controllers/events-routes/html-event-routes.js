@@ -309,6 +309,82 @@ router.get('/dashboard/:id', (req, res) => {
                 isOwner
             });
         })
-})
+});
 
+router.get('/add-group', (req, res) => {
+    res.render('Events-create-group')
+});
+
+router.get('/add-event/:id', (req, res) => {
+    Group.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'group_title',
+            'user_id'
+        ]
+    })
+        .then(dbGroupData => {
+            const group = dbGroupData.get({ plain: true });
+            let isOwner = false;
+            // 1 will be the req.session.user_id
+            if (group.user_id === req.session.user_id) {
+                isOwner = true;
+            }
+            res.render('Events-add-event', {
+                group,
+                isOwner
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+
+});
+
+router.get('/edit-event/:id', (req, res) => {
+    Event.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'event_title',
+            'event_text',
+            'event_location',
+            'event_time',
+            [sequelize.literal('(SELECT COUNT(*) FROM event_users WHERE event.id = event_users.event_id)'), 'users_count'],
+        ],
+        include: [
+            {
+                model: Group,
+                attributes: ['id', 'group_title', 'group_text', 'group_zip',],
+                include: {
+                    model: User,
+                    attributes: ['id']
+                }
+            }
+        ]
+    })
+        .then(dbEventData => {
+            const event = dbEventData.get({ plain: true });
+            let isOwner = false;
+            if (event.group.user.id === req.session.user_id) {
+                isOwner = true;
+            };
+
+            res.render('Events-edit-event', {
+                event,
+                isOwner
+            });
+
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 module.exports = router;

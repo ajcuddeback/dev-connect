@@ -3,7 +3,9 @@ async function joinEventFormHandler(e) {
     let event_id;
     if (item.classList[0] === 'join-event-btn') {
         event_id = item.dataset.id;
-    };
+    } else {
+        return;
+    }
     console.log(event_id)
 
     const response = await fetch(`/api/events/add-user`, {
