@@ -10,7 +10,7 @@ const tagRoutes = require('./question-api-routes/tag-routes');
 router.use('/users', userRoutes);
 router.use('/groups', groupRoutes);
 router.use('/events', eventRoutes);
-router.use('/askDevs', questionRoutes);
+router.use('/question', questionRoutes);
 router.use('/answers', answerRoutes);
 router.use('/tags', tagRoutes);
 
