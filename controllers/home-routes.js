@@ -1,7 +1,7 @@
 const withAuth = require("./../utils/auth");
 const router = require("express").Router();
 router.get("/", withAuth, (req, res) => {
-  res.render("profilepage", {
+  res.render("placeholder", {
     loggedIn: req.session.loggedIn,
   });
 });
