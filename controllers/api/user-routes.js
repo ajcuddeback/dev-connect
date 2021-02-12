@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const withAuth = require('../../utils/auth');
 const {
     User,
     Group,
@@ -9,7 +10,7 @@ const {
 const fetch = require("node-fetch");
 require("dotenv").config();
 
-router.get("/", (req, res) => {
+router.get("/", withAuth, (req, res) => {
     User.findAll({})
         .then((dbUserData) => res.json(dbUserData))
         .catch((err) => {
@@ -18,7 +19,7 @@ router.get("/", (req, res) => {
         });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", withAuth, (req, res) => {
     User.findOne({
         where: {
             id: req.params.id,
@@ -143,7 +144,7 @@ router.post("/logout", (req, res) => {
     }
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -164,7 +165,7 @@ router.put("/:id", (req, res) => {
         });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
     User.destroy({
         where: {
             id: req.params.id,

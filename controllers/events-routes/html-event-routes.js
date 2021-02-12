@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const withAuth = require('../../utils/auth');
 const {
     User,
     Group,
@@ -8,12 +9,12 @@ const {
 } = require("../../models");
 const sequelize = require("../../config/connection");
 
-router.get("/", (req, res) => {
+router.get("/", withAuth, (req, res) => {
     res.render("Events-meethome");
     console.log(req.session);
 });
 
-router.get("/get-zip/:zip", (req, res) => {
+router.get("/get-zip/:zip", withAuth, (req, res) => {
     Group.findAll({
         where: {
             group_zip: req.params.zip,
@@ -56,7 +57,7 @@ router.get("/get-zip/:zip", (req, res) => {
         });
 });
 
-router.get("/get-zip/", (req, res) => {
+router.get("/get-zip/", withAuth, (req, res) => {
     Group.findAll({
         where: {
             group_zip: req.session.zip,
@@ -99,7 +100,7 @@ router.get("/get-zip/", (req, res) => {
         });
 });
 
-router.get("/group-home/:id", (req, res) => {
+router.get("/group-home/:id", withAuth, (req, res) => {
     Group.findOne({
         where: {
             id: req.params.id,
@@ -156,7 +157,7 @@ router.get("/group-home/:id", (req, res) => {
         });
 });
 
-router.get("/my-groups", (req, res) => {
+router.get("/my-groups", withAuth, (req, res) => {
     User.findOne({
         where: {
             id: req.session.user_id
@@ -197,7 +198,7 @@ router.get("/my-groups", (req, res) => {
         });
 });
 
-router.get("/my-events", (req, res) => {
+router.get("/my-events", withAuth, (req, res) => {
     User.findOne({
         where: {
             id: req.session.user_id
@@ -246,7 +247,7 @@ router.get("/my-events", (req, res) => {
 });
 
 
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", withAuth, (req, res) => {
     User.findOne({
         where: {
             id: req.session.user_id
@@ -278,7 +279,7 @@ router.get("/dashboard", (req, res) => {
 });
 
 
-router.get('/dashboard/:id', (req, res) => {
+router.get('/dashboard/:id', withAuth, (req, res) => {
     Group.findOne({
         where: {
             id: req.params.id
@@ -319,11 +320,11 @@ router.get('/dashboard/:id', (req, res) => {
         })
 });
 
-router.get('/add-group', (req, res) => {
+router.get('/add-group', withAuth, (req, res) => {
     res.render('Events-create-group')
 });
 
-router.get('/add-event/:id', (req, res) => {
+router.get('/add-event/:id', withAuth, (req, res) => {
     Group.findOne({
         where: {
             id: req.params.id
@@ -353,7 +354,7 @@ router.get('/add-event/:id', (req, res) => {
 
 });
 
-router.get('/edit-event/:id', (req, res) => {
+router.get('/edit-event/:id', withAuth, (req, res) => {
     Event.findOne({
         where: {
             id: req.params.id
