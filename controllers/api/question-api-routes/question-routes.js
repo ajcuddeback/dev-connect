@@ -1,11 +1,10 @@
 const router = require('express').Router();
-const { User, Question, QuestionTag, Tag, Answer } = require('../../models');
+const { User, Question, QuestionTag, Tag, Answer } = require('../../../models');
 
 // get all questions
 router.get('/', (req, res) => {
     Question.findAll({
         order: [['created_at', 'DESC']],
-        // Query configuration
         attributes: [
             'id', 
             'question_text', 
@@ -88,3 +87,50 @@ router.post('/', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+// updating a question
+router.put('/:id', (req, res) => {
+    Question.update(
+        {
+            question_text: req.body.question_text
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+    .then(dbQuestionData => {
+        if (!dbQuestionData) {
+            res.status(404).json({ message: 'Unable to locate a question with this ID' });
+            return;
+        }
+        res.json(dbQuestionData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+// route to delete a post from a user
+router.delete('/:id', (req, res) => {
+    Question.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbQuestionData => {
+        if (!dbQuestionData) {
+            res.status(404).json({ message: 'Unable to locate a question with this ID' });
+            return;
+        }
+        res.json(dbPostData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+module.exports = router;
