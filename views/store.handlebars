@@ -1,29 +1,25 @@
-<section class="products">
-    <div class="section-title">
-        <h2> Our Products</h2>
-    </div>
-    <div class="products-center"></div>
-    {{!-- single product --}}
-    <article class="product">
-        <div class="img-container">
-            {{!-- <img src="../public/images/tshirt_W.png" alt="product" class="product-img"> --}}
-            <button class="bag-btn" data-id="1"></button>
-            <i."fas fa-shopping-cart" </div>
-    </article>
-    <span class="shop-item-title">DevConnect White T-Shirt</span>
-    <img class="shop-item-image" src="images/W_T-Shirt_png">
-    <div class="shop-item-details">
-        <span class="shop-item-price">$12.99</span>
-        <button class="shop btn-primary shop-item-button" type="button">ADD TO CART</button>
-    </div>
-    </div>
-    <span class="shop-item-title">DevConnect White T-Shirt</span>
-    <img class="shop-item-image" src="images/B_T-Shirt_png">
-    <div class="shop-item-details">
-        <span class="shop-item-price">$12.99</span>
-        <button class="shop btn-primary shop-item-button" type="button">ADD TO CART</button>
-    </div>
-    </div>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+    integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
 
+
+
+
+<div class="row">
+    {{#each products as
+    |product|}}
+    <div class="col-sm-6 col-md-4 col-6">
+        <div class="card">
+            <img src="{{product.imgPath}}" class="card-img-top">
+            <div class="card-body">
+
+                <h5 class="card-title">{{product.product_name}}</h5>
+                <p class="card-text">${{product.price}}</p>
+                <a href="#" class="btn btn-primary">Buy</a>
+            </div>
+        </div>
     </div>
-</section>
+    {{/each}}
+
+</div>

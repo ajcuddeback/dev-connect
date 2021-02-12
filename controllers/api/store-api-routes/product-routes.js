@@ -14,18 +14,7 @@ router.get("/", (req, res) => {
   // find all products
 
   Product.findAll({
-    include: [
-      {
-        model: Category,
-        attributes: ["id", "category_name"],
-      },
-      {
-        model: Tag,
-        attributes: ["id", "tag_name"],
-        through: ProductTag,
-        as: "product_tags",
-      },
-    ],
+    attributes: ["product_name", "price", "imgPath"],
   })
     .then((dbProductData) => {
       if (!dbProductData) {
@@ -48,18 +37,7 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    include: [
-      {
-        model: Category,
-        attributes: ["id", "category_name"],
-      },
-      {
-        model: Tag,
-        attributes: ["id", "tag_name"],
-        through: ProductTag,
-        as: "product_tags",
-      },
-    ],
+    attributes: ["product_name", "price", "imgPath"],
   })
     .then((dbProductData) => {
       if (!dbProductData) {
