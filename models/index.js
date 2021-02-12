@@ -100,14 +100,6 @@ Question.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-Question.hasMany(Answer, {
-    foreignKey: 'answer_id'
-});
-
-Answer.belongsTo(Question, {
-    foreignKey: 'question_id'
-});
-
 Question.belongsToMany(Tag, {
     through: QuestionTag,
     as: 'question_tags',
@@ -120,6 +112,21 @@ Tag.belongsToMany(Question, {
     foreignKey: 'tag_id'
 });
 
+Answer.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+Answer.belongsTo(Question, {
+    foreignKey: 'question_id'
+});
+
+User.hasMany(Answer, {
+    foreignKey: 'user_id'
+});
+
+Question.hasMany(Answer, {
+    foreignKey: 'question_id'
+});
 
 module.exports = { User, Group, Event, Group_Users, Event_Users, 
     Question, Answer, QuestionTag, Tag }

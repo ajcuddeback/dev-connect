@@ -125,7 +125,7 @@ router.delete('/:id', (req, res) => {
             res.status(404).json({ message: 'Unable to locate a question with this ID' });
             return;
         }
-        res.json(dbPostData);
+        res.json(dbQuestionData);
     })
     .catch(err => {
         console.log(err);
