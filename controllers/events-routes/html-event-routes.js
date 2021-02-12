@@ -182,11 +182,13 @@ router.get("/my-groups", (req, res) => {
     })
         .then((dbUserData) => {
             const user = dbUserData.get({ plain: true });
-
-            console.log(user.group_user[0].group_title);
-
+            let userdata = false;
+            if (user.group_user.length >= 1) {
+                userdata = true;
+            }
             res.render("Events-my-groups", {
                 user,
+                userdata
             });
         })
         .catch((err) => {
@@ -225,10 +227,16 @@ router.get("/my-events", (req, res) => {
     })
         .then((dbUserData) => {
             const user = dbUserData.get({ plain: true });
-            console.log(user.event_user[0].group);
+
+            console.log(user)
+            let userdata = false;
+            if (user.event_user.length >= 1) {
+                userdata = true;
+            }
 
             res.render("Events-my-events", {
                 user,
+                userdata
             });
         })
         .catch((err) => {
