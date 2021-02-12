@@ -3,6 +3,8 @@ const Group = require('./Event_Models/Group');
 const Event = require('./Event_Models/Event');
 const Group_Users = require('./Event_Models/Group_User');
 const Event_Users = require('./Event_Models/Event_User');
+const Post = require('./Social_Models/Post');
+const Comment = require('./Social_Models/Comment');
 
 // User to Group Associations
 User.hasMany(Group, {
@@ -87,5 +89,18 @@ Group.hasMany(Event, {
     foreignKey: 'group_id'
 });
 
+//create associations
+User.hasMany(Post)
 
-module.exports = { User, Group, Event, Group_Users, Event_Users }
+Post.belongsTo(User)
+
+Comment.belongsTo(User)
+  
+Comment.belongsTo(Post)
+  
+User.hasMany(Comment)
+  
+Post.hasMany(Comment)
+
+
+module.exports = { User, Post, Comment, Group, Event, Group_Users, Event_Users }
