@@ -1,0 +1,12 @@
+<h2 class="askDevs-header">askDevs</h2>
+<h3>Please pick which group you would like to manage: </h3>
+
+<a href="/questions/askDevs">Have a question? Get help!</a>
+
+<ol>
+    {{#each user.questions}}
+    <li>
+        {{> question-info question}}
+    </li>
+    {{/each}}
+</ol>
