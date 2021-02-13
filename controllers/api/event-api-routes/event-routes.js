@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { User, Group, Event, Event_Users } = require('../../../models');
 const sequelize = require('../../../config/connection');
+const withAuth = require('../../../utils/auth');
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     Event.findAll({
         attributes: [
             'id',
@@ -26,7 +27,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
     Event.findOne({
         where: {
             id: req.params.id
@@ -60,7 +61,7 @@ router.get('/:id', (req, res) => {
         })
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     Event.create({
         event_title: req.body.event_title,
         event_text: req.body.event_text,
@@ -75,7 +76,7 @@ router.post('/', (req, res) => {
         })
 });
 
-router.put('/add-user', (req, res) => {
+router.put('/add-user', withAuth, (req, res) => {
     let user_id = req.session.user_id
     Event.addUser({ ...req.body }, user_id, { User, Group, Event, Event_Users })
         .then(updatedeventData => res.json(updatedeventData))
@@ -85,7 +86,7 @@ router.put('/add-user', (req, res) => {
         })
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Event.update(
         {
             event_title: req.body.event_title,
@@ -113,7 +114,7 @@ router.put('/:id', (req, res) => {
         })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Event.destroy({
         where: {
             id: req.params.id

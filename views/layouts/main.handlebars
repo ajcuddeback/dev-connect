@@ -5,16 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dev-Connect</title>
+    <link rel="stylesheet" href="/stylesheets/event-pages/event.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
 
 </head>
 <header>
     <div class="logo">
-
+        <a href="/"><img src="/images/red-on-trans-logo.png" alt=""></a>
     </div>
-    <nav>
+    {{#if loggedIn}}
+    <div class="links">
+        <nav>
+            <ul>
+                <li><a href="/">Posts</a></li>
+                <li><a href="/meet">Meet</a></li>
+                <li><a href="/stack">Stack</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+        </nav>
 
-    </nav>
+        <div class="bubble links">
+            <button class="bubble-button">A</button>
+            <ul class="no-opac bubble-nav">
+                <li><a href="/meet/dashboard">Meet Up Dashboard</a></li>
+                <li><a href="/meet/my-groups">My Groups</a></li>
+                <li><a href="/meet/my-events">My Events</a></li>
+                <li><a href="/my-questions">My Questions</a></li>
+                <li><a href="/my-posts">My Posts</a></li>
+
+                <button id="logout">Logout</button>
+
+            </ul>
+        </div>
+    </div>
+    {{/if}}
+
+
+
 </header>
 
 <body>
@@ -27,7 +54,11 @@
             Thanks for visiting!
         </footer>
     </div>
+    {{#if loggedIn}}
+    <script src="/javascript/logout.js"></script>
 
+    <script src="/javascript/main.js"></script>
+    {{/if}}
 </body>
 
 </html>
