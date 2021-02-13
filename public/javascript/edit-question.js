@@ -1,7 +1,7 @@
 async function editFormHandler(event) {
     event.preventDefault();
   
-    const questionText = document.querySelector('input[name="question"]').value.trim();
+    const questionText = document.querySelector('input[name="question-text"]').value.trim();
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];

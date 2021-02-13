@@ -1,7 +1,7 @@
 async function newFormHandler(event) {
     event.preventDefault();
   
-    const questionText = document.querySelector('input[name="question"]').value;
+    const questionText = document.querySelector('input[name="question-text"]').value;
     const username = document.querySelector('input[name="user-info"]').value;
   
     const response = await fetch(`/api/questions`, {
