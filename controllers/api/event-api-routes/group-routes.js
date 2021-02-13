@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { User, Group, Event, Group_Users } = require('../../../models');
-const sequelize = require('../../../config/connection')
+const sequelize = require('../../../config/connection');
+const withAuth = require('../../../utils/auth')
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     console.log(req.session)
     Group.findAll({
         attributes: [
@@ -25,7 +26,7 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         })
 });
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
     console.log(req.session)
     Group.findOne({
         where: {
@@ -60,7 +61,7 @@ router.get('/:id', (req, res) => {
             res.status(500).json(err)
         })
 });
-router.get('/:zip', (req, res) => {
+router.get('/:zip', withAuth, (req, res) => {
     Group.findAll({
         where: {
             group_zip: req.params.zip
@@ -93,7 +94,7 @@ router.get('/:zip', (req, res) => {
         })
 });
 
-router.get('/owner-groups/:id', (req, res) => {
+router.get('/owner-groups/:id', withAuth, (req, res) => {
     Group.findAll({
         where: {
             user_id: req.params.id
@@ -126,12 +127,12 @@ router.get('/owner-groups/:id', (req, res) => {
         })
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     Group.create({
         group_title: req.body.group_title,
         group_text: req.body.group_text,
         group_zip: req.body.group_zip,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     })
         .then(dbGroupData => res.json(dbGroupData))
         .catch(err => {
@@ -150,7 +151,7 @@ router.put('/add-user', (req, res) => {
         })
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Group.update(
         {
             group_title: req.body.group_title,
@@ -177,7 +178,7 @@ router.put('/:id', (req, res) => {
         })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Group.destroy({
         where: {
             id: req.params.id

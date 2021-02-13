@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const withAuth = require('../../utils/auth');
 const {
     User,
     Group,
@@ -9,7 +10,7 @@ const {
 const fetch = require("node-fetch");
 require("dotenv").config();
 
-router.get("/", (req, res) => {
+router.get("/", withAuth, (req, res) => {
     User.findAll({})
         .then((dbUserData) => res.json(dbUserData))
         .catch((err) => {
@@ -18,7 +19,7 @@ router.get("/", (req, res) => {
         });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", withAuth, (req, res) => {
     User.findOne({
         where: {
             id: req.params.id,
@@ -66,15 +67,16 @@ router.post("/", (req, res) => {
     })
         .then((dbUserData) => {
             const apiUrl =
-                "https://ipgeolocation.abstractapi.com/v1/?api_key=" + process.env.GEOAPIKEY;
+                'https://us1.locationiq.com/v1/reverse.php?key=' + process.env.GEOAPIKEY + '&lat=' + req.body.lat + '&lon=' + req.body.lon + '&format=json'
             fetch(apiUrl).then((response) => {
                 if (response.ok) {
                     response.json().then((data) => {
+                        console.log(data)
                         req.session.save(() => {
                             req.session.user_id = dbUserData.id;
                             req.session.username = dbUserData.username;
                             req.session.loggedIn = true;
-                            req.session.zip = data.postal_code;
+                            req.session.zip = data.address.postcode;
                             res.json(dbUserData);
                         });
                     });
@@ -108,20 +110,23 @@ router.post("/login", (req, res) => {
                 return;
             }
 
-            const apiUrl = "https://ipgeolocation.abstractapi.com/v1/?api_key=" + process.env.GEOAPIKEY;
+            const apiUrl =
+                'https://us1.locationiq.com/v1/reverse.php?key=' + process.env.GEOAPIKEY + '&lat=' + req.body.lat + '&lon=' + req.body.lon + '&format=json'
             fetch(apiUrl).then((response) => {
                 if (response.ok) {
                     response.json().then((data) => {
+                        console.log(data)
                         req.session.save(() => {
                             req.session.user_id = dbUserData.id;
                             req.session.username = dbUserData.username;
                             req.session.loggedIn = true;
-                            req.session.zip = data.postal_code;
+                            req.session.zip = data.address.postcode;
                             res.json(dbUserData);
                         });
                     });
                 }
             });
+            console.log(req.session)
         })
         .catch((err) => {
             console.log(err);
@@ -139,7 +144,7 @@ router.post("/logout", (req, res) => {
     }
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -160,7 +165,7 @@ router.put("/:id", (req, res) => {
         });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
     User.destroy({
         where: {
             id: req.params.id,

@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const withAuth = require('../../utils/auth');
 const {
     User,
     Group,
@@ -8,12 +9,16 @@ const {
 } = require("../../models");
 const sequelize = require("../../config/connection");
 
-router.get("/", (req, res) => {
-    res.render("Events-meethome");
-    console.log(req.session);
+router.get("/", withAuth, (req, res) => {
+    let loggedIn = false;
+    if (req.session.user_id) {
+        loggedIn = true;
+    }
+    res.render("Events-meethome", { loggedIn });
+
 });
 
-router.get("/get-zip/:zip", (req, res) => {
+router.get("/get-zip/:zip", withAuth, (req, res) => {
     Group.findAll({
         where: {
             group_zip: req.params.zip,
@@ -45,9 +50,13 @@ router.get("/get-zip/:zip", (req, res) => {
     })
         .then((dbGroupData) => {
             const groups = dbGroupData.map((group) => group.get({ plain: true }));
-
+            let loggedIn = false;
+            if (req.session.user_id) {
+                loggedIn = true;
+            }
             res.render("Events-group-near-user", {
-                groups,
+                loggedIn,
+                groups
             });
         })
         .catch((err) => {
@@ -56,7 +65,7 @@ router.get("/get-zip/:zip", (req, res) => {
         });
 });
 
-router.get("/get-zip/", (req, res) => {
+router.get("/get-zip/", withAuth, (req, res) => {
     Group.findAll({
         where: {
             group_zip: req.session.zip,
@@ -88,9 +97,13 @@ router.get("/get-zip/", (req, res) => {
     })
         .then((dbGroupData) => {
             const groups = dbGroupData.map((group) => group.get({ plain: true }));
-
+            let loggedIn = false;
+            if (req.session.user_id) {
+                loggedIn = true;
+            }
             res.render("Events-group-near-user", {
                 groups,
+                loggedIn
             });
         })
         .catch((err) => {
@@ -99,7 +112,7 @@ router.get("/get-zip/", (req, res) => {
         });
 });
 
-router.get("/group-home/:id", (req, res) => {
+router.get("/group-home/:id", withAuth, (req, res) => {
     Group.findOne({
         where: {
             id: req.params.id,
@@ -139,15 +152,18 @@ router.get("/group-home/:id", (req, res) => {
             const groups = dbGroupData.get({ plain: true });
             let isMember = false;
             groups.group_user.forEach((user) => {
-                console.log(user);
-                // the 1 will come from the session!
                 if (req.session.user_id === user.id) {
                     isMember = true;
                 }
             });
+            let loggedIn = false;
+            if (req.session.user_id) {
+                loggedIn = true;
+            }
             res.render("Events-group-home", {
                 groups,
                 isMember,
+                loggedIn
             });
         })
         .catch((err) => {
@@ -156,7 +172,7 @@ router.get("/group-home/:id", (req, res) => {
         });
 });
 
-router.get("/my-groups", (req, res) => {
+router.get("/my-groups", withAuth, (req, res) => {
     User.findOne({
         where: {
             id: req.session.user_id
@@ -182,11 +198,18 @@ router.get("/my-groups", (req, res) => {
     })
         .then((dbUserData) => {
             const user = dbUserData.get({ plain: true });
-
-            console.log(user.group_user[0].group_title);
-
+            let userdata = false;
+            if (user.group_user.length >= 1) {
+                userdata = true;
+            }
+            let loggedIn = false;
+            if (req.session.user_id) {
+                loggedIn = true;
+            }
             res.render("Events-my-groups", {
                 user,
+                userdata,
+                loggedIn
             });
         })
         .catch((err) => {
@@ -195,7 +218,7 @@ router.get("/my-groups", (req, res) => {
         });
 });
 
-router.get("/my-events", (req, res) => {
+router.get("/my-events", withAuth, (req, res) => {
     User.findOne({
         where: {
             id: req.session.user_id
@@ -225,10 +248,20 @@ router.get("/my-events", (req, res) => {
     })
         .then((dbUserData) => {
             const user = dbUserData.get({ plain: true });
-            console.log(user.event_user[0].group);
 
+            console.log(user)
+            let userdata = false;
+            if (user.event_user.length >= 1) {
+                userdata = true;
+            }
+            let loggedIn = false;
+            if (req.session.user_id) {
+                loggedIn = true;
+            }
             res.render("Events-my-events", {
                 user,
+                userdata,
+                loggedIn
             });
         })
         .catch((err) => {
@@ -238,7 +271,7 @@ router.get("/my-events", (req, res) => {
 });
 
 
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", withAuth, (req, res) => {
     User.findOne({
         where: {
             id: req.session.user_id
@@ -258,9 +291,13 @@ router.get("/dashboard", (req, res) => {
     })
         .then((dbUserData) => {
             const user = dbUserData.get({ plain: true });
-
+            let loggedIn = false;
+            if (req.session.user_id) {
+                loggedIn = true;
+            }
             res.render("Events-dashboard", {
                 user,
+                loggedIn
             });
         })
         .catch((err) => {
@@ -270,7 +307,7 @@ router.get("/dashboard", (req, res) => {
 });
 
 
-router.get('/dashboard/:id', (req, res) => {
+router.get('/dashboard/:id', withAuth, (req, res) => {
     Group.findOne({
         where: {
             id: req.params.id
@@ -300,15 +337,109 @@ router.get('/dashboard/:id', (req, res) => {
             const group = dbGroupData.get({ plain: true })
             console.log(group)
             let isOwner = false;
+            if (group.user_id === req.session.user_id) {
+                isOwner = true;
+            }
+            let loggedIn = false;
+            if (req.session.user_id) {
+                loggedIn = true;
+            }
+            res.render('Events-owner-group', {
+                group,
+                isOwner,
+                loggedIn
+            });
+        })
+});
+
+router.get('/add-group', withAuth, (req, res) => {
+    let loggedIn = false;
+    if (req.session.user_id) {
+        loggedIn = true;
+    }
+    res.render('Events-create-group', { loggedIn })
+});
+
+router.get('/add-event/:id', withAuth, (req, res) => {
+    Group.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'group_title',
+            'user_id'
+        ]
+    })
+        .then(dbGroupData => {
+            const group = dbGroupData.get({ plain: true });
+            let isOwner = false;
             // 1 will be the req.session.user_id
             if (group.user_id === req.session.user_id) {
                 isOwner = true;
             }
-            res.render('Events-owner-group', {
+            let loggedIn = false;
+            if (req.session.user_id) {
+                loggedIn = true;
+            }
+            res.render('Events-add-event', {
                 group,
-                isOwner
-            });
+                isOwner,
+                loggedIn
+            })
         })
-})
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 
+});
+
+router.get('/edit-event/:id', withAuth, (req, res) => {
+    Event.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'event_title',
+            'event_text',
+            'event_location',
+            'event_time',
+            [sequelize.literal('(SELECT COUNT(*) FROM event_users WHERE event.id = event_users.event_id)'), 'users_count'],
+        ],
+        include: [
+            {
+                model: Group,
+                attributes: ['id', 'group_title', 'group_text', 'group_zip',],
+                include: {
+                    model: User,
+                    attributes: ['id']
+                }
+            }
+        ]
+    })
+        .then(dbEventData => {
+            const event = dbEventData.get({ plain: true });
+            let isOwner = false;
+            if (event.group.user.id === req.session.user_id) {
+                isOwner = true;
+            };
+            let loggedIn = false;
+            if (req.session.user_id) {
+                loggedIn = true;
+            }
+
+            res.render('Events-edit-event', {
+                event,
+                isOwner,
+                loggedIn
+            });
+
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 module.exports = router;

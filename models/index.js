@@ -7,6 +7,8 @@ const Question = require('./Question_Models/Question');
 const Answer = require('./Question_Models/Answer');
 const QuestionTag = require('./Question_Models/QuestionTag');
 const Tag = require('./Question_Models/Tag');
+const Post = require('./Social_Models/Post');
+const Comment = require('./Social_Models/Comment');
 
 // User to Group Associations
 User.hasMany(Group, {
@@ -128,5 +130,19 @@ Question.hasMany(Answer, {
     foreignKey: 'question_id'
 });
 
-module.exports = { User, Group, Event, Group_Users, Event_Users, 
+//create associations
+User.hasMany(Post)
+
+Post.belongsTo(User)
+
+Comment.belongsTo(User)
+  
+Comment.belongsTo(Post)
+  
+User.hasMany(Comment)
+  
+Post.hasMany(Comment)
+
+
+module.exports = { User, Post, Comment, Group, Event, Group_Users, Event_Users, 
     Question, Answer, QuestionTag, Tag }
