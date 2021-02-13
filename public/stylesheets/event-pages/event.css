@@ -1,0 +1,15 @@
+.meet-info {
+  text-align: center;
+  width: 50rem;
+  margin: 0 auto;
+}
+.get-group-wrapper {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-around;
+}
+.start-group-wrapper form,
+.find-group-wrapper form {
+  display: flex;
+  flex-direction: column;
+}
