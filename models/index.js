@@ -3,6 +3,10 @@ const Group = require('./Event_Models/Group');
 const Event = require('./Event_Models/Event');
 const Group_Users = require('./Event_Models/Group_User');
 const Event_Users = require('./Event_Models/Event_User');
+const Question = require('./Question_Models/Question');
+const Answer = require('./Question_Models/Answer');
+const QuestionTag = require('./Question_Models/QuestionTag');
+const Tag = require('./Question_Models/Tag');
 const Post = require('./Social_Models/Post');
 const Comment = require('./Social_Models/Comment');
 
@@ -89,6 +93,43 @@ Group.hasMany(Event, {
     foreignKey: 'group_id'
 });
 
+// Question and Answer Associations
+User.hasMany(Question, {
+    foreignKey: 'user_id'
+});
+
+Question.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+Question.belongsToMany(Tag, {
+    through: QuestionTag,
+    as: 'question_tags',
+    foreignKey: 'question_id'
+});
+
+Tag.belongsToMany(Question, {
+    through: QuestionTag,
+    as: 'question_tags',
+    foreignKey: 'tag_id'
+});
+
+Answer.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+Answer.belongsTo(Question, {
+    foreignKey: 'question_id'
+});
+
+User.hasMany(Answer, {
+    foreignKey: 'user_id'
+});
+
+Question.hasMany(Answer, {
+    foreignKey: 'question_id'
+});
+
 //create associations
 User.hasMany(Post)
 
@@ -103,4 +144,5 @@ User.hasMany(Comment)
 Post.hasMany(Comment)
 
 
-module.exports = { User, Post, Comment, Group, Event, Group_Users, Event_Users }
+module.exports = { User, Post, Comment, Group, Event, Group_Users, Event_Users, 
+    Question, Answer, QuestionTag, Tag }
