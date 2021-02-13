@@ -1,9 +1,16 @@
 const router = require("express").Router();
-const { Product } = require("../../models/Store_Models");
+const { Items, Product, User } = require("../../models");
 
-router.get("/shop", (req, res) => {
+router.get("/", (req, res) => {
   Product.findAll({
     attributes: ["product_name", "price", "imgPath"],
+
+    include: [
+      {
+        model: Items,
+        attributes: ["id", "quantity", "product_id"],
+      },
+    ],
   })
     .then((dbPostData) => {
       const products = dbPostData.map((product) =>
@@ -18,7 +25,7 @@ router.get("/shop", (req, res) => {
     });
 });
 
-router.get("/shop/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   Product.findOne({
     where: {
       id: req.params.id,
@@ -43,4 +50,19 @@ router.get("/shop/:id", (req, res) => {
     });
 });
 
+// app.post('/cart', (req, res) => {
+//   let qty = parseInt(req.body.qty, 10);
+//   let product = parseInt(req.body.product_id, 10);
+//   if(qty > 0 && Security.isValidNonce(req.body.nonce, req)) {
+//     Products.findOne({product_id: product}).then(prod => {
+//         Cart.addToCart(prod, qty);
+//         Cart.saveCart(req);
+//         res.redirect('/cart');
+//     }).catch(err => {
+//        res.redirect('/');
+//     });
+// } else {
+//     res.redirect('/');
+// }
+// });
 module.exports = router;

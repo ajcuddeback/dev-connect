@@ -4,9 +4,13 @@
     integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
 
 
+{{!--
+<script src="https://checkout.stripe.com/chckout.js" defer></script>
+<script>
+    var stripePublicKey = {{ stripePublicKey }}
+</script> --}}
 
-
-<div class="row">
+{{!-- <div class="row">
     {{#each products as
     |product|}}
     <div class="col-sm-6 col-md-4 col-6">
@@ -16,10 +20,109 @@
 
                 <h5 class="card-title">{{product.product_name}}</h5>
                 <p class="card-text">${{product.price}}</p>
-                <a href="#" class="btn btn-primary">Buy</a>
+                <a href="/add-to-cart/" class="btn btn-primary">Buy</a>
             </div>
         </div>
     </div>
+    {{/each}} --}}
+
+    {{!--
+</div> --}}
+<div class="shopping-cart">
+    <!-- Title -->
+    <div class="title">
+        Shopping Bag
+    </div>
+    {{#each products as
+    |product|}}
+    <!-- Product #1 -->
+    <div class="item">
+        <div class="buttons">
+            <span class="delete-btn"></span>
+            <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+            <img src="{{product.imgPath}}" alt="" />
+        </div>
+
+        <div class="description">
+            <span>{{product.product_name}}</span>
+            <span>{{product.price}}</span>
+            <span>White</span>
+        </div>
+
+        <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+                <img src="plus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="minus-btn" type="button" name="button">
+                <img src="minus.svg" alt="" />
+            </button>
+        </div>
+
+        <div class="total-price">{{product.price}}*{{items.quantity}}</div>
+    </div>
     {{/each}}
 
+    <!-- Product #2 -->
+    <div class="item">
+        <div class="buttons">
+            <span class="delete-btn"></span>
+            <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+            <img src="item-2.png" alt="" />
+        </div>
+
+        <div class="description">
+            <span>Maison Margiela</span>
+            <span>Future Sneakers</span>
+            <span>White</span>
+        </div>
+
+        <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+                <img src="plus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="minus-btn" type="button" name="button">
+                <img src="minus.svg" alt="" />
+            </button>
+        </div>
+
+        <div class="total-price">$870</div>
+    </div>
+
+    <!-- Product #3 -->
+    <div class="item">
+        <div class="buttons">
+            <span class="delete-btn"></span>
+            <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+            <img src="item-3.png" alt="" />
+        </div>
+
+        <div class="description">
+            <span>Our Legacy</span>
+            <span>Brushed Scarf</span>
+            <span>Brown</span>
+        </div>
+
+        <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+                <img src="plus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="minus-btn" type="button" name="button">
+                <img src="minus.svg" alt="" />
+            </button>
+        </div>
+
+        <div class="total-price">$349</div>
+    </div>
 </div>

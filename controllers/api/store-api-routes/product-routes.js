@@ -1,10 +1,5 @@
 const router = require("express").Router();
-const {
-  Product,
-  Category,
-  Tag,
-  ProductTag,
-} = require("../../../models/Store_Models");
+const { Product, Category, Tag, ProductTag } = require("../../../models/");
 // const sequelize = require("../../../config/connection");
 
 // The `/api/products` endpoint
@@ -15,6 +10,12 @@ router.get("/", (req, res) => {
 
   Product.findAll({
     attributes: ["product_name", "price", "imgPath"],
+    include: [
+      {
+        model: Items,
+        attributes: ["id", "quantity", "product_id"],
+      },
+    ],
   })
     .then((dbProductData) => {
       if (!dbProductData) {
