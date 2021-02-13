@@ -39,6 +39,10 @@ router.get('/', withAuth, (req, res) => {
     });
 });
 
+router.get('/privacy-policy', (req, res) => {
+  res.render('privacy-policy')
+});
+
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
