@@ -1,0 +1,12 @@
+<div class="individual-post">
+
+    <div class="post-and-comments">
+        <div class="post-text">
+            {{post_content}}
+        </div>
+            <div class="">
+                <b>{{user.username}}</b> | 
+                 | {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+            </div>
+        
+    </div>

@@ -1,0 +1,18 @@
+    <div class="">
+        <a href="/user-profile/create/"><button id="create-post" class="">create post</button></a>
+        
+        <h2 class="">Your Profile: Your Posts and comments</h2><hr>
+{{#if posts.length}}
+    </div>
+
+    {{#each posts as |post|}}
+        {{> post-info post}}
+        
+            <a href="/user-profile/edit/{{post.id}}"><button class="">edit post</button></a>
+        </div>
+    {{/each}}
+
+{{else}}
+<h6 class="">Shame on you! You have not posted anything yet</h6>
+
+{{/if}}
