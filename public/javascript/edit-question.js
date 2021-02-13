@@ -1,7 +1,7 @@
 async function editFormHandler(event) {
     event.preventDefault();
   
-    const questionText = document.querySelector('input[name="question_text"]').value.trim();
+    const questionText = document.querySelector('input[name="question"]').value.trim();
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
@@ -16,7 +16,7 @@ async function editFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/dashboard/');
+      document.location.replace('/askDevs/');
     } else {
       alert(response.statusText);
     }
