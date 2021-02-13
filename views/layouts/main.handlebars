@@ -10,26 +10,36 @@
 </head>
 <header>
     <div class="logo">
-
+        <img src="/images/red-on-trans-logo.png" alt="">
     </div>
-    <nav>
-        <li><a href="/">Posts</a></li>
-        <li><a href="/meet">Meet</a></li>
-        <li><a href="/stack">Stack</a></li>
-        <li><a href="/shop">Shop</a></li>
-    </nav>
+    {{#if loggedIn}}
+    <div class="links">
+        <nav>
+            <ul>
+                <li><a href="/">Posts</a></li>
+                <li><a href="/meet">Meet</a></li>
+                <li><a href="/stack">Stack</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+        </nav>
 
-    <div class="bubble links">
-        <ul>
-            <li><a href="/meet/dashboard">Meet Up Dashboard</a></li>
-            <li><a href="/meet/my-groups">My Groups</a></li>
-            <li><a href="/meet/my-events">My Events</a></li>
-            <li><a href="/my-questions">My Questions</a></li>
-            <li><a href="/my-posts">My Posts</a></li>
-            <button id="logout" class="">logout</button>
+        <div class="bubble links">
+            <button class="bubble-button">A</button>
+            <ul class="no-opac bubble-nav">
+                <li><a href="/meet/dashboard">Meet Up Dashboard</a></li>
+                <li><a href="/meet/my-groups">My Groups</a></li>
+                <li><a href="/meet/my-events">My Events</a></li>
+                <li><a href="/my-questions">My Questions</a></li>
+                <li><a href="/my-posts">My Posts</a></li>
 
-        </ul>
+                <button id="logout" class="">Logout</button>
+
+            </ul>
+        </div>
     </div>
+    {{/if}}
+
+
 
 </header>
 
@@ -42,7 +52,11 @@
             Thanks for visiting!
         </footer>
     </div>
+    {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
+
+    <script src="/javascript/main.js"></script>
+    {{/if}}
 </body>
 
 </html>
