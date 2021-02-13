@@ -16,7 +16,7 @@ async function newFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/askDevs/');
+      document.location.replace('/askDevs-dashboard/');
     } else {
       alert(response.statusText);
     }
