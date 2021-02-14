@@ -1,3 +1,13 @@
+input,
+textarea {
+  color: #30475e;
+  padding: 0.5rem;
+  transition: all 1s;
+}
+input:focus,
+textarea:focus {
+  outline: 0.8px solid #30475e;
+}
 .meet-info {
   text-align: center;
   width: 50rem;
@@ -7,9 +17,20 @@
   margin-top: 3rem;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  margin-bottom: 8rem;
 }
 .start-group-wrapper form,
 .find-group-wrapper form {
   display: flex;
   flex-direction: column;
+}
+
+.start-group-wrapper form input,
+.start-group-wrapper form textarea,
+.start-group-wrapper form button,
+.find-group-wrapper form input,
+.find-group-wrapper form button,
+.use-location {
+  margin-top: 1rem;
 }
