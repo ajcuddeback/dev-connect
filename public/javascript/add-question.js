@@ -2,13 +2,11 @@ async function newFormHandler(event) {
     event.preventDefault();
   
     const questionText = document.querySelector('input[name="question-text"]').value;
-    const username = document.querySelector('input[name="user-info"]').value;
   
     const response = await fetch(`/api/questions`, {
       method: 'POST',
       body: JSON.stringify({
-        questionText,
-        username
+        questionText
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -16,7 +14,7 @@ async function newFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/askDevs-dashboard/');
+      document.location.replace('/askDevs/');
     } else {
       alert(response.statusText);
     }

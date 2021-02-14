@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Question, User, Answer, Tag, QuestionTag } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
     console.log(req.session);
@@ -39,7 +40,8 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/question/:id', (req, res) => {
+// find by id
+router.get('/questions/:id', (req, res) => {
     Question.findOne({
         where: {
             id: req.params.id
@@ -81,6 +83,85 @@ router.get('/question/:id', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+// 
+router.get('/edit/:id', withAuth, (req, res) => {
+  Question.findByPk(req.params.id, {
+    attributes: [
+      'id',
+      'question_text',
+      'created_at'
+    ],
+    include: [
+      {
+        model: Answer,
+        attributes: ['id', 'answer_text', 'question_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['username']
+        }
+      },
+      {
+        model: User,
+        attributes: ['username']
+      }
+    ]
+  })
+    .then(dbQuestionData => {
+      if (dbQuestionData) {
+        const question = dbQuestionData.get({ plain: true });
+        
+        res.render('edit-question', {
+          question,
+          loggedIn: true
+        });
+      } else {
+        res.status(404).end();
+      }
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+router.get('/edit/:id', withAuth, (req, res) => {
+    Question.findByPk(req.params.id, {
+      attributes: [
+        'id',
+        'question_text',
+        'created_at'
+      ],
+      include: [
+        {
+          model: Answer,
+          attributes: ['id', 'answer_text', 'question_id', 'user_id', 'created_at'],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
+        },
+        {
+          model: User,
+          attributes: ['username']
+        }
+      ]
+    })
+      .then(dbQuestionData => {
+        if (dbQuestionData) {
+          const question = dbQuestionData.get({ plain: true });
+          
+          res.render('edit-question', {
+            question,
+            loggedIn: true
+          });
+        } else {
+          res.status(404).end();
+        }
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
 });
 
 module.exports = router;
