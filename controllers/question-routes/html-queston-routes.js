@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
             // pass a single object into the homepage template
             const questions = dbQuestionData.map(question => question.get({ plain: true }));
             
-            res.render('askDevs-dashboard', {
+            res.render('askDevs', {
                 questions,
                 loggedIn: req.session.loggedIn
             });
