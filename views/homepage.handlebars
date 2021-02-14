@@ -1,10 +1,25 @@
 
+
+
+<form class = "new-post-form ">
+  <div class="input-group mb-3">
+  <input type="text" class="form-control" name="post-content" placeholder="Write a post" aria-label="Write a post" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button id = "post-btn" class="btn btn-outline-secondary" type="button">Post</button>
+  </div>
+</div>
+</form>
+
+
 {{#each posts as |post|}}
 
 {{> post-info post }}
 </div>
 
 
-{{else}}
-<h4 class="no-post">Check back later for posts</h4>
+
+
 {{/each}}
+
+
+<script src="/javascript/add-post.js"></script>

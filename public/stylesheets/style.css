@@ -84,6 +84,31 @@ nav ul li a {
 #logout:hover {
   cursor: pointer;
 }
+/* Jephte's beginning styling */
+
+.new-post-form{
+width:80%;
+margin:50px auto;
+
+}
+.comment .meta {
+  font-size: 90%;
+  margin-bottom: .5%;
+  opacity: .6;
+}
+
+
+.individual-post{
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+
+
+/* Jephte's end styling */
 
 footer {
   width: 100%;
