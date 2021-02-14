@@ -1,15 +1,19 @@
 const { Model, DataTypes } = require("sequelize");
+
 const sequelize = require("../../config/connection");
 
-class Group_Users extends Model {}
+class Items extends Model {}
 
-Group_Users.init(
+Items.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -19,22 +23,21 @@ Group_Users.init(
         key: "id",
       },
     },
-    group_id: {
+    product_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "group",
+        model: "product",
         key: "id",
       },
     },
   },
   {
     sequelize,
-    timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "group_users",
+    modelName: "items",
   }
 );
 
-module.exports = Group_Users;
+module.exports = Items;

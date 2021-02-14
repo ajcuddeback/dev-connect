@@ -1,39 +1,51 @@
-const { Product } = require("../models/Store_Models");
+const { Product } = require("../models");
 
-const productData = [
+const products = [
   {
-    product_name: "Plain T-Shirt",
-    price: 14.99,
+    product_name: "Branded T-Shirt (white)",
+    imgPath: "/images/Black_TShirt.jpg",
+    price: 1499,
     stock: 14,
     category_id: 1,
   },
   {
-    product_name: "Running Sneakers",
-    price: 90.0,
-    stock: 25,
-    category_id: 4,
-  },
-  {
-    product_name: "Branded Baseball Hat",
-    price: 22.99,
-    stock: 12,
-    category_id: 3,
-  },
-
-  {
-    product_name: "Sweatshirt",
-    price: 29.99,
+    product_name: "Sweatshirt (white)",
+    imgPath: "/images/Black_TShirt.jpg",
+    price: 2999,
     stock: 22,
     category_id: 1,
   },
   {
-    product_name: "Coffee Mug",
-    price: 10.99,
+    product_name: "Running Sneakers (white)",
+    imgPath: "/images/Black_TShirt.jpg",
+    price: 900,
+    stock: 25,
+    category_id: 3,
+  },
+  {
+    product_name: "Running Sneakers (black)",
+    imgPath: "/images/Black_TShirt.jpg",
+    price: 900,
+    stock: 25,
+    category_id: 3,
+  },
+
+  {
+    product_name: "Coffee Mug (white)",
+    imgPath: "/images/Black_TShirt.jpg",
+    price: 1099,
+    stock: 22,
+    category_id: 2,
+  },
+  {
+    product_name: "Water bottle (white)",
+    imgPath: "/images/Black_TShirt.jpg",
+    price: 1099,
     stock: 22,
     category_id: 2,
   },
 ];
 
-const seedProducts = () => Product.bulkCreate(productData);
+const seedProducts = () => Product.bulkCreate(products);
 
 module.exports = seedProducts;
