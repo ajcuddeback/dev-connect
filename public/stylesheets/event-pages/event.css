@@ -4,6 +4,8 @@ textarea {
   color: #30475e;
   padding: 0.5rem;
   transition: all 1s;
+  border-radius: 5px;
+  margin-top: 1rem;
 }
 input:focus,
 textarea:focus {
@@ -99,6 +101,16 @@ textarea:focus {
   margin: 1rem auto;
   background-color: #222831;
   color: #e8e8e8;
+}
+.create-group-form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
+}
+.create-group-form button {
+  width: 50%;
+  margin: 1rem auto;
 }
 
 @media screen and (max-width: 890px) {
