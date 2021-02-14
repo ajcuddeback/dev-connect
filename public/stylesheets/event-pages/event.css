@@ -18,8 +18,18 @@ textarea:focus {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 8rem;
+  margin-bottom: 2rem;
 }
+
+.start-group-wrapper,
+.find-group-wrapper {
+  border: 1px solid black;
+  padding: 2rem 3rem;
+  background-color: #222831;
+  color: #e8e8e8;
+  border-radius: 5px;
+}
+
 .start-group-wrapper form,
 .find-group-wrapper form {
   display: flex;
@@ -33,4 +43,41 @@ textarea:focus {
 .find-group-wrapper form button,
 .use-location {
   margin-top: 1rem;
+}
+.use-location {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+.disclamer {
+  margin-bottom: 5rem;
+}
+
+@media screen and (max-width: 890px) {
+  .meet-info {
+    width: 30rem;
+  }
+  .get-group-wrapper {
+    flex-direction: column;
+  }
+  .find-group-wrapper {
+    margin-top: 2rem;
+  }
+  .disclamer {
+    width: 50%;
+    margin: 2rem auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .meet-info {
+    width: 20rem;
+  }
+}
+@media screen and (max-width: 440px) {
+  .start-group-wrapper {
+    padding: 2rem 1rem;
+  }
+  .find-group-wrapper {
+    padding: 2rem 1rem;
+  }
 }
