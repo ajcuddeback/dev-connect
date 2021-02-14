@@ -75,12 +75,22 @@ textarea:focus {
   margin-top: 3rem;
 }
 .create-group-btn a,
-.group-button-wrapper a {
+.group-button-wrapper a,
+.manage-event-buttons a,
+.group-event-wrapper a {
   border: 1px solid black;
   border-radius: 5px;
   padding: 0.8rem;
   color: #f05454;
   background-color: #222831;
+  position: relative;
+}
+.create-group-btn a:hover,
+.group-button-wrapper a:hover,
+.manage-event-buttons a:hover,
+.group-event-wrapper a:hover {
+  text-decoration: none;
+  top: 2px;
 }
 .group-button-wrapper a {
   background-color: #e8e8e8;
@@ -102,16 +112,65 @@ textarea:focus {
   background-color: #222831;
   color: #e8e8e8;
 }
-.create-group-form {
+
+/* End of main dashboard */
+
+/* Begin of create group page */
+.dash-create-group-form {
   display: flex;
   flex-direction: column;
   width: 30%;
   margin: 0 auto;
 }
-.create-group-form button {
+.dash-create-group-form button {
   width: 50%;
   margin: 1rem auto;
 }
+
+.create-group-section {
+  margin-bottom: 5rem;
+}
+/* End of create group page */
+
+/* Begin of dashboard by 1 group */
+
+.group-content-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.group-content-wrapper ol {
+  list-style: none;
+}
+.group-content-wrapper ol li {
+  background-color: #222831;
+  color: #e8e8e8;
+  padding: 1rem;
+  border-radius: 5px;
+}
+.group-content-wrapper ol li h2 {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e8e8e8;
+}
+.meetup-info-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.time-and-info,
+.location {
+  width: 50%;
+}
+
+.manage-event-buttons a,
+.manage-event-buttons button {
+  border: none;
+}
+.group-event-wrapper {
+  margin-bottom: 20rem;
+}
+/* End of dashboard group by 1 page */
+
+/* Begin of add event page */
 
 @media screen and (max-width: 890px) {
   .meet-info {
