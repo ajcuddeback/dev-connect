@@ -14,8 +14,8 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   Items.create({
     qauntity: req.body.qauntity,
-    // user_id: req.session.user_id,
-    user_id: req.body.user_id,
+    user_id: req.session.user_id,
+    // user_id: req.body.user_id,
     product_id: req.body.product_id,
   })
     .then((dbItemsData) => res.json(dbItemsData))

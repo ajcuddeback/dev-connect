@@ -2,38 +2,45 @@ const { Product } = require("../models");
 
 const products = [
   {
-    product_name: "Plain T-Shirt",
+    product_name: "Branded T-Shirt (white)",
     imgPath: "/images/Black_TShirt.jpg",
-    price: 14.99,
+    price: 1499,
     stock: 14,
     category_id: 1,
   },
   {
-    product_name: "Running Sneakers",
+    product_name: "Sweatshirt (white)",
     imgPath: "/images/Black_TShirt.jpg",
-    price: 90.0,
-    stock: 25,
-    category_id: 4,
-  },
-  {
-    product_name: "Branded Baseball Hat",
-    imgPath: "/images/Black_TShirt.jpg",
-    price: 22.99,
-    stock: 12,
-    category_id: 3,
-  },
-
-  {
-    product_name: "Sweatshirt",
-    imgPath: "/images/Black_TShirt.jpg",
-    price: 29.99,
+    price: 2999,
     stock: 22,
     category_id: 1,
   },
   {
-    product_name: "Coffee Mug",
+    product_name: "Running Sneakers (white)",
     imgPath: "/images/Black_TShirt.jpg",
-    price: 10.99,
+    price: 900,
+    stock: 25,
+    category_id: 3,
+  },
+  {
+    product_name: "Running Sneakers (black)",
+    imgPath: "/images/Black_TShirt.jpg",
+    price: 900,
+    stock: 25,
+    category_id: 3,
+  },
+
+  {
+    product_name: "Coffee Mug (white)",
+    imgPath: "/images/Black_TShirt.jpg",
+    price: 1099,
+    stock: 22,
+    category_id: 2,
+  },
+  {
+    product_name: "Water bottle (white)",
+    imgPath: "/images/Black_TShirt.jpg",
+    price: 1099,
     stock: 22,
     category_id: 2,
   },

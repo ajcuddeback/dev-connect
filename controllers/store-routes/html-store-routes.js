@@ -1,14 +1,20 @@
 const router = require("express").Router();
-const { Items, Product, User } = require("../../models");
-
+const { ProductTag, Product, Category, Tag } = require("../../models");
+const sequelize = require("../../config/connection");
 router.get("/", (req, res) => {
   Product.findAll({
     attributes: ["product_name", "price", "imgPath"],
-
+    order: [["product_name", "DESC"]],
     include: [
       {
-        model: Items,
-        attributes: ["id", "quantity", "product_id"],
+        model: Category,
+        attributes: ["id", "category_name"],
+      },
+      {
+        model: Tag,
+        attributes: ["id", "tag_name"],
+        through: ProductTag,
+        as: "product_tags",
       },
     ],
   })
@@ -17,7 +23,11 @@ router.get("/", (req, res) => {
         product.get({ plain: true })
       );
 
-      res.render("store", { products });
+      let loggedIn = false;
+      if (req.session.user_id) {
+        loggedIn = true;
+      }
+      res.render("store", { products, loggedIn });
     })
     .catch((err) => {
       console.log(err);
@@ -40,9 +50,12 @@ router.get("/:id", (req, res) => {
 
       // serialize the data
       const product = dbPostData.get({ plain: true });
-
+      let loggedIn = false;
+      if (req.session.user_id) {
+        loggedIn = true;
+      }
       // pass data to template
-      res.render("product-info", { product });
+      res.render("product-info", { product, loggedIn });
     })
     .catch((err) => {
       console.log(err);
