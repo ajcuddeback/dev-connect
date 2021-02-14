@@ -2,20 +2,23 @@
     {{#if isOwner}}
     <h2>Edit Event {{event.event_title}}</h2>
     <form class="edit-event-form">
-        <div class="col-1">
-            <p>Event title:</p>
-            <input type="text" name="event-title" class="event-title" placeholder="{{event.event_title}}" />
-            <p>Event time:</p>
-            <input type="text" name="time-and-date" class="time-and-date" placeholder="{{event.event_time}}" />
-            <p>Event location:</p>
-            <input type="text" name="event-location" class="event-location" placeholder="{{event.event_location}}" />
+        <div class="form-wrapper">
+            <div class="col-1">
+                <p>Event title:</p>
+                <input type="text" name="event-title" class="event-title" placeholder="{{event.event_title}}" />
+                <p>Event time:</p>
+                <input type="text" name="time-and-date" class="time-and-date" placeholder="{{event.event_time}}" />
+                <p>Event location:</p>
+                <input type="text" name="event-location" class="event-location"
+                    placeholder="{{event.event_location}}" />
 
+            </div>
+            <div class="col-2">
+                <p>Event information:</p>
+                <textarea name="event-info" id="event-info" cols="30" rows="10">{{event.event_text}}</textarea>
+            </div>
         </div>
-        <div class="col-2">
-            <p>Event information:</p>
-            <textarea name="event-info" id="event-info" cols="30" rows="10">{{event.event_text}}</textarea>
-        </div>
-        <button class="confirm-edit-event" type="submit">Edit Event</button>
+        <button class="confirm-edit-event grey-red-btn" type="submit">Edit Event</button>
     </form>
     {{else}}
     <h2>You do not have access to edit this event!</h2>

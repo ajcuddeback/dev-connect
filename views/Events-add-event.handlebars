@@ -2,17 +2,21 @@
     {{#if isOwner}}
     <h2>Add Event to {{group.group_title}}</h2>
     <form class="add-event-form">
-        <div class="col-1">
-            <input type="text" name="event-title" class="event-title" placeholder="Name of Event" />
-            <input type="text" name="time-and-date" class="time-and-date" placeholder="Time and Date of Event" />
-            <input type="text" name="event-location" class="event-location" placeholder="Adress of event" />
+        <div class="form-wrapper">
+            <div class="col-1">
+                <input type="text" name="event-title" class="event-title" placeholder="Name of Event" />
+                <input type="text" name="time-and-date" class="time-and-date" placeholder="Time and Date of Event" />
+                <input type="text" name="event-location" class="event-location" placeholder="Adress of event" />
 
+            </div>
+            <div class="col-2">
+                <textarea name="event-info" id="event-info" cols="30" rows="10"
+                    placeholder="Add information about this event here"></textarea>
+
+            </div>
         </div>
-        <div class="col-2">
-            <textarea name="event-info" id="event-info" cols="30"
-                rows="10">Add information about this event here</textarea>
-        </div>
-        <button class="confirm-add-event" type="submit">Add Event</button>
+        <button class="confirm-add-event grey-red-btn" type="submit">Add Event</button>
+
     </form>
     {{else}}
     <h2>You do not have access to add an event to this group!</h2>
