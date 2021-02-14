@@ -133,21 +133,21 @@ footer {
 }
 
 .btn-primary {
-    color: white;
-    background-color: #56CCF2;
+   
     border: none;
     border-radius: .3em;
     font-weight: bold;
 }
 
 .btn-primary:hover {
-    background-color: #2D9CDB;
+    background-color: #222831;
 }
 
 
 
-.tour-btn {
-    max-width: 19%;
+.shop-item-button {
+    color: white;
+    background-color:  #f05454;
 }
 
 .shop-item {

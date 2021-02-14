@@ -1,29 +1,19 @@
-<<<<<<< HEAD
 const User = require("./User");
 const Group = require("./Event_Models/Group");
 const Event = require("./Event_Models/Event");
 const Group_Users = require("./Event_Models/Group_User");
 const Event_Users = require("./Event_Models/Event_User");
+const Question = require("./Question_Models/Question");
+const Answer = require("./Question_Models/Answer");
+const QuestionTag = require("./Question_Models/QuestionTag");
+const Tag = require("./Question_Models/Tag");
 const Post = require("./Social_Models/Post");
 const Comment = require("./Social_Models/Comment");
 const Product = require("./Store_Models/Product");
 const Category = require("./Store_Models/Category");
-const Tag = require("./Store_Models/Tag");
+const TagItem = require("./Store_Models/Tag");
 const ProductTag = require("./Store_Models/ProductTag");
 const Items = require("./Store_Models/Items");
-=======
-const User = require('./User');
-const Group = require('./Event_Models/Group');
-const Event = require('./Event_Models/Event');
-const Group_Users = require('./Event_Models/Group_User');
-const Event_Users = require('./Event_Models/Event_User');
-const Question = require('./Question_Models/Question');
-const Answer = require('./Question_Models/Answer');
-const QuestionTag = require('./Question_Models/QuestionTag');
-const Tag = require('./Question_Models/Tag');
-const Post = require('./Social_Models/Post');
-const Comment = require('./Social_Models/Comment');
->>>>>>> 34afa573652f5fdc86205cd73f73830285e0c8b0
 
 // User to Group Associations
 User.hasMany(Group, {
@@ -109,39 +99,39 @@ Group.hasMany(Event, {
 
 // Question and Answer Associations
 User.hasMany(Question, {
-    foreignKey: 'user_id'
+  foreignKey: "user_id",
 });
 
 Question.belongsTo(User, {
-    foreignKey: 'user_id'
+  foreignKey: "user_id",
 });
 
 Question.belongsToMany(Tag, {
-    through: QuestionTag,
-    as: 'question_tags',
-    foreignKey: 'question_id'
+  through: QuestionTag,
+  as: "question_tags",
+  foreignKey: "question_id",
 });
 
 Tag.belongsToMany(Question, {
-    through: QuestionTag,
-    as: 'question_tags',
-    foreignKey: 'tag_id'
+  through: QuestionTag,
+  as: "question_tags",
+  foreignKey: "tag_id",
 });
 
 Answer.belongsTo(User, {
-    foreignKey: 'user_id'
+  foreignKey: "user_id",
 });
 
 Answer.belongsTo(Question, {
-    foreignKey: 'question_id'
+  foreignKey: "question_id",
 });
 
 User.hasMany(Answer, {
-    foreignKey: 'user_id'
+  foreignKey: "user_id",
 });
 
 Question.hasMany(Answer, {
-    foreignKey: 'question_id'
+  foreignKey: "question_id",
 });
 
 //create associations
@@ -193,7 +183,6 @@ Items.belongsTo(User, {
   foreignKey: "user_id",
 });
 
-<<<<<<< HEAD
 module.exports = {
   User,
   Post,
@@ -204,11 +193,11 @@ module.exports = {
   Event_Users,
   Product,
   Category,
-  Tag,
+  TagItem,
   ProductTag,
   Items,
+  Question,
+  Answer,
+  QuestionTag,
+  Tag,
 };
-=======
-module.exports = { User, Post, Comment, Group, Event, Group_Users, Event_Users, 
-    Question, Answer, QuestionTag, Tag }
->>>>>>> 34afa573652f5fdc86205cd73f73830285e0c8b0
