@@ -1,3 +1,4 @@
+/* Global styles */
 input,
 textarea {
   color: #30475e;
@@ -8,6 +9,7 @@ input:focus,
 textarea:focus {
   outline: 0.8px solid #30475e;
 }
+/* Main meet page */
 .meet-info {
   text-align: center;
   width: 50rem;
@@ -51,6 +53,53 @@ textarea:focus {
 .disclamer {
   margin-bottom: 5rem;
 }
+/* End of main meet page */
+
+/* Begin of main dashboard page */
+
+.dashboard-header {
+  font-size: 2.5rem;
+}
+.dashboard-info {
+  font-size: 2rem;
+}
+.dashboard-groups {
+  margin-top: 1rem;
+}
+.dashboard-groups {
+  margin-bottom: 30rem;
+}
+.create-group-btn {
+  margin-top: 3rem;
+}
+.create-group-btn a,
+.group-button-wrapper a {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.8rem;
+  color: #f05454;
+  background-color: #222831;
+}
+.group-button-wrapper a {
+  background-color: #e8e8e8;
+  color: #222831;
+}
+.group-button-wrapper {
+  margin-top: 2rem;
+}
+.group-info-wrapper h3 {
+  font-size: larger;
+}
+.dashboard-groups ol li {
+  list-style: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 3rem 1rem;
+  width: 30%;
+  margin: 1rem auto;
+  background-color: #222831;
+  color: #e8e8e8;
+}
 
 @media screen and (max-width: 890px) {
   .meet-info {
@@ -68,6 +117,11 @@ textarea:focus {
   }
 }
 
+@media screen and (max-width: 580px) {
+  .dashboard-groups ol li {
+    width: 50%;
+  }
+}
 @media screen and (max-width: 480px) {
   .meet-info {
     width: 20rem;
@@ -79,5 +133,8 @@ textarea:focus {
   }
   .find-group-wrapper {
     padding: 2rem 1rem;
+  }
+  .dashboard-groups ol li {
+    width: 70%;
   }
 }
