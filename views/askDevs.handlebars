@@ -8,11 +8,11 @@
         </div>
         <button type="submit" class="grey-red-btn">Submit</button>
     </form>
-    <ol class="col">
-        {{#each questions as |questions|}}
-        <li>
+    <ol class="question-list col">
+        {{#each questions as |question|}}
+        <li class="text-left">
             {{> question-info question }}
-        </li>
+        </li class="text-left">
         {{/each}}
     </ol>
 </section>
