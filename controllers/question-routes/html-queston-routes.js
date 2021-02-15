@@ -107,7 +107,7 @@ router.get('/questions/:id', (req, res) => {
             }
 
             const question = dbQuestionData.get({ plain: true });
-
+            console.log(dbQuestionData);
             res.render('single-question', {
                 question,
                 loggedIn: req.session.loggedIn
