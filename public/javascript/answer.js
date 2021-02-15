@@ -1,9 +1,9 @@
-async function commentFormHandler(event) {
+async function answerFormHandler(event) {
     event.preventDefault();
 
     const answer_text = document.querySelector('textarea[name="answer-body"]').value.trim();
 
-    const answer_id = window.location.toString().split('/')[
+    const question_id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
     ];
 
@@ -11,7 +11,7 @@ async function commentFormHandler(event) {
         const response = await fetch('/api/answers', {
             method: 'POST',
             body: JSON.stringify({
-                answer_id,
+                question_id,
                 answer_text
             }),
             headers: {

@@ -82,7 +82,7 @@ router.post("/", (req, res) => {
               req.session.user_id = dbUserData.id;
               req.session.username = dbUserData.username;
               req.session.loggedIn = true;
-              req.session.zip = data.postal_code;
+              req.session.zip = data.address.postcode;
               res.json(dbUserData);
             });
           });

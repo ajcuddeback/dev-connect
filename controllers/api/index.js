@@ -14,7 +14,7 @@ const commentRoutes = require('./comment-routes');
 router.use('/users', userRoutes);
 router.use('/groups', groupRoutes);
 router.use('/events', eventRoutes);
-router.use('/question', questionRoutes);
+router.use('/questions', questionRoutes);
 router.use('/answers', answerRoutes);
 router.use('/tags', tagRoutes);
 router.use("/store", storeRoutes);
