@@ -62,7 +62,7 @@ router.get('/my-questions/', (req, res) => {
   })
       .then(dbUserData => {
           const user = dbUserData.get({ plain: true });
-
+          console.log(user);
           res.render('my-questions', {
               user,
               loggedIn: req.session.loggedIn
@@ -76,7 +76,7 @@ router.get('/my-questions/', (req, res) => {
 
 // find by id
 router.get('/questions/:id', (req, res) => {
-    Question.findAll({
+    Question.findOne({
         where: {
             id: req.params.id
         },
@@ -102,7 +102,7 @@ router.get('/questions/:id', (req, res) => {
     })
         .then(dbQuestionData => {
             if (!dbQuestionData) {
-                res.status(404).json({ message: 'No post found with this id' });
+                res.status(404).json({ message: 'No Question found with this id' });
                 return;
             }
 

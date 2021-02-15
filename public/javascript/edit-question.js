@@ -1,14 +1,14 @@
 async function editFormHandler(event) {
     event.preventDefault();
   
-    const questionText = document.querySelector('input[name="question-text"]').value.trim();
+    const question_text = document.querySelector('input[name="question-text"]').value.trim();
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
     const response = await fetch(`/api/questions/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
-        questionText
+        question_text
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -16,7 +16,7 @@ async function editFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/askDevs/my-questions');
+      document.location.replace('/askDevs/my-questions/');
     } else {
       alert(response.statusText);
     }
