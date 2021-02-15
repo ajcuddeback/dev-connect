@@ -147,6 +147,9 @@ User.hasMany(Comment);
 
 Post.hasMany(Comment);
 
+
+//End of my associations
+
 // Products belongsTo Category
 Product.belongsTo(Category, {
   foreignKey: "category_id",

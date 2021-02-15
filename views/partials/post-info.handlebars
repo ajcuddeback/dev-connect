@@ -6,7 +6,7 @@
             {{post_content}}
         </div>
             <div class="">
-                
+                   <button id = "like-btn" class = "like-btn" ><i class="far fa-heart"></i></button> <span>{{post.like.length}}Like</span>
                   {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
             </div>
         
