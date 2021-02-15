@@ -26,7 +26,6 @@ router.get('/', (req, res) => {
         ]
     })
         .then(dbQuestionData => {
-            // pass a single object into the homepage template
             const questions = dbQuestionData.map(question => question.get({ plain: true }));
             
             res.render('askDevs', {
@@ -40,9 +39,44 @@ router.get('/', (req, res) => {
         });
 });
 
+// find by user
+router.get('/my-questions/', (req, res) => {
+  User.findOne({
+      where: {
+        id: req.session.user_id
+      },
+      include: [
+        {
+          model: Question,
+          attributes: ['id', 'question_text', 'created_at'],
+        },
+        {
+            model: Answer,
+            attributes: ['id', 'answer_text', 'question_id', 'user_id', 'created_at'],
+            include: {
+                model: User,
+                attributes: ['username']
+            }
+        }
+      ]
+  })
+      .then(dbUserData => {
+          const user = dbUserData.get({ plain: true });
+
+          res.render('my-questions', {
+              user,
+              loggedIn: req.session.loggedIn
+          });
+      })
+      .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+      });
+});
+
 // find by id
 router.get('/questions/:id', (req, res) => {
-    Question.findOne({
+    Question.findAll({
         where: {
             id: req.params.id
         },
@@ -74,7 +108,7 @@ router.get('/questions/:id', (req, res) => {
 
             const question = dbQuestionData.get({ plain: true });
 
-            res.render('single-question', { 
+            res.render('single-question', {
                 question,
                 loggedIn: req.session.loggedIn
             });

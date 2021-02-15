@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
       Answer.create({
         answer_text: req.body.answer_text,
         question_id: req.body.question_id,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     
       })
         .then(dbAnswerData => res.json(dbAnswerData))

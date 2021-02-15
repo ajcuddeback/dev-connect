@@ -16,7 +16,7 @@ async function editFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/askDevs/');
+      document.location.replace('/askDevs/my-questions');
     } else {
       alert(response.statusText);
     }
