@@ -2,12 +2,17 @@
 
     <div class="post-and-comments">
         <div class="post-text">
-            <b>{{user.username}} </b> : 
-            {{post_content}}
+            <div class = "username"> <b>{{user.username }}</b> </div> 
+            <div class = "post-content">{{post_content}}</div>
         </div>
-            <div class="">
-                   <button id = "like-btn" class = "like-btn" ><i class="far fa-heart"></i></button> <span>{{post.like.length}}Like</span>
-                  {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+            <div class="like-and-comments">
+                   <div>
+                       <button id = "like-btn" class = "like-btn" ><i class="far fa-heart"></i></button>
+                   </div> 
+                   <div>
+                       <span>{{post.like.length}}Like</span>
+                       {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+                   </div>
             </div>
         
     </div>
