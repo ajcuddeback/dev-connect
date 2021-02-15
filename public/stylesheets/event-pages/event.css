@@ -77,7 +77,9 @@ textarea:focus {
 .create-group-btn a,
 .group-button-wrapper a,
 .manage-event-buttons a,
-.group-event-wrapper a {
+.group-event-wrapper a,
+.my-groups-wrapper a,
+.my-events-wrapper a {
   border: 1px solid black;
   border-radius: 5px;
   padding: 0.8rem;
@@ -202,7 +204,9 @@ textarea:focus {
   margin-bottom: 15rem;
 }
 
-.groups-near-user-wrapper li {
+.groups-near-user-wrapper li,
+.my-groups-wrapper li,
+.my-events-wrapper li {
   list-style: none;
   background-color: #222831;
   color: #e8e8e8;
@@ -249,6 +253,16 @@ textarea:focus {
   bottom: 3rem;
 }
 
+/* End of group homepage */
+
+/* Begin my groups page */
+.my-groups-wrapper h2,
+.meetup-info-wrapper h2 {
+  margin-bottom: 1rem;
+}
+.my-groups-wrapper {
+  margin-bottom: 30rem;
+}
 @media screen and (max-width: 1550px) {
   .add-event-form,
   .edit-event-form {
@@ -257,7 +271,8 @@ textarea:focus {
   .no-groups-wrapper,
   .groups-near-user-wrapper li,
   .attend-event-success,
-  .attend-event-fail {
+  .attend-event-fail,
+  .my-events-wrapper li {
     width: 35%;
   }
 }
@@ -290,7 +305,9 @@ textarea:focus {
   .groups-near-user-wrapper li,
   .attend-event-success,
   .attend-event-fail,
-  .join-group-fail {
+  .join-group-fail,
+  .my-groups-wrapper li,
+  .my-events-wrapper li {
     width: 40%;
   }
 }
@@ -304,7 +321,9 @@ textarea:focus {
   .groups-near-user-wrapper li,
   .attend-event-success,
   .attend-event-fail,
-  .join-group-fail {
+  .join-group-fail,
+  .my-groups-wrapper li,
+  .my-events-wrapper li {
     width: 50%;
   }
 }
@@ -316,7 +335,9 @@ textarea:focus {
   .groups-near-user-wrapper li,
   .attend-event-success,
   .attend-event-fail,
-  .join-group-fail {
+  .join-group-fail,
+  .my-groups-wrapper li,
+  .my-events-wrapper li {
     width: 60%;
   }
 }
@@ -347,7 +368,9 @@ textarea:focus {
   .groups-near-user-wrapper li,
   .attend-event-success,
   .attend-event-fail,
-  .join-group-fail {
+  .join-group-fail,
+  .my-groups-wrapper li,
+  .my-events-wrapper li {
     width: 75%;
   }
 }
