@@ -7,11 +7,11 @@
         </div>
             <div class="like-and-comments">
                    <div>
-                       <button id = "like-btn" class = "like-btn" ><i class="far fa-heart"></i></button>
+                       <i class="far fa-heart like-btn"></i><span>{{post.like.length}}Like</span>
                    </div> 
                    <div>
-                       <span>{{post.like.length}}Like</span>
-                       {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+                       
+                       {{format_date created_at}} | <a href="/post/{{id}}"><span class = "comment-color">{{comments.length}} {{format_plural "comment" comments.length}}</span> </a>
                    </div>
             </div>
         

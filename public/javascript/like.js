@@ -16,13 +16,16 @@ async function likeClickHandler(event) {
       
       if (response.ok) {
         document.location.reload();
+        console.log("Everything is fine!");
       } else {
         alert(response.statusText);
       }
-      const likeBtn = document.getElementById('like-btn')
-      likeBtn.classList.toggle("like-btn-style")
-      console.log(id)
-   
+      const likeBtn = document.querySelector('.like-btn')
+      if(likeBtn.classList.contains('like-btn-style')){
+        likeBtn.classList.remove('like-btn-style');
+      }else{
+        likeBtn.classList.add('like-btn-style');
+      }   
   }
   
-  document.querySelector('.like-btn').addEventListener('click', likeClickHandler);
+  document.querySelector('.fa-heart').addEventListener('click', likeClickHandler);

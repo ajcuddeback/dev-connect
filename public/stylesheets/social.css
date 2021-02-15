@@ -1,5 +1,3 @@
-
-
 .new-post-form{
     width:80%;
     margin:50px auto;
@@ -13,11 +11,18 @@
     
     
     .individual-post{
-      margin: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 60px;
+      margin-bottom: 30px;
+      width:650px;
+      max-width:650px;
+      margin:auto;
+      padding: 3rem;
+      background-color: #222831;
+      color: #e8e8e8;
+      border-radius: 5px;  
+      margin-bottom:10px; 
     }
     
     .like-btn-style{
@@ -26,6 +31,13 @@
   .like-and-comments{
       display:flex;
       justify-content: space-between;
+  }
+
+  .fa-heart{
+    cursor: pointer;
+  }
+  .comment-color{
+    color:#f05454;
 
   }
   .username{
@@ -35,7 +47,7 @@
     
   .post-text{
       display:flex;
-
-    
-           
+      margin-bottom: 2rem;
+      
+              
   }
