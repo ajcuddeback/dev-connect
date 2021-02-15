@@ -1,3 +1,17 @@
+/* Global styles */
+input,
+textarea {
+  color: #30475e;
+  padding: 0.5rem;
+  transition: all 1s;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+input:focus,
+textarea:focus {
+  outline: 0.8px solid #30475e;
+}
+/* Main meet page */
 .meet-info {
   text-align: center;
   width: 50rem;
@@ -7,9 +21,356 @@
   margin-top: 3rem;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  margin-bottom: 2rem;
 }
+
+.start-group-wrapper,
+.find-group-wrapper {
+  border: 1px solid black;
+  padding: 2rem 3rem;
+  background-color: #222831;
+  color: #e8e8e8;
+  border-radius: 5px;
+}
+
 .start-group-wrapper form,
 .find-group-wrapper form {
   display: flex;
   flex-direction: column;
+}
+
+.start-group-wrapper form input,
+.start-group-wrapper form textarea,
+.start-group-wrapper form button,
+.find-group-wrapper form input,
+.find-group-wrapper form button,
+.use-location {
+  margin-top: 1rem;
+}
+.use-location {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+.disclamer {
+  margin-bottom: 5rem;
+}
+/* End of main meet page */
+
+/* Begin of main dashboard page */
+
+.dashboard-header {
+  font-size: 2.5rem;
+}
+.dashboard-info {
+  font-size: 2rem;
+}
+.dashboard-groups {
+  margin-top: 1rem;
+}
+.dashboard-groups {
+  margin-bottom: 30rem;
+}
+.create-group-btn {
+  margin-top: 3rem;
+}
+.create-group-btn a,
+.group-button-wrapper a,
+.manage-event-buttons a,
+.group-event-wrapper a,
+.my-groups-wrapper a,
+.my-events-wrapper a {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.8rem;
+  color: #f05454;
+  background-color: #222831;
+  position: relative;
+}
+.create-group-btn a:hover,
+.group-button-wrapper a:hover,
+.manage-event-buttons a:hover,
+.group-event-wrapper a:hover {
+  text-decoration: none;
+  top: 2px;
+}
+.group-button-wrapper a {
+  background-color: #e8e8e8;
+  color: #222831;
+}
+.group-button-wrapper {
+  margin-top: 2rem;
+}
+.group-info-wrapper h3 {
+  font-size: larger;
+}
+.dashboard-groups ol li {
+  list-style: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 3rem 1rem;
+  width: 30%;
+  margin: 1rem auto;
+  background-color: #222831;
+  color: #e8e8e8;
+}
+
+/* End of main dashboard */
+
+/* Begin of create group page */
+.dash-create-group-form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
+}
+.dash-create-group-form button {
+  width: 50%;
+  margin: 1rem auto;
+}
+
+.create-group-section {
+  margin-bottom: 5rem;
+}
+/* End of create group page */
+
+/* Begin of dashboard by 1 group */
+
+.group-content-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.group-content-wrapper ol {
+  list-style: none;
+}
+.group-content-wrapper ol li {
+  background-color: #222831;
+  color: #e8e8e8;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+.group-content-wrapper ol li h2 {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e8e8e8;
+}
+.meetup-info-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.time-and-info,
+.location {
+  width: 50%;
+}
+
+.manage-event-buttons a,
+.manage-event-buttons button {
+  border: none;
+}
+.group-event-wrapper {
+  margin-bottom: 30rem;
+}
+/* End of dashboard group by 1 page */
+
+/* Begin of add event page */
+.add-event-form,
+.edit-event-form {
+  width: 50%;
+  margin: 0 auto 20rem auto;
+  background-color: #222831;
+  border-radius: 5px;
+  padding: 2rem;
+}
+.form-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.confirm-add-event,
+.confirm-edit-event {
+  padding: 1rem;
+}
+.col-1 p,
+.col-2 p {
+  color: #e8e8e8;
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
+/* End of add event page */
+
+/* Begin group by zip page */
+
+.groups-near-user-wrapper {
+  margin-bottom: 15rem;
+}
+
+.groups-near-user-wrapper li,
+.my-groups-wrapper li,
+.my-events-wrapper li {
+  list-style: none;
+  background-color: #222831;
+  color: #e8e8e8;
+  padding: 2rem 1rem;
+  width: 25%;
+  margin: 1rem auto;
+  border-radius: 5px;
+}
+.join-group-fail {
+  position: relative;
+  bottom: 4rem;
+  padding: 0.5rem;
+  background-color: #f05454;
+  color: #e8e8e8;
+  width: 25%;
+  margin: 0 auto;
+}
+.no-groups-wrapper {
+  background-color: #222831;
+  color: #f05454;
+  padding: 1rem 0rem;
+  width: 20%;
+  border-radius: 5px;
+  margin: 0 auto 33rem auto;
+}
+.no-groups-wrapper a {
+  text-decoration: underline;
+  color: #f05454;
+}
+.attend-event-success {
+  background-color: #9ff054;
+}
+.attend-event-fail {
+  background-color: #f05454;
+}
+.attend-event-success,
+.attend-event-fail {
+  padding: 1rem;
+  color: #e8e8e8;
+  width: 25%;
+  margin: 0 auto;
+  border-radius: 5px;
+  position: relative;
+  bottom: 3rem;
+}
+
+/* End of group homepage */
+
+/* Begin my groups page */
+.my-groups-wrapper h2,
+.meetup-info-wrapper h2 {
+  margin-bottom: 1rem;
+}
+.my-groups-wrapper {
+  margin-bottom: 30rem;
+}
+@media screen and (max-width: 1550px) {
+  .add-event-form,
+  .edit-event-form {
+    width: 80%;
+  }
+  .no-groups-wrapper,
+  .groups-near-user-wrapper li,
+  .attend-event-success,
+  .attend-event-fail,
+  .my-events-wrapper li {
+    width: 35%;
+  }
+}
+@media screen and (max-width: 980px) {
+  .group-content-wrapper {
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto 20rem auto;
+  }
+}
+@media screen and (max-width: 890px) {
+  .add-event-form {
+    width: 90%;
+  }
+  .meet-info {
+    width: 30rem;
+  }
+  .get-group-wrapper {
+    flex-direction: column;
+  }
+  .find-group-wrapper {
+    margin-top: 2rem;
+  }
+  .disclamer {
+    width: 50%;
+    margin: 2rem auto;
+  }
+
+  .no-groups-wrapper,
+  .groups-near-user-wrapper li,
+  .attend-event-success,
+  .attend-event-fail,
+  .join-group-fail,
+  .my-groups-wrapper li,
+  .my-events-wrapper li {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 780px) {
+  .form-wrapper {
+    flex-direction: column;
+    align-items: center;
+    margin-right: 12rem;
+  }
+  .no-groups-wrapper,
+  .groups-near-user-wrapper li,
+  .attend-event-success,
+  .attend-event-fail,
+  .join-group-fail,
+  .my-groups-wrapper li,
+  .my-events-wrapper li {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 580px) {
+  .dashboard-groups ol li {
+    width: 50%;
+  }
+  .no-groups-wrapper,
+  .groups-near-user-wrapper li,
+  .attend-event-success,
+  .attend-event-fail,
+  .join-group-fail,
+  .my-groups-wrapper li,
+  .my-events-wrapper li {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .meet-info {
+    width: 20rem;
+  }
+  .meetup-info-wrapper {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 440px) {
+  .start-group-wrapper {
+    padding: 2rem 1rem;
+  }
+  .find-group-wrapper {
+    padding: 2rem 1rem;
+  }
+  .dashboard-groups ol li {
+    width: 70%;
+  }
+  #event-info {
+    width: 200px;
+  }
+  .no-groups-wrapper,
+  .groups-near-user-wrapper li,
+  .attend-event-success,
+  .attend-event-fail,
+  .join-group-fail,
+  .my-groups-wrapper li,
+  .my-events-wrapper li {
+    width: 75%;
+  }
 }
