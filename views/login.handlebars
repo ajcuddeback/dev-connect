@@ -4,13 +4,15 @@
     <div class="login-wrapper">
         <h2 class="login-heading">Login</h2>
         <form id="login-form">
+
             <div>
+                <p class="error"></p>
                 <label for="username-login"></label>
-                <input type="text" name="username" placeholder="Email/Username" id="username-login">
+                <input type="text" name="username" placeholder="Email/Username" id="username-login" required>
             </div>
             <div>
                 <label for="password-login"></label>
-                <input type="password" placeholder="Password" id="password-login">
+                <input type="password" placeholder="Password" id="password-login" required>
             </div>
             <button type="submit" class="submit-login grey-red-btn">Login</button>
         </form>

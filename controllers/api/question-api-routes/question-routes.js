@@ -79,7 +79,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Question.create({
         question_text: req.body.question_text,
-        user_id: req.body.session.user_id
+        user_id: req.session.user_id
     })
     .then(dbQuestionData => res.json(dbQuestionData))
     .catch(err => {
