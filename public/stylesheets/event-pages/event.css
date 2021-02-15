@@ -223,14 +223,30 @@ textarea:focus {
 .no-groups-wrapper {
   background-color: #222831;
   color: #f05454;
-  padding: 1rem;
-  width: 25%;
+  padding: 1rem 0rem;
+  width: 20%;
   border-radius: 5px;
   margin: 0 auto 33rem auto;
 }
 .no-groups-wrapper a {
   text-decoration: underline;
   color: #f05454;
+}
+.attend-event-success {
+  background-color: #9ff054;
+}
+.attend-event-fail {
+  background-color: #f05454;
+}
+.attend-event-success,
+.attend-event-fail {
+  padding: 1rem;
+  color: #e8e8e8;
+  width: 25%;
+  margin: 0 auto;
+  border-radius: 5px;
+  position: relative;
+  bottom: 3rem;
 }
 
 @media screen and (max-width: 1550px) {
@@ -239,7 +255,9 @@ textarea:focus {
     width: 80%;
   }
   .no-groups-wrapper,
-  .groups-near-user-wrapper li {
+  .groups-near-user-wrapper li,
+  .attend-event-success,
+  .attend-event-fail {
     width: 35%;
   }
 }
@@ -269,7 +287,10 @@ textarea:focus {
   }
 
   .no-groups-wrapper,
-  .groups-near-user-wrapper li {
+  .groups-near-user-wrapper li,
+  .attend-event-success,
+  .attend-event-fail,
+  .join-group-fail {
     width: 40%;
   }
 }
@@ -280,7 +301,10 @@ textarea:focus {
     margin-right: 12rem;
   }
   .no-groups-wrapper,
-  .groups-near-user-wrapper li {
+  .groups-near-user-wrapper li,
+  .attend-event-success,
+  .attend-event-fail,
+  .join-group-fail {
     width: 50%;
   }
 }
@@ -289,7 +313,10 @@ textarea:focus {
     width: 50%;
   }
   .no-groups-wrapper,
-  .groups-near-user-wrapper li {
+  .groups-near-user-wrapper li,
+  .attend-event-success,
+  .attend-event-fail,
+  .join-group-fail {
     width: 60%;
   }
 }
@@ -317,7 +344,10 @@ textarea:focus {
     width: 200px;
   }
   .no-groups-wrapper,
-  .groups-near-user-wrapper li {
+  .groups-near-user-wrapper li,
+  .attend-event-success,
+  .attend-event-fail,
+  .join-group-fail {
     width: 75%;
   }
 }
