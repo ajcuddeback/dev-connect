@@ -194,10 +194,53 @@ textarea:focus {
   margin-bottom: 0;
   margin-top: 1rem;
 }
+/* End of add event page */
+
+/* Begin group by zip page */
+
+.groups-near-user-wrapper {
+  margin-bottom: 15rem;
+}
+
+.groups-near-user-wrapper li {
+  list-style: none;
+  background-color: #222831;
+  color: #e8e8e8;
+  padding: 2rem 1rem;
+  width: 25%;
+  margin: 1rem auto;
+  border-radius: 5px;
+}
+.join-group-fail {
+  position: relative;
+  bottom: 4rem;
+  padding: 0.5rem;
+  background-color: #f05454;
+  color: #e8e8e8;
+  width: 25%;
+  margin: 0 auto;
+}
+.no-groups-wrapper {
+  background-color: #222831;
+  color: #f05454;
+  padding: 1rem;
+  width: 25%;
+  border-radius: 5px;
+  margin: 0 auto 33rem auto;
+}
+.no-groups-wrapper a {
+  text-decoration: underline;
+  color: #f05454;
+}
+
 @media screen and (max-width: 1550px) {
   .add-event-form,
   .edit-event-form {
     width: 80%;
+  }
+  .no-groups-wrapper,
+  .groups-near-user-wrapper li {
+    width: 35%;
   }
 }
 @media screen and (max-width: 980px) {
@@ -224,6 +267,11 @@ textarea:focus {
     width: 50%;
     margin: 2rem auto;
   }
+
+  .no-groups-wrapper,
+  .groups-near-user-wrapper li {
+    width: 40%;
+  }
 }
 @media screen and (max-width: 780px) {
   .form-wrapper {
@@ -231,10 +279,18 @@ textarea:focus {
     align-items: center;
     margin-right: 12rem;
   }
+  .no-groups-wrapper,
+  .groups-near-user-wrapper li {
+    width: 50%;
+  }
 }
 @media screen and (max-width: 580px) {
   .dashboard-groups ol li {
     width: 50%;
+  }
+  .no-groups-wrapper,
+  .groups-near-user-wrapper li {
+    width: 60%;
   }
 }
 @media screen and (max-width: 480px) {
@@ -259,5 +315,9 @@ textarea:focus {
   }
   #event-info {
     width: 200px;
+  }
+  .no-groups-wrapper,
+  .groups-near-user-wrapper li {
+    width: 75%;
   }
 }
