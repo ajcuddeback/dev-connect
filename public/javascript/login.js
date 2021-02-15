@@ -25,7 +25,6 @@ async function loginFormHandler(event) {
           document.location.replace("/");
         } else {
           response.json().then(text => {
-            console.log(text)
             errorP.append(text.message)
           })
         }
