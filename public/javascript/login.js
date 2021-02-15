@@ -1,6 +1,6 @@
 async function loginFormHandler(event) {
   event.preventDefault();
-
+  const errorP = document.querySelector('.error');
   const username = document.querySelector("#username-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
 
@@ -24,7 +24,10 @@ async function loginFormHandler(event) {
         if (response.ok) {
           document.location.replace("/");
         } else {
-          alert(response.statusText);
+          response.json().then(text => {
+            console.log(text)
+            errorP.append(text.message)
+          })
         }
       }
     });
