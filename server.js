@@ -27,7 +27,7 @@ app.use(session(sess));
 const routes = require("./controllers");
 const path = require("path");
 const exphbs = require("express-handlebars");
-const hbs = exphbs.create({helpers});
+const hbs = exphbs.create({ helpers });
 
 const PORT = process.env.PORT || 3002;
 

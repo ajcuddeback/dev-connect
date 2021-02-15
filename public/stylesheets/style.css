@@ -4,8 +4,25 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: #e8e8e8;
+}
+
 .hidden {
   display: none;
+}
+
+.grey-red-btn {
+  background-color: #222831;
+  color: #f05454;
+  padding: 0.5rem 0rem;
+  border-radius: 5px;
+  position: relative;
+  top: 0;
+  cursor: pointer;
+}
+.grey-red-btn:hover {
+  top: 2px;
 }
 
 header {
@@ -14,6 +31,7 @@ header {
   background-color: #222831;
   align-items: center;
   height: 10rem;
+  margin-bottom: 4rem;
 }
 
 .links {
@@ -84,29 +102,60 @@ nav ul li a {
 #logout:hover {
   cursor: pointer;
 }
+
+/* Login page styles */
+
+.login-page-wrapper,
+.signup-page-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25rem;
+}
+.login-wrapper,
+.signup-wrapper {
+  padding: 2rem;
+  background-color: #222831;
+  color: #e8e8e8;
+  border-radius: 5px;
+}
+.login-wrapper button,
+.signup-wrapper button {
+  margin-top: 1rem;
+  width: 5rem;
+}
+.create-account-btn-wrapper a,
+.create-account-btn-wrapper a,
+.signup-wrapper a {
+  text-decoration: underline;
+  color: #f05454;
+}
+/* End of login page */
+
+.privacy-wrapper {
+  width: 75%;
+  margin: 0 auto;
+  text-align: left;
+}
+
 /* Jephte's beginning styling */
 
-.new-post-form{
-width:80%;
-margin:50px auto;
-
+.new-post-form {
+  width: 80%;
+  margin: 50px auto;
 }
 .comment .meta {
   font-size: 90%;
-  margin-bottom: .5%;
-  opacity: .6;
+  margin-bottom: 0.5%;
+  opacity: 0.6;
 }
 
-
-.individual-post{
+.individual-post {
   margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60px;
 }
-
-
 
 /* Jephte's end styling */
 
@@ -123,192 +172,315 @@ footer {
 /* Store */
 
 .btn {
-    text-align: center;
-    vertical-align: middle;
-    padding: .67em .67em;
-    cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.67em 0.67em;
+  cursor: pointer;
 }
 
 .btn-header {
-    margin: .5em 15% 2em 15%;
-    color: white;
-    border: 2px solid #2D9CDB;
-    background-color: rgba(255, 255, 255, .1);
-    border-radius: 0;
-    font-size: 1.5em;
-    font-weight: lighter;
-    padding-left: 2em;
-    padding-right: 2em;
+  margin: 0.5em 15% 2em 15%;
+  color: white;
+  border: 2px solid #2d9cdb;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  font-size: 1.5em;
+  font-weight: lighter;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .btn-header:hover {
-    background-color: rgba(255, 255, 255, .3);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-play {
-    display: block;
-    margin: 0 auto;
-    color: #2D9CDB;
-    font-size: 4em;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    padding: 0;
-    text-align: center;
+  display: block;
+  margin: 0 auto;
+  color: #2d9cdb;
+  font-size: 4em;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  text-align: center;
 }
 
 .btn-primary {
-   
-    border: none;
-    border-radius: .3em;
-    font-weight: bold;
+  border: none;
+  border-radius: 0.3em;
+  font-weight: bold;
 }
 
 .btn-primary:hover {
-    background-color: #222831;
+  background-color: #222831;
 }
 
-
-
 .shop-item-button {
-    color: white;
-    background-color:  #f05454;
+  color: white;
+  background-color: #f05454;
 }
 
 .shop-item {
-    margin: 30px;
+  margin: 30px;
 }
 
 .shop-item-title {
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 15px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 15px;
 }
 
 .shop-item-image {
-    height: 250px;
+  height: 250px;
 }
 
 .shop-item-details {
-    display: flex;
-    align-items: center;
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }
 
 .shop-item-price {
-    flex-grow: 1;
-    color: #333;
+  flex-grow: 1;
+  color: #333;
 }
 
 .shop-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-
 .cart-header {
-    font-weight: bold;
-    font-size: 1.25em;
-    color: #333;
+  font-weight: bold;
+  font-size: 1.25em;
+  color: #333;
 }
 
 .cart-column {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid black;
-    margin-right: 1.5em;
-    padding-bottom: 10px;
-    margin-top: 10px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+  margin-right: 1.5em;
+  padding-bottom: 10px;
+  margin-top: 10px;
 }
 
 .cart-row {
-    display: flex;
+  display: flex;
 }
 
 .cart-item {
-    width: 45%;
+  width: 45%;
 }
 
 .cart-price {
-    width: 20%;
-    font-size: 1.2em;
-    color: #333;
+  width: 20%;
+  font-size: 1.2em;
+  color: #333;
 }
 
 .cart-quantity {
-    width: 35%;
+  width: 35%;
 }
 
 .cart-item-title {
-    color: #333;
-    margin-left: .5em;
-    font-size: 1.2em;
+  color: #333;
+  margin-left: 0.5em;
+  font-size: 1.2em;
 }
 
 .cart-item-image {
-    width: 75px;
-    height: auto;
-    border-radius: 10px;
+  width: 75px;
+  height: auto;
+  border-radius: 10px;
 }
 
 .btn-danger {
-    color: white;
-    background-color: #EB5757;
-    border: none;
-    border-radius: .3em;
-    font-weight: bold;
+  color: white;
+  background-color: #eb5757;
+  border: none;
+  border-radius: 0.3em;
+  font-weight: bold;
 }
 
 .btn-danger:hover {
-    background-color: #CC4C4C;
+  background-color: #cc4c4c;
 }
 
 .cart-quantity-input {
-    height: 34px;
-    width: 50px;
-    border-radius: 5px;
-    border: 1px solid #56CCF2;
-    background-color: #eee;
-    color: #333;
-    padding: 0;
-    text-align: center;
-    font-size: 1.2em;
-    margin-right: 25px;
+  height: 34px;
+  width: 50px;
+  border-radius: 5px;
+  border: 1px solid #56ccf2;
+  background-color: #eee;
+  color: #333;
+  padding: 0;
+  text-align: center;
+  font-size: 1.2em;
+  margin-right: 25px;
 }
 
 .cart-row:last-child {
-    border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .cart-row:last-child .cart-column {
-    border: none;
+  border: none;
 }
 
 .cart-total {
-    text-align: end;
-    margin-top: 10px;
-    margin-right: 10px;
+  text-align: end;
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
 .cart-total-title {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: black;
-    margin-right: 20px;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: black;
+  margin-right: 20px;
 }
 
 .cart-total-price {
-    color: #333;
-    font-size: 1.1em;
+  color: #333;
+  font-size: 1.1em;
 }
 
 .btn-purchase {
-    display: block;
-    margin: 40px auto 80px auto;
-    font-size: 1.75em;
+  display: block;
+  margin: 40px auto 80px auto;
+  font-size: 1.75em;
+}
+@media screen and (max-width: 1051px) {
+  .signup-page-wrapper {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 940px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    height: 15rem;
+  }
+  nav ul {
+    height: 10%;
+    margin: 0 0 0 13rem;
+  }
+  .bubble-button {
+    position: relative;
+    margin: 0;
+    bottom: 10rem;
+    left: 8rem;
+  }
+  .bubble ul {
+    position: relative;
+    bottom: 11rem;
+    left: 3rem;
+    border: 0.5px solid black;
+  }
+  .logo {
+    margin-right: 10rem;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .bubble-button {
+    left: 3.5rem;
+  }
+  .bubble ul {
+    left: 0rem;
+  }
+  nav ul {
+    margin: 0 0 0 7rem;
+  }
+}
+@media screen and (max-width: 640px) {
+  nav ul {
+    margin: 0 0 0 5rem;
+  }
+  .login-page-wrapper {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 540px) {
+  .logo img {
+    width: 250px;
+    height: 84.338235294119px;
+  }
+  header {
+    height: 10rem;
+  }
+  .bubble-button {
+    left: 4rem;
+    bottom: 7rem;
+  }
+  nav ul {
+    margin: 0 0 0 3rem;
+  }
+  .bubble ul {
+    bottom: 7rem;
+    right: 8rem;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .bubble ul {
+    bottom: 7rem;
+    left: 1.5rem;
+    margin: 0;
+  }
+  .bubble-button {
+    left: 4rem;
+    bottom: 7rem;
+  }
+  .bubble {
+    right: 2rem;
+  }
+  nav ul {
+    margin: 0 0 0 0.5rem;
+  }
+  .logo {
+    margin-right: 5rem;
+  }
+  nav ul li a {
+    font-size: 1.4rem;
+  }
+}
+@media screen and (max-width: 420px) {
+  nav ul li a {
+    font-size: 1rem;
+  }
+  .logo img {
+    width: 180px;
+    height: 60.723529411766px;
+  }
+  .logo {
+    margin-right: 10rem;
+  }
+  header {
+    height: 8rem;
+  }
+}
+@media screen and (max-width: 340px) {
+  .bubble-button {
+    left: 2rem;
+    bottom: 6rem;
+  }
+  .bubble ul {
+    bottom: 6rem;
+    left: 0rem;
+    margin: 0;
+  }
+  .logo {
+    margin-right: 8rem;
+  }
+  .links {
+    width: 90%;
+  }
 }

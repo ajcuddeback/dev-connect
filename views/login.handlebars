@@ -1,19 +1,23 @@
-<div> information about the site</div>
-<div class="login-wrapper">
-    <h2 class="login-heading">Login</h2>
-    <form id="login-form">
-        <div>
-            <label for="username-login"></label>
-            <input type="text" name="username" placeholder="Email/Username" id="username-login">
+<section class="login-page-wrapper">
+
+    <div> Welcome to DevConnect, the social media app for developers!</div>
+    <div class="login-wrapper">
+        <h2 class="login-heading">Login</h2>
+        <form id="login-form">
+            <div>
+                <label for="username-login"></label>
+                <input type="text" name="username" placeholder="Email/Username" id="username-login">
+            </div>
+            <div>
+                <label for="password-login"></label>
+                <input type="password" placeholder="Password" id="password-login">
+            </div>
+            <button type="submit" class="submit-login grey-red-btn">Login</button>
+        </form>
+        <div class="create-account-btn-wrapper">
+            <a href="/signup">Don't have an account? Create one here!</a>
         </div>
-        <div>
-            <label for="password-login"></label>
-            <input type="password" placeholder="Password" id="password-login">
-        </div>
-        <button type="submit" class="submit-login">Login</button>
-    </form>
-    <div class="create-account-wrapper">
-        <a href="/signup">Don't have an account? Create one here!</a>
     </div>
-</div>
+
+</section>
 <script src="/javascript/login.js"></script>
