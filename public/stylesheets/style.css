@@ -129,6 +129,13 @@ nav ul li a {
   text-decoration: underline;
   color: #f05454;
 }
+/* End of login page */
+
+.privacy-wrapper {
+  width: 75%;
+  margin: 0 auto;
+  text-align: left;
+}
 
 /* Jephte's beginning styling */
 
