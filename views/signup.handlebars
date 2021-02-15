@@ -1,34 +1,39 @@
-<div class="signup-wrapper">
-    <h2 class="signup-heading">SignUp</h2>
-    <form id="signup-form">
-        <div>
-            <label for="first-name-signup"></label>
-            <input type="text" id="first-name-signup" placeholder="First Name" />
+<section class="signup-page-wrapper">
+    <h2>Welcome to DevConnect, the social media app for developers!</h2>
+
+    <div class="signup-wrapper">
+        <h2 class="signup-heading">SignUp</h2>
+        <form id="signup-form">
+            <div>
+                <label for="first-name-signup"></label>
+                <input type="text" id="first-name-signup" placeholder="First Name" />
+            </div>
+            <div>
+                <label for="last-name-signup"></label>
+                <input type="text" placeholder="Last Name" id="last-name-signup" />
+            </div>
+            <div>
+                <label for="username-signup"> </label>
+                <input type="text" name="username" placeholder="Username" id="username-signup">
+            </div>
+            <div>
+                <label for="email-signup"></label>
+                <input type="text" placeholder="E-mail" id="email-signup" />
+            </div>
+            <div>
+                <label for="password-signup"> </label>
+                <input type="password" placeholder="Password" id="password-signup">
+            </div>
+            <label for="accept-privacy-policy">By checking this box, you agree that you have read and accepted our <a
+                    href="/privacy-policy">privacy policy</a></label>
+            <input type="checkbox" name="accept-privacy-policy" id="accept-privacy-policy" required />
+            <br>
+            <button type="submit" class="submit-signup grey-red-btn">Signup</button>
+        </form>
+        <div class="create-account-btn-wrapper">
+            <a href="/login">Already have an account? Sign in here!</a>
         </div>
-        <div>
-            <label for="last-name-signup"></label>
-            <input type="text" placeholder="Last Name" id="last-name-signup" />
-        </div>
-        <div>
-            <label for="username-signup"> </label>
-            <input type="text" name="username" placeholder="Username" id="username-signup">
-        </div>
-        <div>
-            <label for="email-signup"></label>
-            <input type="text" placeholder="E-mail" id="email-signup" />
-        </div>
-        <div>
-            <label for="password-signup"> </label>
-            <input type="password" placeholder="Password" id="password-signup">
-        </div>
-        <label for="accept-privacy-policy">By checking this box, you agree that you have read and accepted our <a
-                href="/privacy-policy">privacy policy</a></label>
-        <input type="checkbox" name="accept-privacy-policy" id="accept-privacy-policy" required />
-        <button type="submit" class="submit-signup">Signup</button>
-    </form>
-    <div class="create-account-wrapper">
-        <a href="/login">Already have an account? Sign in here!</a>
     </div>
-</div>
+</section>
 
 <script src="/javascript/signup.js"></script>

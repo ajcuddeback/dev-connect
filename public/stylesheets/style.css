@@ -102,29 +102,53 @@ nav ul li a {
 #logout:hover {
   cursor: pointer;
 }
+
+/* Login page styles */
+
+.login-page-wrapper,
+.signup-page-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25rem;
+}
+.login-wrapper,
+.signup-wrapper {
+  padding: 2rem;
+  background-color: #222831;
+  color: #e8e8e8;
+  border-radius: 5px;
+}
+.login-wrapper button,
+.signup-wrapper button {
+  margin-top: 1rem;
+  width: 5rem;
+}
+.create-account-btn-wrapper a,
+.create-account-btn-wrapper a,
+.signup-wrapper a {
+  text-decoration: underline;
+  color: #f05454;
+}
+
 /* Jephte's beginning styling */
 
-.new-post-form{
-width:80%;
-margin:50px auto;
-
+.new-post-form {
+  width: 80%;
+  margin: 50px auto;
 }
 .comment .meta {
   font-size: 90%;
-  margin-bottom: .5%;
-  opacity: .6;
+  margin-bottom: 0.5%;
+  opacity: 0.6;
 }
 
-
-.individual-post{
+.individual-post {
   margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60px;
 }
-
-
 
 /* Jephte's end styling */
 
@@ -326,7 +350,11 @@ footer {
   margin: 40px auto 80px auto;
   font-size: 1.75em;
 }
-
+@media screen and (max-width: 1051px) {
+  .signup-page-wrapper {
+    flex-direction: column;
+  }
+}
 @media screen and (max-width: 940px) {
   header {
     flex-direction: column;
@@ -368,6 +396,9 @@ footer {
 @media screen and (max-width: 640px) {
   nav ul {
     margin: 0 0 0 5rem;
+  }
+  .login-page-wrapper {
+    flex-direction: column;
   }
 }
 @media screen and (max-width: 540px) {
