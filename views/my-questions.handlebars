@@ -1,4 +1,4 @@
-<h2 class="askDevs-header">askDevs</h2>
+<a href="/askdevs"><h2 class="askDevs-header">askDevs</h2></a>
 <section>
     <form class="new-question-form row">
         <div>
@@ -8,16 +8,16 @@
         <button type="submit" class="grey-red-btn">Submit</button>
     </form>
 </section>
-<section>
+<section class="my-questions">
     <h2> Click on a Question to Edit</h2>
     <h2>{{user.username}}'s Questions</h2>
-    <ol class="question-list col">
+    <ul class="question-list col">
         {{#each user.questions}}
         <li class="text-left">
             {{> user-questions }}
         </li class="text-left">
         {{/each}}
-    </ol>
+    </ul>
 </section>
 
 <script src="/javascript/add-question.js"></script>
