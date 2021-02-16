@@ -1,46 +1,97 @@
+{{!--
+<script src="https://js.stripe.com/v3"></script>
+<script> var stripePublicKey = "{{ stripePublicKey }}" --}}
+
+ 
+
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
     integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+
 {{#each products as |product|}}
 <section class="container content-section">
 
     <div class="shop-items">
 
         <div class="shop-item">
-            <span class="shop-item-title">{{product.product_name}}{{product.tag.tag_name}}</span>
+            <span class="shop-item-title">{{product.product_name}}</span>
             <img class="shop-item-image" src="{{product.imgPath}}">
             <div class="shop-item-details">
                 <span class="shop-item-price">${{product.price}}</span>
                 <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
             </div>
         </div>
-
-
         {{/each}}
-
-        <section class="container content-section">
-            <h2 class="section-header">CART</h2>
-            <div class="cart-row">
-                <span class="cart-item cart-header cart-column">ITEM</span>
-                <span class="cart-price cart-header cart-column">PRICE</span>
-                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-            </div>
-            <div class="cart-items">
-            </div>
-            <div class="cart-total">
-                <strong class="cart-total-title">Total</strong>
-                <span class="cart-total-price">$0</span>
-            </div>
-            <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
-        </section>
-
-        <script src="https://checkout.stripe.com/chckout.js" defer></script>
-        <script>
-            var stripePublicKey = {{ stripePublicKey }}
-        </script>
-
-
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="/javascript/items.js"></script>
+</section>
+
+
+<section class="container content-section">
+    <h2 class="section-header">CART</h2>
+    <div class="cart-row">
+        <span class="cart-item cart-header cart-column">ITEM</span>
+        <span class="cart-price cart-header cart-column">PRICE</span>
+        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+    </div>
+    <div class="cart-items">
+    </div>
+    <div class="cart-total">
+        <strong class="cart-total-title">Total</strong>
+        <span class="cart-total-price">0</span>
+    </div>
+    <button class="btn btn-primary btn-purchase" id="checkout-button" type="button">PURCHASE</button>
+   <script src="https://js.stripe.com/v3/" ></script>
+{{!--
+<script type="text/javascript"> --}}
+                {{!-- // Create an instance of the Stripe object with your publishable API key --}}
+                {{!-- const checkoutButton = document.getElementById('checkout-button');
+                 
+
+      checkoutButton.addEventListener('click', function() {
+                          var stripe = Stripe('pk_test_51IJ8N2AIilHitPQW5U4lBgGOGRTR0UQja3OwPvN3BiRguzd67qgEjlrpUwS81i6SBZoPdPRiMF5s5o2K7BlPFadN002lkAwAdm');
+  var priceElement = document.getElementsByClassName("cart-total-price");
+                var price = parseFloat(priceElement.innerText);
+            // Create a new Checkout Session using the server-side endpoint you
+            // created in step 3.
+            fetch('/shopping/create-checkout-session', {
+                method: 'POST',
+               headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      price: price, 
+    }),
+            })
+                .then(function (response) {
+                   
+                    return response.json();
+                })
+                .then(function (session) {
+                    return stripe.redirectToCheckout({ sessionId: session.id });
+                })
+                .then(function (result) {
+                    // If `redirectToCheckout` fails due to a browser or network
+                    // error, you should display the localized error message to your
+                    // customer using `error.message`.
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(function (error) {
+                    console.error('Error:', error);
+                });
+      }); --}}
+{{!-- </script> --}}
+
+
+
+
+</section>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<script src="/javascript/items.js" defer></script>

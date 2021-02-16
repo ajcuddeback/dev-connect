@@ -22,20 +22,66 @@ function ready() {
     var button = addToCartButtons[i];
     button.addEventListener("click", addToCartClicked);
   }
-
-  document
-    .getElementsByClassName("btn-purchase")[0]
-    .addEventListener("click", purchaseClicked);
 }
 
-function purchaseClicked() {
-  alert("Thank you for your purchase");
-  var cartItems = document.getElementsByClassName("cart-items")[0];
-  while (cartItems.hasChildNodes()) {
-    cartItems.removeChild(cartItems.firstChild);
-  }
-  updateCartTotal();
-}
+// var checkoutButton = document
+//   .getElementsByClassName("btn-purchase")[0]
+//   .addEventListener("click", purchaseClicked);
+
+// async function purchaseClicked() {
+//   // Create a new Checkout Session using the server-side endpoint you
+//   // created in step 3.
+//   await fetch("/shopping/create-checkout-session", {
+//     method: "POST",
+//   })
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (session) {
+//       return stripeS.redirectToCheckout({ sessionId: session.id });
+//     })
+//     .then(function (result) {
+// If `redirectToCheckout` fails due to a browser or network
+// error, you should display the localized error message to your
+// customer using `error.message`.
+//       if (result.error) {
+//         alert(result.error.message);
+//       }
+//     });
+// }
+
+// async function purchaseClicked() {
+//   const response = await fetch("/shopping", {
+//     method: "POST",
+//      body: {
+//   //
+// }
+//     headers: { "Content-Type": "application/json" },
+//   });
+
+//   if (response.ok) {
+//     document.location.reload();
+//   } else {
+//     alert(response.statusText);
+//   }
+// }
+
+// document
+//   .getElementsByClassName("btn-purchase")[0]
+//   .addEventListener("click", purchaseClicked);
+// }
+// var stripeHandler = StripeCheckout.configure({
+//   key: stripePublicKey,
+//   locale: "en",
+//   token: function (token) {},
+// });
+// var priceElement = document.getElementsByClassName("cart-total-price")[0];
+// var price = parseFloat(priceElement.innerText.replace("$", ""));
+// function purchaseClicked() {
+//   stripeHandler.open({
+//     amount: price,
+//   });
+// }
 
 function removeCartItem(event) {
   var buttonClicked = event.target;
@@ -107,6 +153,43 @@ function updateCartTotal() {
     total = total + price * quantity;
   }
   total = Math.round(total * 100) / 100;
-  document.getElementsByClassName("cart-total-price")[0].innerText =
-    "$" + total;
+  document.getElementsByClassName("cart-total-price")[0].innerText = total;
 }
+
+const checkoutButton = document.getElementById("checkout-button");
+
+checkoutButton.addEventListener("click", function () {
+  var stripe = Stripe(
+    "pk_test_51IJ8N2AIilHitPQW5U4lBgGOGRTR0UQja3OwPvN3BiRguzd67qgEjlrpUwS81i6SBZoPdPRiMF5s5o2K7BlPFadN002lkAwAdm"
+  );
+  var priceElement = document.getElementsByClassName("cart-total-price")[0];
+  var price = parseInt(priceElement.innerText);
+  // Create a new Checkout Session using the server-side endpoint you
+  // created in step 3.
+  fetch("/shopping/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      price: price,
+    }),
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (session) {
+      return stripe.redirectToCheckout({ sessionId: session.id });
+    })
+    .then(function (result) {
+      // If `redirectToCheckout` fails due to a browser or network
+      // error, you should display the localized error message to your
+      // customer using `error.message`.
+      if (result.error) {
+        alert(result.error.message);
+      }
+    })
+    .catch(function (error) {
+      console.error("Error:", error);
+    });
+});
