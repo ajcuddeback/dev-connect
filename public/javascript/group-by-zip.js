@@ -12,14 +12,12 @@ async function groupByZipHandler(event) {
 
 
     document.location.replace(`/meet/get-zip/${zip}/${miles}`)
-
-
-
 };
 
 function groupUsersZipHandler() {
+    const miles = document.querySelector('.mile-slider').value;
 
-    document.location.replace(`/meet/get-zip/`)
+    document.location.replace(`/meet/get-zip/${miles}`)
 };
 
 document.querySelector('.mile-slider').addEventListener('change', updateMile);

@@ -79,56 +79,66 @@ router.get("/get-zip/:zip/:miles", withAuth, (req, res) => {
         }
     })
 
-    // const Op = Sequelize.Op;
-
 });
 
-router.get("/get-zip/", withAuth, (req, res) => {
-    Group.findAll({
-        where: {
-            group_zip: req.session.zip,
-        },
-        attributes: [
-            "id",
-            "group_title",
-            "group_text",
-            "group_zip",
-            [
-                sequelize.literal(
-                    "(SELECT COUNT(*) FROM group_users WHERE group.id = group_users.group_id)"
-                ),
-                "users_count",
-            ],
-        ],
-        include: [
-            {
-                model: Event,
-                attributes: [
-                    "id",
-                    "event_title",
-                    "event_text",
-                    "event_location",
-                    "event_time",
-                ],
-            },
-        ],
-    })
-        .then((dbGroupData) => {
-            const groups = dbGroupData.map((group) => group.get({ plain: true }));
-            let loggedIn = false;
-            if (req.session.user_id) {
-                loggedIn = true;
-            }
+router.get("/get-zip/:miles", withAuth, (req, res) => {
+    const apiUrl = `https://www.zipcodeapi.com/rest/${process.env.ZIPRADIUSKEY}/radius.json/${req.session.zip}/${req.params.miles}/miles?minimal`;
 
-            res.render("Events-group-near-user", {
-                groups,
-                loggedIn
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+    fetch(apiUrl).then((response) => {
+        if (response.ok) {
+            response.json().then((data) => {
+                const Op = Sequelize.Op;
+                Group.findAll({
+                    where: {
+                        group_zip: {
+                            [Op.or]: data.zip_codes
+                        }
+                    },
+                    attributes: [
+                        "id",
+                        "group_title",
+                        "group_text",
+                        "group_zip",
+                        [
+                            sequelize.literal(
+                                "(SELECT COUNT(*) FROM group_users WHERE group.id = group_users.group_id)"
+                            ),
+                            "users_count",
+                        ],
+                    ],
+                    include: [
+                        {
+                            model: Event,
+                            attributes: [
+                                "id",
+                                "event_title",
+                                "event_text",
+                                "event_location",
+                                "event_time",
+                            ],
+                        },
+                    ],
+                })
+                    .then((dbGroupData) => {
+                        const groups = dbGroupData.map((group) => group.get({ plain: true }));
+                        let loggedIn = false;
+                        if (req.session.user_id) {
+                            loggedIn = true;
+                        }
+
+                        res.render("Events-group-near-user", {
+                            groups,
+                            loggedIn
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        res.status(500).json(err);
+                    });
+            })
+        }
+    })
+
 });
 
 router.get("/group-home/:id", withAuth, (req, res) => {
