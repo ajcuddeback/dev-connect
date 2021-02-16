@@ -2,13 +2,10 @@ const express = require("express");
 const sequelize = require("./config/connection");
 const app = express();
 
-<<<<<<< HEAD
 const stripe = require("stripe")(
   "sk_test_51IJ8N2AIilHitPQWlppuR9Z6W9SzOpgFUrWF2u11MP8yXHygvwx7KQHKeicjtGyAll96ZbZttrnjBIkZrIF37rpb00ozyEmmdj"
 );
-=======
-const helpers = require('./utils/helper');
->>>>>>> 7c65a61c1d22c0f67cd317f59c789cae5982b9ce
+const helpers = require("./utils/helper");
 
 const session = require("express-session");
 require("dotenv").config();
@@ -49,7 +46,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
 
 app.post("shopping/create-checkout-session", async (req, res) => {
-  const { price, locale } = req.body;
+  const { quantity, price, locale } = req.body;
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "payment",
@@ -57,6 +54,7 @@ app.post("shopping/create-checkout-session", async (req, res) => {
     line_items: [
       {
         price: price,
+        quantity: quantity,
       },
     ],
 

@@ -133,7 +133,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/create-checkout-session", async (req, res) => {
-  const { price, locale } = req.body;
+  const { quantity, price, locale } = req.body;
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "payment",
@@ -141,6 +141,7 @@ router.post("/create-checkout-session", async (req, res) => {
     line_items: [
       {
         price: price,
+        quantity: quantity,
       },
     ],
 

@@ -100,9 +100,11 @@ function quantityChanged(event) {
 function addToCartClicked(event) {
   var button = event.target;
   var shopItem = button.parentElement.parentElement;
+
   var title = shopItem.getElementsByClassName("shop-item-title")[0].innerText;
-  var price = shopItem.getElementsByClassName("shop-item-price")[0].innerText;
   var imageSrc = shopItem.getElementsByClassName("shop-item-image")[0].src;
+  var price = shopItem.getElementsByClassName("shop-item-price")[0].innerText;
+
   addItemToCart(title, price, imageSrc);
   updateCartTotal();
 }
@@ -123,7 +125,7 @@ function addItemToCart(title, price, imageSrc) {
             <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
             <span class="cart-item-title">${title}</span>
         </div>
-        <span class="cart-price cart-column">${price}</span>
+        <span class="cart-price cart-column ">${price}</span>
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1">
             <button class="btn btn-danger" type="button">REMOVE</button>
@@ -153,7 +155,8 @@ function updateCartTotal() {
     total = total + price * quantity;
   }
   total = Math.round(total * 100) / 100;
-  document.getElementsByClassName("cart-total-price")[0].innerText = total;
+  document.getElementsByClassName("cart-total-price")[0].innerText =
+    "$" + total;
 }
 
 const checkoutButton = document.getElementById("checkout-button");
@@ -164,6 +167,9 @@ checkoutButton.addEventListener("click", function () {
   );
   var priceElement = document.getElementsByClassName("cart-total-price")[0];
   var price = parseInt(priceElement.innerText);
+  var quantityEl = document.getElementsByClassName("cart-quantity-input")[0];
+  var quantity = parseInt(quantityEl.innerText);
+  //  var cost = document.getElementsByClassName("cart-price")[0]
   // Create a new Checkout Session using the server-side endpoint you
   // created in step 3.
   fetch("/shopping/create-checkout-session", {
@@ -173,6 +179,7 @@ checkoutButton.addEventListener("click", function () {
     },
     body: JSON.stringify({
       price: price,
+      quantity: quantity,
     }),
   })
     .then(function (response) {
