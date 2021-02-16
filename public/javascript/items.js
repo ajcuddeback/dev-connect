@@ -166,19 +166,22 @@ checkoutButton.addEventListener("click", function () {
     "pk_test_51IJ8N2AIilHitPQW5U4lBgGOGRTR0UQja3OwPvN3BiRguzd67qgEjlrpUwS81i6SBZoPdPRiMF5s5o2K7BlPFadN002lkAwAdm"
   );
   var priceElement = document.getElementsByClassName("cart-total-price")[0];
-  var price = parseInt(priceElement.innerText);
+  var amount = parseInt(priceElement.innerText.replace("$", "") * 100);
   var quantityEl = document.getElementsByClassName("cart-quantity-input")[0];
   var quantity = parseInt(quantityEl.innerText);
+
   //  var cost = document.getElementsByClassName("cart-price")[0]
   // Create a new Checkout Session using the server-side endpoint you
-  // created in step 3.
+  // created in step 3
+
   fetch("/shopping/create-checkout-session", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      price: price,
+      amount: amount,
+
       quantity: quantity,
     }),
   })

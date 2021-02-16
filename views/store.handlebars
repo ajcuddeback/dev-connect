@@ -1,35 +1,29 @@
-{{!--
-<script src="https://js.stripe.com/v3"></script>
-<script> var stripePublicKey = "{{ stripePublicKey }}" --}}
-
- 
-
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
     integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/stylesheets/store-page/store.css">
+<link rel="stylesheet" href="/stylesheets/store-page/store.css">
 <section class="container content-section">
 
     <div class="shop-items">
-{{#each products as |product|}}
+        {{#each products as |product|}}
         <div class="shop-item  card " style="width: 18rem;">
-           
-               <div class="card-body border-primary rounded">
-                     <img class="shop-item-image card-img-top" src="{{product.imgPath}}">
-            <span class="shop-item-title card-title">{{product.product_name}}</span>
-           
-            <div class="shop-item-details">
-                <span class="shop-item-price font-weight-bold">${{product.price}}</span>
-                <button class="btn border-dark shop-item-button border-dark" type="button">ADD TO CART</button>
-            </div>
-        </div>
 
-    </div>
+            <div class="card-body border-primary rounded">
+                <img class="shop-item-image card-img-top" src="{{product.imgPath}}">
+                <span class="shop-item-title card-title">{{product.product_name}}</span>
+
+                <div class="shop-item-details">
+                    <span class="shop-item-price font-weight-bold">${{product.price}}</span>
+                    <button class="btn border-dark shop-item-button border-dark" type="button">ADD TO CART</button>
+                </div>
+            </div>
+
+        </div>
         {{/each}}
 </section>
-    
+
 
 <section class="container content-section">
     <h2 class="section-header">CART</h2>
@@ -45,48 +39,7 @@
         <span class="cart-total-price">$0</span>
     </div>
     <button class="btn btn btn-purchase" id="checkout-button" type="button">PURCHASE</button>
-   <script src="https://js.stripe.com/v3/" ></script>
-{{!--
-<script type="text/javascript"> --}}
-                {{!-- // Create an instance of the Stripe object with your publishable API key --}}
-                {{!-- const checkoutButton = document.getElementById('checkout-button');
-                 
-
-      checkoutButton.addEventListener('click', function() {
-                          var stripe = Stripe('pk_test_51IJ8N2AIilHitPQW5U4lBgGOGRTR0UQja3OwPvN3BiRguzd67qgEjlrpUwS81i6SBZoPdPRiMF5s5o2K7BlPFadN002lkAwAdm');
-  var priceElement = document.getElementsByClassName("cart-total-price");
-                var price = parseFloat(priceElement.innerText);
-            // Create a new Checkout Session using the server-side endpoint you
-            // created in step 3.
-            fetch('/shopping/create-checkout-session', {
-                method: 'POST',
-               headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      price: price, 
-    }),
-            })
-                .then(function (response) {
-                   
-                    return response.json();
-                })
-                .then(function (session) {
-                    return stripe.redirectToCheckout({ sessionId: session.id });
-                })
-                .then(function (result) {
-                    // If `redirectToCheckout` fails due to a browser or network
-                    // error, you should display the localized error message to your
-                    // customer using `error.message`.
-                    if (result.error) {
-                        alert(result.error.message);
-                    }
-                })
-                .catch(function (error) {
-                    console.error('Error:', error);
-                });
-      }); --}}
-{{!-- </script> --}}
+    <script src="https://js.stripe.com/v3/"></script>
 
 
 

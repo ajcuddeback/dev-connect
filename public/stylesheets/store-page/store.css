@@ -8,23 +8,6 @@
     color:#f05454;
     text-decoration: white;
   }
-  /* .btn-primary {color:#f05454;} */
-
-
-  
-  
-  /* .btn-play {
-    display: block;
-    margin: 0 auto;
-    color: #705155;
-    font-size: 4em;
-    border-radius: 50%;
-    border: #f05454;
-    width: 100px;
-    height: 100px;
-    padding: 0;
-    text-align: center;
-  } */
   
   .btn {
     border: none;
@@ -190,5 +173,53 @@
     border-radius: 1rem;
 }
 .btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 5px rgba(26, 27, 27, 0.4);}
+
+
+      .sr-root {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        max-width: 980px;
+        padding: 48px;
+        align-content: center;
+        justify-content: center;
+        height: auto;
+        min-height: 100vh;
+        margin: 0 auto;
+      }
+     
+      
+      .sr-payment-summary {
+        margin-bottom: 20px;
+      }
+      .sr-main,
+      .sr-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        align-self: center;
+      }
+      .sr-main {
+        width: 600px;
+      }
+      .sr-content {
+        padding-left: 48px;
+      }
+.return{
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.67em 0.67em;
+    cursor: pointer;
+    color:#f05454;
+    text-decoration: white;
+    border: none;
+    border-radius: 0.3em;
+    font-weight: bold;
+    
+}
+.return:focus {
     outline: none;
     box-shadow: 0 0 0 5px rgba(26, 27, 27, 0.4);}

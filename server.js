@@ -46,15 +46,17 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
 
 app.post("shopping/create-checkout-session", async (req, res) => {
-  const { quantity, price, locale } = req.body;
+  const { quantity, name, locale, amount } = req.body;
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "payment",
     locale: locale,
     line_items: [
       {
-        price: price,
-        quantity: quantity,
+        currency: "usd",
+        amount: amount,
+        name: "product",
+        quantity: 30,
       },
     ],
 
