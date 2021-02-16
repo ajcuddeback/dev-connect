@@ -19,9 +19,9 @@ async function joinEventFormHandler(e) {
     });
 
     if (response.ok) {
-        document.querySelector('.attend-event-succeess').classList.remove('hidden');
+        document.querySelector('.attend-event-success').classList.remove('hidden');
         setTimeout(function () {
-            document.querySelector('.attend-event-succeess').classList.add('hidden');
+            document.querySelector('.attend-event-success').classList.add('hidden');
         }, 3000)
     } else {
         document.querySelector('.attend-event-fail').classList.remove('hidden');

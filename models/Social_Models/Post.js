@@ -13,10 +13,6 @@ Post.init(
         primaryKey: true,
         autoIncrement: true
       },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
       post_content: {
         type: DataTypes.TEXT,
         allowNull: false

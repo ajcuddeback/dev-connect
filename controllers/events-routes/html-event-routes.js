@@ -101,6 +101,7 @@ router.get("/get-zip/", withAuth, (req, res) => {
             if (req.session.user_id) {
                 loggedIn = true;
             }
+
             res.render("Events-group-near-user", {
                 groups,
                 loggedIn

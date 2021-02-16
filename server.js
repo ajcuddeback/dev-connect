@@ -2,9 +2,13 @@ const express = require("express");
 const sequelize = require("./config/connection");
 const app = express();
 
+<<<<<<< HEAD
 const stripe = require("stripe")(
   "sk_test_51IJ8N2AIilHitPQWlppuR9Z6W9SzOpgFUrWF2u11MP8yXHygvwx7KQHKeicjtGyAll96ZbZttrnjBIkZrIF37rpb00ozyEmmdj"
 );
+=======
+const helpers = require('./utils/helper');
+>>>>>>> 7c65a61c1d22c0f67cd317f59c789cae5982b9ce
 
 const session = require("express-session");
 require("dotenv").config();
@@ -30,7 +34,7 @@ app.use(session(sess));
 const routes = require("./controllers");
 const path = require("path");
 const exphbs = require("express-handlebars");
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 
 const PORT = process.env.PORT || 3002;
 

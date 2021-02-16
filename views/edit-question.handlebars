@@ -1,34 +1,26 @@
 <article>
-  <a href="/askDevs"> &larr; Back to askDevs dashboard</a>
+  <a href="/askDevs/my-questions/"> &larr; Back to My Questions</a>
   <h2>
     Edit Question
   </h2>
-  <form class="edit-question-form">
-    <div>
-      <input name="question-text" type="text" value="{{question.question_text}}" />
-    </div>
-    <div>
-      Created by you on {{format_date question.created_at}}
-      |
-      <a href="/question/{{question.id}}">{{question.answers.length}} {{format_plural "answer" question.answers.length}}</a>
-    </div>
-    <button type="submit">Save Question</button>
-    <button type="button" class="delete-question-btn">Delete Question</button>
-  </form>
+  <section class="container">
+    <form class="edit-question-form">
+      <div>
+        <input name="question-text" type="text" value="{{question.question_text}}" />
+      </div>
+      <div>
+        Created by you on {{format_date question.created_at}}
+        |
+        <a href="/question/{{question.id}}">{{question.answers.length}} {{format_plural "answer" question.answers.length}}</a>
+      </div>
+      <button type="submit" class="grey-red-btn">Save Question</button>
+      <button type="button" class="delete-question-btn">Delete Question</button>
+    </form>
+
+    {{> answers question.answers}}
+    
+  </section>
 </article>
-
-<form class="answer-form">
-  <div>
-    <textarea name="answer-body"></textarea>
-  </div>
-
-  <div>
-    <button type="submit">Answer</button>
-  </div>
-</form>
-
-{{> answers question.answers}}
 
 <script src="/javascript/edit-question.js"></script>
 <script src="/javascript/delete-question.js"></script>
-<script src="/javascript/answer.js"></script>

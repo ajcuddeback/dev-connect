@@ -1,8 +1,9 @@
 <article class="question">
-  <div class="user-info">
-    <a href="/question/{{id}}" target="_blank">{{question_text}}</a>
+  <div class="user-info text-align-center">
+    <a href="/askDevs/questions/{{id}}">{{question_text}}</a></br>
+    Created by {{user.username}} on {{format_date created_at}}
   </div>
   <div class="meta">
-    <a href="/question/{{id}}">{{answers.length}} {{format_plural "answer" answers.length}}</a>
+    <p>{{answers.length}} {{format_plural "answer" answers.length}}</p>
   </div>
 </article>

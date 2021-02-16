@@ -1,12 +1,14 @@
 <h2 class="dashboard-header">Dashboard</h2>
-<h3>Please pick which group you would like to manage: </h3>
-
-<ol>
-    {{#each user.groups}}
-    <li>
-        {{> owner-groups}}
-    </li>
-    {{/each}}
-</ol>
-
-<a href="/meet/add-group">Create a group</a>
+<h3 class="dashboard-info">Please pick which group you would like to manage: </h3>
+<section class="dashboard-groups">
+    <ol>
+        {{#each user.groups}}
+        <li>
+            {{> owner-groups}}
+        </li>
+        {{/each}}
+    </ol>
+    <div class="create-group-btn">
+        <a href="/meet/add-group">Create a group</a>
+    </div>
+</section>
