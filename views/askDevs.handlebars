@@ -1,20 +1,20 @@
-<section class="container justify-content-left">
-    <h2 class="askDevs-header">askDevs</h2>
+<a href="/askdevs"><h2 class="askDevs-header">askDevs</h2></a>
 
-    <form class="new-question-form row">
+<section class="askDevs-homepage row">
+    <form class="new-question-form col-sm-4">
         <div>
             <label for="question-text">Ask a Question</label>
             <input type="text" id="question-text" name="question-text" />
+            <button type="submit" class="grey-red-btn">Submit</button>
         </div>
-        <button type="submit" class="grey-red-btn">Submit</button>
     </form>
-    <ol class="question-list col">
+    <ul class="question-list col-sm-7">
         {{#each questions as |question|}}
-        <li class="text-left">
+        <li>
             {{> question-info question }}
-        </li class="text-left">
+        </li>
         {{/each}}
-    </ol>
+    </ul>
 </section>
 
 <script src="/javascript/add-question.js"></script>
