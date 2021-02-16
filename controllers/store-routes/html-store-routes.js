@@ -1,22 +1,16 @@
 const router = require("express").Router();
 const { ProductTag, Product, Category, Tag } = require("../../models");
 const sequelize = require("../../config/connection");
+const stripeP = require("stripe")(
+  "pk_test_51IJ8N2AIilHitPQW5U4lBgGOGRTR0UQja3OwPvN3BiRguzd67qgEjlrpUwS81i6SBZoPdPRiMF5s5o2K7BlPFadN002lkAwAdm"
+);
+const stripe = require("stripe")(
+  "sk_test_51IJ8N2AIilHitPQWlppuR9Z6W9SzOpgFUrWF2u11MP8yXHygvwx7KQHKeicjtGyAll96ZbZttrnjBIkZrIF37rpb00ozyEmmdj"
+);
 router.get("/", (req, res) => {
   Product.findAll({
     attributes: ["product_name", "price", "imgPath"],
     order: [["product_name", "DESC"]],
-    include: [
-      {
-        model: Category,
-        attributes: ["id", "category_name"],
-      },
-      {
-        model: Tag,
-        attributes: ["id", "tag_name"],
-        through: ProductTag,
-        as: "product_tags",
-      },
-    ],
   })
     .then((dbPostData) => {
       const products = dbPostData.map((product) =>
@@ -27,14 +21,17 @@ router.get("/", (req, res) => {
       if (req.session.user_id) {
         loggedIn = true;
       }
-      res.render("store", { products, loggedIn });
+      res.render("store", { products, loggedIn, key: stripeP });
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
-
+router.get("/payment-successful", (req, res) => {
+  let results = "payment-successful";
+  if (req.query) res.render(results);
+});
 router.get("/:id", (req, res) => {
   Product.findOne({
     where: {
@@ -63,19 +60,26 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// app.post('/cart', (req, res) => {
-//   let qty = parseInt(req.body.qty, 10);
-//   let product = parseInt(req.body.product_id, 10);
-//   if(qty > 0 && Security.isValidNonce(req.body.nonce, req)) {
-//     Products.findOne({product_id: product}).then(prod => {
-//         Cart.addToCart(prod, qty);
-//         Cart.saveCart(req);
-//         res.redirect('/cart');
-//     }).catch(err => {
-//        res.redirect('/');
-//     });
-// } else {
-//     res.redirect('/');
-// }
-// });
+router.post("/create-checkout-session", async (req, res) => {
+  const { quantity, amount, locale } = req.body;
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    mode: "payment",
+    locale: locale,
+    line_items: [
+      {
+        currency: "usd",
+        name: "total",
+        amount: amount,
+        quantity: 1,
+      },
+    ],
+
+    success_url: "http://localhost:3002/shopping/payment-successful",
+    cancel_url: "https://example.com/cancel.html",
+  });
+
+  res.json({ id: session.id });
+});
+
 module.exports = router;

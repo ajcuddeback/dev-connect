@@ -2,45 +2,53 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
     integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
-{{#each products as |product|}}
+
+<link rel="stylesheet" href="/stylesheets/store-page/store.css">
 <section class="container content-section">
 
     <div class="shop-items">
+        {{#each products as |product|}}
+        <div class="shop-item  card " style="width: 18rem;">
 
-        <div class="shop-item">
-            <span class="shop-item-title">{{product.product_name}}{{product.tag.tag_name}}</span>
-            <img class="shop-item-image" src="{{product.imgPath}}">
-            <div class="shop-item-details">
-                <span class="shop-item-price">${{product.price}}</span>
-                <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+            <div class="card-body border-primary rounded">
+                <img class="shop-item-image card-img-top" src="{{product.imgPath}}">
+                <span class="shop-item-title card-title">{{product.product_name}}</span>
+
+                <div class="shop-item-details">
+                    <span class="shop-item-price font-weight-bold">${{product.price}}</span>
+                    <button class="btn border-dark shop-item-button border-dark" type="button">ADD TO CART</button>
+                </div>
             </div>
+
         </div>
-
-
         {{/each}}
-
-        <section class="container content-section">
-            <h2 class="section-header">CART</h2>
-            <div class="cart-row">
-                <span class="cart-item cart-header cart-column">ITEM</span>
-                <span class="cart-price cart-header cart-column">PRICE</span>
-                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-            </div>
-            <div class="cart-items">
-            </div>
-            <div class="cart-total">
-                <strong class="cart-total-title">Total</strong>
-                <span class="cart-total-price">$0</span>
-            </div>
-            <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
-        </section>
-
-        <script src="https://checkout.stripe.com/chckout.js" defer></script>
-        <script>
-            var stripePublicKey = {{ stripePublicKey }}
-        </script>
+</section>
 
 
+<section class="container content-section">
+    <h2 class="section-header">CART</h2>
+    <div class="cart-row">
+        <span class="cart-item cart-header cart-column">ITEM</span>
+        <span class="cart-price cart-header cart-column">PRICE</span>
+        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="/javascript/items.js"></script>
+    <div class="cart-items">
+    </div>
+    <div class="cart-total font-weight-bold">
+        <strong class="cart-total-title ">Total</strong>
+        <span class="cart-total-price">$0</span>
+    </div>
+    <button class="btn btn btn-purchase" id="checkout-button" type="button">PURCHASE</button>
+    <script src="https://js.stripe.com/v3/"></script>
+
+
+
+
+</section>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<script src="/javascript/items.js" defer></script>

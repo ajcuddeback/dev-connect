@@ -2,13 +2,17 @@ const express = require("express");
 const sequelize = require("./config/connection");
 const app = express();
 
-const helpers = require('./utils/helper');
+const stripe = require("stripe")(
+  "sk_test_51IJ8N2AIilHitPQWlppuR9Z6W9SzOpgFUrWF2u11MP8yXHygvwx7KQHKeicjtGyAll96ZbZttrnjBIkZrIF37rpb00ozyEmmdj"
+);
+const helpers = require("./utils/helper");
 
 const session = require("express-session");
 require("dotenv").config();
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+// const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+// const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+// const stripe = require("stripe")(stripeSecretKey);
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -40,6 +44,28 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
+
+app.post("shopping/create-checkout-session", async (req, res) => {
+  const { quantity, name, locale, amount } = req.body;
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    mode: "payment",
+    locale: locale,
+    line_items: [
+      {
+        currency: "usd",
+        amount: amount,
+        name: "product",
+        quantity: 30,
+      },
+    ],
+
+    success_url: "https://example.com/success",
+    cancel_url: "https://example.com/cancel",
+  });
+  console.log(req.body.line_items);
+  res.json({ id: session.id });
+});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
