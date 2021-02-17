@@ -223,3 +223,31 @@
 .return:focus {
     outline: none;
     box-shadow: 0 0 0 5px rgba(26, 27, 27, 0.4);}
+
+    @media screen and (max-width: 600px)
+    {
+        .sr-main {
+            width: 500px;
+        }
+    }
+    @media screen and (max-width: 500px)
+    {
+        .sr-main {
+            width: 400px;
+        }
+    }
+    @media screen and (max-width: 420px) {
+        .btn-danger{
+            vertical-align: middle;
+
+        }
+        .cart-item-title .cart-price{
+            font-size: small;
+        }
+        .cart-items{
+            display: block;
+                    }
+                   .sr-main {
+                        width: 300px;
+                    }
+    }
