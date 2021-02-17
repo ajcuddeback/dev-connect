@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Question, User, Answer, Tag, QuestionTag } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     console.log(req.session);
     Question.findAll({
         attributes: [
@@ -29,8 +29,8 @@ router.get('/', (req, res) => {
             const questions = dbQuestionData.map(question => question.get({ plain: true }));
             
             res.render('askDevs', {
-                questions,
-                loggedIn: req.session.loggedIn
+              questions,
+              loggedIn: req.session.loggedIn
             });
         })
         .catch(err => {
