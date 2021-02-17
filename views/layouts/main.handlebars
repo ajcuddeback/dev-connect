@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dev-Connect</title>
+    <link rel="stylesheet" href="/stylesheets/social.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="shortcut icon" type="image/jpg" href="/images/logo_d.ico" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -32,13 +34,13 @@
         </nav>
 
         <div class="bubble links">
-            <button class="bubble-button">A</button>
+            <button class="bubble-button">B</button>
             <ul class="no-opac bubble-nav">
                 <li><a href="/meet/dashboard">Meet Up Dashboard</a></li>
                 <li><a href="/meet/my-groups">My Groups</a></li>
                 <li><a href="/meet/my-events">My Events</a></li>
                 <li><a href="/askDevs/my-questions/">My Questions</a></li>
-                <li><a href="/dash/create">Your Posts</a></li>
+                <li><a href="/dash">Your Posts</a></li>
 
                 <button id="logout">Logout</button>
 
@@ -65,9 +67,10 @@
     {{#if loggedIn}}
 
     <script src="/javascript/logout.js"></script>
-
+    <script src = "/javascript/like.js"></script>
     <script src="/javascript/main.js"></script>
     {{/if}}
 </body>
 
 </html>
+

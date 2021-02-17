@@ -2,12 +2,20 @@
 
     <div class="post-and-comments">
         <div class="post-text">
-            <b>{{user.username}} </b> : 
-            {{post_content}}
+            <div class = "username"> <b>{{user.username }}</b> </div> 
+            <div class = "post-content">{{post_content}}</div>
         </div>
-            <div class="">
+            <div class="like-and-comments">
+                   <div>
+                       
+                       <i class="fas fa-heart liked-btn {{isLiked}}" data-postid = {{id}}></i><span style="margin-left: 4px;">{{noLikes}} Like</span>
+                       
                 
-                  {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+                   </div> 
+                   <div>
+                       
+                       {{format_date created_at}} | <a href="/post/{{id}}"><span class = "comment-color">{{comments.length}} {{format_plural "comment" comments.length}}</span> </a>
+                   </div>
             </div>
         
     </div>

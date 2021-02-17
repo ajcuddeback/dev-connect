@@ -2,6 +2,7 @@ const withAuth = require("./../utils/auth");
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
+const Like = require("../models/Social_Models/Like");
 
 router.get('/', withAuth, (req, res) => {
 
@@ -23,11 +24,29 @@ router.get('/', withAuth, (req, res) => {
       {
         model: User,
         attributes: ['username']
+      },
+      {
+        model: Like,
+        attributes: ['user_id', 'post_id']
       }
+
     ]
   })
     .then(data => {
-      const posts = data.map(post => post.get({ plain: true }));
+
+      const posts = data.map(post => post.get({ plain: true }))
+     
+      posts.forEach(p => {
+        if (p.likes.length === 0) {
+          p.isLiked = false;
+        } else {
+          p.likes.forEach(l => {
+            p.isLiked = l.user_id === req.session.user_id;
+          })
+        }  
+        p.noLikes = String(p.likes.length);
+      })
+      console.log(posts);
       res.render('homepage', {
         posts,
         loggedIn: req.session.loggedIn

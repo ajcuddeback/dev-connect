@@ -14,6 +14,7 @@ const Category = require("./Store_Models/Category");
 const TagItem = require("./Store_Models/Tag");
 const ProductTag = require("./Store_Models/ProductTag");
 const Items = require("./Store_Models/Items");
+const Like = require("./Social_Models/Like")
 
 // User to Group Associations
 User.hasMany(Group, {
@@ -134,7 +135,7 @@ Question.hasMany(Answer, {
   foreignKey: "question_id",
 });
 
-//create associations
+//create Posts and Likesassociations
 User.hasMany(Post);
 
 Post.belongsTo(User);
@@ -146,6 +147,51 @@ Comment.belongsTo(Post);
 User.hasMany(Comment);
 
 Post.hasMany(Comment);
+
+
+User.belongsToMany(Post, {
+  through: Like,
+  as: 'liked_posts',
+
+  foreignKey: 'user_id',
+  
+});
+
+Post.belongsToMany(User, {
+  through: Like,
+  as: 'liked_posts',
+  foreignKey: 'post_id',
+  
+});
+
+Like.belongsTo(User, {
+  foreignKey: 'user_id',
+  
+});
+
+Like.belongsTo(Post, {
+  foreignKey: 'post_id',
+  
+});
+
+User.hasMany(Like, {
+  foreignKey: 'user_id'
+});
+
+Post.hasMany(Like, {
+  foreignKey: 'post_id'
+});
+
+Comment.belongsTo(User, {
+  foreignKey: 'user_id',
+  
+});
+
+Comment.belongsTo(Post, {
+  foreignKey: 'post_id',
+  
+});
+//End of Posts and Likes associations
 
 // Products belongsTo Category
 Product.belongsTo(Category, {
