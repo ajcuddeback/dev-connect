@@ -5,26 +5,7 @@ const sequelize = require('../../config/connection');
 
 // get all users
 router.get('/', (req, res) => {
-//   Group.findAll({
-//     attributes: [
-//         'id',
-//         'group_title',
-//         'group_text',
-//         'group_zip',
-//         [sequelize.literal('(SELECT COUNT(*) FROM group_users WHERE group.id = group_users.group_id)'), 'users']
-//     ],
-//     include: [
-//         {
-//             model: Event,
-//             attributes: ['id', 'event_title', 'event_text', 'event_location', 'event_time'],
-//         }
-//     ]
-// })
-//     .then(dbGroupData => res.json(dbGroupData))
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//     })
+
     Post.findAll({
         attributes: [
             'id',
@@ -53,8 +34,6 @@ router.get('/', (req, res) => {
       ]
     })
       .then(data => {
-        console.log("*****************************************************************************************")
-        console.log(data)
         res.json(data)})
       .catch(err => {
         console.log(err);
@@ -130,6 +109,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+    
     Post.update({
         post_content: req.body.post_content
       },
@@ -151,8 +131,7 @@ router.put('/:id', (req, res) => {
       });
   });
   router.get('/like/:id', (req, res) =>{
-    var isLiked = false;
-     console.log(req.session.user_id)
+    
      Like.findOne({
        where: {
          user_id: req.session.user_id, 
@@ -166,31 +145,25 @@ router.put('/:id', (req, res) => {
           where: {
             user_id: req.session.user_id, 
             post_id: req.params.id,
-          }
-         }).then(data=>{
-           res.send({
-             isLiked:false
-           })
+          },
+          
          })
+       
+         res.render('homepage', {
+           isLiked: 'false'
+           });
        }else{
          
         Like.create({
           post_id: req.params.id,
-   
           user_id: req.session.user_id
-        }).then(data => {
-          res.send({
-            isLiked:true
-          })
-         console.log(data);
+        }).then(data => {        
+          res.render('homepage', { 
+             isLiked: 'true'
+             });
        })
-       .catch(err => {
-         console.log(err);
-         res.status(500).json(err);
-       });
-
        }
-      console.log(data);
+      
     })
     .catch(err => {
       console.log(err);

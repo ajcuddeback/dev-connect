@@ -1,7 +1,7 @@
 async function likeClickHandler(event) {
    let post_id;
   //   if (event.target.classList.contains( "liked-btn")) {
-       post_id = event.target.dataset.postid;
+      post_id = event.target.dataset.postid;
   //   }else{
   //     return;
   //   };
@@ -15,11 +15,14 @@ async function likeClickHandler(event) {
       });
       
       if (response.ok) {
+        window.location.reload();
         
       } else {
         alert(response.statusText);
       }
-    }
+       
+  }
+  
   
   document.querySelectorAll('.fa-heart').forEach(btn => {
     btn.addEventListener('click', likeClickHandler);

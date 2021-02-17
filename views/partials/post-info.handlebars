@@ -7,9 +7,10 @@
         </div>
             <div class="like-and-comments">
                    <div>
-                       {{!-- {{#if isLiked}} --}}
-                       <i class="far fa-heart liked-btn" data-postid = {{id}}></i><span>{{post.like.length}}Like</span>
-                       {{!-- {{/if}} --}}
+                       
+                       <i class="fas fa-heart liked-btn {{isLiked}}" data-postid = {{id}}></i><span style="margin-left: 4px;">{{noLikes}} Like</span>
+                       
+                
                    </div> 
                    <div>
                        
