@@ -62,7 +62,6 @@ router.get('/my-questions/', (req, res) => {
   })
       .then(dbUserData => {
           const user = dbUserData.get({ plain: true });
-          console.log(user);
           res.render('my-questions', {
               user,
               loggedIn: req.session.loggedIn
@@ -107,7 +106,6 @@ router.get('/questions/:id', (req, res) => {
             }
 
             const question = dbQuestionData.get({ plain: true });
-            console.log(dbQuestionData);
             res.render('single-question', {
                 question,
                 loggedIn: req.session.loggedIn
