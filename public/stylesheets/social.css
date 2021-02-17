@@ -47,7 +47,20 @@
     
   .post-text{
       display:flex;
-      margin-bottom: 2rem;
-      
-              
+      margin-bottom: 5rem;      
+  }
+
+  .edit-post{
+    background-color:#fff;
+    padding:.5rem;
+  
+    border:5px solid white;
+    border-radius:5px;
+  }
+
+  .edit-post-form{
+    background-color: #f05454;
+  }
+  .save-btn .delete-post-btn{
+    background-color: #222831;
   }

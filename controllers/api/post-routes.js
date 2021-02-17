@@ -1,10 +1,30 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../../models');
+const { Post, User, Comment} = require('../../models');
+const Like = require("../../models/Social_Models/Like")
 const sequelize = require('../../config/connection');
 
 // get all users
 router.get('/', (req, res) => {
-   
+//   Group.findAll({
+//     attributes: [
+//         'id',
+//         'group_title',
+//         'group_text',
+//         'group_zip',
+//         [sequelize.literal('(SELECT COUNT(*) FROM group_users WHERE group.id = group_users.group_id)'), 'users']
+//     ],
+//     include: [
+//         {
+//             model: Event,
+//             attributes: ['id', 'event_title', 'event_text', 'event_location', 'event_time'],
+//         }
+//     ]
+// })
+//     .then(dbGroupData => res.json(dbGroupData))
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     })
     Post.findAll({
         attributes: [
             'id',
@@ -26,9 +46,16 @@ router.get('/', (req, res) => {
           model: User,
           attributes: ['username']
         },
+        {
+          model: Like,
+          },
+
       ]
     })
-      .then(data => res.json(data))
+      .then(data => {
+        console.log("*****************************************************************************************")
+        console.log(data)
+        res.json(data)})
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -38,6 +65,7 @@ router.get('/', (req, res) => {
   router.get('/:id', (req, res) => {
     Post.findOne({
       where: {
+
         id: req.params.id
       },
       attributes: [
@@ -66,6 +94,21 @@ router.get('/', (req, res) => {
           res.status(404).json({ message: 'No post found with this id' });
           return;
         }
+        let isLiked = false;
+
+        Like.findOne({
+          where: {
+            user_id: req.session.user_id, 
+            post_id: req.params.id,
+          }
+        }).then(data=> {
+          if(data){
+            isLiked = true;
+          }
+        })
+        data.isLiked = isLiked;
+  
+        console.log(data)
         res.json(data);
       })
       .catch(err => {
@@ -107,24 +150,53 @@ router.put('/:id', (req, res) => {
         res.status(500).json(err);
       });
   });
-  router.put('/like', (req, res) =>{
-      // make sure the session exists first
-  if (req.session) {
-    // pass session id along with all destructured properties on req.body
-    Post.like({ ...req.body, user_id: req.session.user_id }, {Post, User })
-      .then(updatedLikeData => res.json(updatedLikeData))
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  }
-   
+  router.get('/like/:id', (req, res) =>{
+    var isLiked = false;
+     console.log(req.session.user_id)
+     Like.findOne({
+       where: {
+         user_id: req.session.user_id, 
+         post_id: req.params.id,
 
+       }
+     }).then(data => {
+       if (data){
+  
+         Like.destroy({
+          where: {
+            user_id: req.session.user_id, 
+            post_id: req.params.id,
+          }
+         }).then(data=>{
+           res.send({
+             isLiked:false
+           })
+         })
+       }else{
+         
+        Like.create({
+          post_id: req.params.id,
+   
+          user_id: req.session.user_id
+        }).then(data => {
+          res.send({
+            isLiked:true
+          })
+         console.log(data);
+       })
+       .catch(err => {
+         console.log(err);
+         res.status(500).json(err);
+       });
+
+       }
+      console.log(data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   });
-
-  router.put('/unlike', (req,res) =>{
-   
-  })
 
   router.delete('/:id', (req, res) => {
     Post.destroy({
