@@ -17,11 +17,8 @@ a {
 a:hover {
   text-decoration: none;
   color: #30475e;
+  transition: 2s;
 }
-
-/* form {
-    background-color: #e8e8e8;
-} */
 
 label {
   font-weight: bold;
@@ -31,10 +28,16 @@ ul {
   list-style-type: none;
 }
 
+.question-list ul,
+.question-list li {
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
 /* question styling */
 .question-list ul:nth-child(odd),
 .question-list li:nth-child(odd) {
-  background-color: rgb(230, 134, 134);
+  background-color: #dddddd;
 }
 
 .edit-question-form,
@@ -43,6 +46,17 @@ ul {
   max-height: fit-content;
   max-width: fit-content;
   margin: 0 auto 25px;
+  background-color: #dddddd;
+  border-top: solid 50px #222831;
+  border-right: solid 25px #222831;
+  border-bottom: solid 50px #222831;
+  border-left: solid 25px #222831;
+  border-radius: 5px;
+}
+
+.my-questions {
+    max-width: 80%;
+    margin-bottom: 30rem;
 }
 
 /* answer styling */
@@ -50,12 +64,19 @@ ul {
   padding: 10px 15px;
   max-height: fit-content;
   max-width: fit-content;
-  margin: 0 auto 25px;
+  margin: 0 auto 30px;
+  background-color: #dddddd;
+  border-top: solid 50px #222831;
+  border-right: solid 25px #222831;
+  border-bottom: solid 50px #222831;
+  border-left: solid 25px #222831;
+  border-radius: 5px;
 }
 
 .answers-item {
   padding: 3px 5px;
+  border-radius: 5px;
 }
 .answers-item:nth-child(odd) {
-  background-color: rgb(230, 134, 134);
+  background-color: #dddddd;
 }
