@@ -45,28 +45,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
-app.post("shopping/create-checkout-session", async (req, res) => {
-  const { quantity, name, locale, amount } = req.body;
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
-    mode: "payment",
-    locale: locale,
-    line_items: [
-      {
-        currency: "usd",
-        amount: amount,
-        name: "product",
-        quantity: 30,
-      },
-    ],
-
-    success_url: "https://example.com/success",
-    cancel_url: "https://example.com/cancel",
-  });
-  console.log(req.body.line_items);
-  res.json({ id: session.id });
-});
-
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
 });

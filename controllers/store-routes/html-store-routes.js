@@ -75,7 +75,8 @@ router.post("/create-checkout-session", async (req, res) => {
       },
     ],
 
-    success_url: "http://localhost:3002/shopping/payment-successful",
+    success_url:
+      "http://https://dev-connect-ac.herokuapp.com/shopping/payment-successful",
     cancel_url: "https://example.com/cancel.html",
   });
 
