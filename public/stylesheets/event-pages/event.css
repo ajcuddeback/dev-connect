@@ -200,6 +200,53 @@ textarea:focus {
 
 /* Begin group by zip page */
 
+.mile-slider {
+  padding: 0.2rem;
+  -webkit-appearance: none;
+  margin: 1rem 0rem;
+  width: 100%;
+  position: relative;
+  background: rgb(80, 80, 80);
+  color: #f05454;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+/* Special styling for WebKit/Blink */
+.mile-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  background: #f05454;
+  cursor: pointer;
+  margin-top: -18px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
+
+/* All the same stuff for Firefox */
+.mile-slider::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+.mile-slider::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
 .groups-near-user-wrapper {
   margin-bottom: 15rem;
 }

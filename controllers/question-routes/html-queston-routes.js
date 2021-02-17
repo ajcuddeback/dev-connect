@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Question, User, Answer, Tag, QuestionTag } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     console.log(req.session);
     Question.findAll({
         attributes: [
@@ -29,8 +29,8 @@ router.get('/', (req, res) => {
             const questions = dbQuestionData.map(question => question.get({ plain: true }));
             
             res.render('askDevs', {
-                questions,
-                loggedIn: req.session.loggedIn
+              questions,
+              loggedIn: req.session.loggedIn
             });
         })
         .catch(err => {
@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 });
 
 // find by user
-router.get('/my-questions/', (req, res) => {
+router.get('/my-questions/', withAuth, (req, res) => {
   User.findOne({
       where: {
         id: req.session.user_id
@@ -62,7 +62,6 @@ router.get('/my-questions/', (req, res) => {
   })
       .then(dbUserData => {
           const user = dbUserData.get({ plain: true });
-          console.log(user);
           res.render('my-questions', {
               user,
               loggedIn: req.session.loggedIn
@@ -75,7 +74,7 @@ router.get('/my-questions/', (req, res) => {
 });
 
 // find by id
-router.get('/questions/:id', (req, res) => {
+router.get('/questions/:id', withAuth, (req, res) => {
     Question.findOne({
         where: {
             id: req.params.id
@@ -107,7 +106,6 @@ router.get('/questions/:id', (req, res) => {
             }
 
             const question = dbQuestionData.get({ plain: true });
-            console.log(dbQuestionData);
             res.render('single-question', {
                 question,
                 loggedIn: req.session.loggedIn

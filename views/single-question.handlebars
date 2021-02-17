@@ -2,6 +2,7 @@
   {{#if loggedIn}}
 <section class="container">
   <form class="answer-form">
+    <h4>Submit an Answer</h4>
     <div>
       <textarea name="answer-body"></textarea>
     </div>
@@ -13,6 +14,9 @@
   {{/if}}
 
   {{> answers question.answers}}
+</section>
+<section class="footer-gap">
+
 </section>
 
 {{#if loggedIn}}

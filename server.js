@@ -2,13 +2,17 @@ const express = require("express");
 const sequelize = require("./config/connection");
 const app = express();
 
-const helpers = require('./utils/helper');
+const stripe = require("stripe")(
+  "sk_test_51IJ8N2AIilHitPQWlppuR9Z6W9SzOpgFUrWF2u11MP8yXHygvwx7KQHKeicjtGyAll96ZbZttrnjBIkZrIF37rpb00ozyEmmdj"
+);
+const helpers = require("./utils/helper");
 
 const session = require("express-session");
 require("dotenv").config();
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+// const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+// const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+// const stripe = require("stripe")(stripeSecretKey);
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
