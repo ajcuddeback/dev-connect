@@ -74,6 +74,7 @@ nav ul li a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 999;
 }
 .bubble ul {
   list-style: none;
