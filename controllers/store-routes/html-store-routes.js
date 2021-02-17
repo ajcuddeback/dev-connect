@@ -1,3 +1,4 @@
+const withAuth = require("./../utils/auth");
 const router = require("express").Router();
 const { ProductTag, Product, Category, Tag } = require("../../models");
 const sequelize = require("../../config/connection");
@@ -7,7 +8,7 @@ const stripeP = require("stripe")(
 const stripe = require("stripe")(
   "sk_test_51IJ8N2AIilHitPQWlppuR9Z6W9SzOpgFUrWF2u11MP8yXHygvwx7KQHKeicjtGyAll96ZbZttrnjBIkZrIF37rpb00ozyEmmdj"
 );
-router.get("/", (req, res) => {
+router.get("/", withAuth, (req, res) => {
   Product.findAll({
     attributes: ["product_name", "price", "imgPath"],
     order: [["product_name", "DESC"]],
@@ -28,11 +29,11 @@ router.get("/", (req, res) => {
       res.status(500).json(err);
     });
 });
-router.get("/payment-successful", (req, res) => {
+router.get("/payment-successful", withAuth, (req, res) => {
   let results = "payment-successful";
   if (req.query) res.render(results);
 });
-router.get("/:id", (req, res) => {
+router.get("/:id", withAuth, (req, res) => {
   Product.findOne({
     where: {
       id: req.params.id,
