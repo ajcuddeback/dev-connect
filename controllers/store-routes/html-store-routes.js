@@ -77,7 +77,7 @@ router.post("/create-checkout-session", async (req, res) => {
 
     success_url:
       "https://dev-connect-ac.herokuapp.com/shopping/payment-successful",
-    cancel_url: "https://example.com/cancel.html",
+    cancel_url: "https://dev-connect-ac.herokuapp.com/shopping",
   });
 
   res.json({ id: session.id });
