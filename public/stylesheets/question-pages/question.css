@@ -28,16 +28,20 @@ ul {
   list-style-type: none;
 }
 
-.question-list ul,
-.question-list li {
-    border-radius: 5px;
-    margin-right: 10px;
+.footer-gap {
+    margin-top: 30rem;
 }
 
 /* question styling */
 .question-list ul:nth-child(odd),
 .question-list li:nth-child(odd) {
   background-color: #dddddd;
+}
+
+.question-list ul,
+.question-list li {
+    border-radius: 5px;
+    margin-right: 25px;
 }
 
 .edit-question-form,

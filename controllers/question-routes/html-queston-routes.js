@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 });
 
 // find by user
-router.get('/my-questions/', (req, res) => {
+router.get('/my-questions/', withAuth, (req, res) => {
   User.findOne({
       where: {
         id: req.session.user_id
@@ -74,7 +74,7 @@ router.get('/my-questions/', (req, res) => {
 });
 
 // find by id
-router.get('/questions/:id', (req, res) => {
+router.get('/questions/:id', withAuth, (req, res) => {
     Question.findOne({
         where: {
             id: req.params.id
