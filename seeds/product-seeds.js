@@ -24,7 +24,7 @@ const products = [
   },
   {
     product_name: "Running Sneakers in black",
-    imgPath: "/images/Running_sneakers_black.jpg",
+    imgPath: "/images/Running_sneaker.jpg",
     price: 90,
     stock: 25,
     category_id: 3,
