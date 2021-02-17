@@ -138,29 +138,6 @@ nav ul li a {
   margin: 0 auto;
   text-align: left;
 }
-
-/* Jephte's beginning styling */
-
-.new-post-form {
-  width: 80%;
-  margin: 50px auto;
-}
-.comment .meta {
-  font-size: 90%;
-  margin-bottom: 0.5%;
-  opacity: 0.6;
-}
-
-.individual-post {
-  margin: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-}
-
-/* Jephte's end styling */
-
 footer {
   width: 100%;
   background-color: #222831;
