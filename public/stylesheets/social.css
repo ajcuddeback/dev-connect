@@ -1,5 +1,5 @@
 .new-post-form{
-    width:80%;
+    width:60%;
     margin:50px auto;
     
     }
@@ -71,3 +71,33 @@
   .false{
     color: #FFF;
   }
+
+  @media all and (max-width:650px){
+    .individual-post{
+      width:70%;
+    }
+  }
+
+
+
+  @media all and (max-width: 550px){
+    .individual-post{
+      width:80%;
+    }
+    .new-post-form{
+      width:60%;
+      
+    }
+    .post-content{
+      width:100%;
+      font-size: 1rem;
+    }
+
+    .post-text{
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+
+ 
