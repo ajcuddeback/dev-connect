@@ -9,7 +9,7 @@ body {
 
 .askDevs-header:hover {
   color: #f05454;
-  transition: 2s;
+  transition: 1.5s;
 }
 
 a {
@@ -51,9 +51,9 @@ ul {
 .edit-question-form,
 .new-question-form {
   padding: 10px 15px;
-  max-height: fit-content;
-  max-width: fit-content;
   margin: 0 auto 35px;
+  max-width: fit-content;
+  max-height: fit-content;
   background-color: #dddddd;
   border-top: solid 50px #222831;
   border-right: solid 25px #222831;
@@ -67,8 +67,27 @@ ul {
   margin-bottom: 30rem;
 }
 
+.user-questions {
+  margin-bottom: 25px;
+}
+
 .user-info {
   padding: 15px 25px;
+}
+
+.delete-question-btn {
+  background-color: #f05454;
+  color: #222831;
+  padding: 0.5rem 0rem;
+  border-radius: 5px;
+  position: relative;
+  top: 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delete-question-btn:hover {
+  top: 2px;
 }
 
 /* answer styling */

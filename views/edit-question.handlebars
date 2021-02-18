@@ -4,13 +4,12 @@
     Edit Question
   </h2>
   <section class="container">
-    <form class="edit-question-form">
+    <form class="edit-question-form col-sm-4">
+      Created by you on {{format_date question.created_at}}
       <div>
         <input name="question-text" type="text" value="{{question.question_text}}" />
       </div>
       <div>
-        Created by you on {{format_date question.created_at}}
-        |
         <a href="/question/{{question.id}}">{{question.answers.length}} {{format_plural "answer" question.answers.length}}</a>
       </div>
       <button type="submit" class="grey-red-btn">Save Question</button>
@@ -21,6 +20,9 @@
     
   </section>
 </article>
+<section class="footer-gap">
+
+</section>
 
 <script src="/javascript/edit-question.js"></script>
 <script src="/javascript/delete-question.js"></script>
