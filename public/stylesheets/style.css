@@ -77,6 +77,9 @@ nav ul li a {
   z-index: 999;
 }
 .bubble ul {
+  position: relative;
+  top: -1rem;
+  left: -4rem;
   list-style: none;
   margin-top: 1rem;
   background-color: #e8e8e8;
@@ -164,29 +167,50 @@ footer {
     height: 10%;
     margin: 0 0 0 13rem;
   }
+  .bubble {
+    top: -2rem;
+  }
   .bubble-button {
     position: relative;
     margin: 0;
-    bottom: 10rem;
+    bottom: 5rem;
     left: 8rem;
   }
   .bubble ul {
     position: relative;
-    bottom: 11rem;
-    left: 3rem;
+    top: -6rem;
+    left: 4rem;
     border: 0.5px solid black;
   }
   .logo {
     margin-right: 10rem;
   }
 }
+@media screen and (max-width: 840px) {
+  .bubble {
+    top: -2rem;
+  }
+  .bubble-button {
+    left: 6rem;
+    top: -6rem;
+  }
+  .bubble ul {
+    left: 1.5rem;
+    top: -7rem;
+  }
+}
 
 @media screen and (max-width: 740px) {
   .bubble-button {
     left: 3.5rem;
+    top: -8rem;
   }
   .bubble ul {
     left: 0rem;
+    top: -9rem;
+  }
+  .bubble {
+    top: 0rem;
   }
   nav ul {
     margin: 0 0 0 7rem;
@@ -200,7 +224,18 @@ footer {
     flex-direction: column;
   }
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 600px) {
+  .bubble {
+    top: -2rem;
+  }
+  .bubble-button {
+    top: -6rem;
+  }
+  .bubble ul {
+    top: -7rem;
+  }
+}
+@media screen and (max-width: 550px) {
   .logo img {
     width: 250px;
     height: 84.338235294119px;
@@ -208,15 +243,18 @@ footer {
   header {
     height: 10rem;
   }
+  .bubble {
+    top: -3rem;
+  }
   .bubble-button {
-    left: 4rem;
-    bottom: 7rem;
+    left: 3rem;
+    top: -1rem;
   }
   nav ul {
     margin: 0 0 0 3rem;
   }
   .bubble ul {
-    bottom: 7rem;
+    top: -1rem;
     right: 8rem;
     margin: 0;
   }
@@ -242,6 +280,17 @@ footer {
   }
   nav ul li a {
     font-size: 1.4rem;
+  }
+}
+@media screen and (max-width: 440px) {
+  .bubble {
+    top: -5rem;
+  }
+  .bubble-button {
+    top: 1rem;
+  }
+  .bubble ul {
+    top: 1rem;
   }
 }
 @media screen and (max-width: 420px) {
