@@ -1,18 +1,19 @@
 <section class="container">
     <a href="/askdevs"><h2 class="askDevs-header">askDevs</h2></a>
+    
 </section>
 <section>
-    <form class="new-question-form row">
+    <form class="new-question-form row col-sm-4">
         <div>
             <label for="question-text">Ask a Question</label>
-            <input type="text" id="question-text" name="question-text" />
+            <input type="text" id="question-text" name="question-text" required />
         </div>
         <button type="submit" class="grey-red-btn">Submit</button>
     </form>
 </section>
-<section class="my-questions container justify-content-center">
-    <h2> Click on a Question to Edit</h2>
-    <h2>{{user.username}}'s Questions</h2>
+<section class="my-questions container justify-content-center col-sm-7">
+    <h3> Click on a Question to Edit</h3>
+    <h4>{{user.username}}'s Questions</h4>
     <ul class="question-list col">
         {{#each user.questions}}
         <li class="text-left">

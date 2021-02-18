@@ -1,20 +1,25 @@
 <a href="/askdevs"><h2 class="askDevs-header">askDevs</h2></a>
+<p class="instructions">Click on a question to contribute!</p>
 
-<section class="askDevs-homepage row">
-    <form class="new-question-form col-sm-4">
-        <div>
-            <label for="question-text">Ask a Question</label>
-            <input type="text" id="question-text" name="question-text" />
-            <button type="submit" class="grey-red-btn">Submit</button>
-        </div>
-    </form>
-    <ul class="question-list col-sm-7">
-        {{#each questions as |question|}}
-        <li>
-            {{> question-info question }}
-        </li>
-        {{/each}}
-    </ul>
+<section class="container">
+    <section class="askDevs-homepage row">
+        <form class="new-question-form col-sm-4">
+            <div>
+                <label for="question-text">Ask a Question</label>
+                <input type="text" id="question-text" name="question-text" required />
+                <button type="submit" class="grey-red-btn">Submit</button>
+            </div>
+        </form>
+    </section>
+    <section class="row justify-content-center">
+        <ul class="question-list col-sm-9">
+            {{#each questions as |question|}}
+            <li>
+                {{> question-info question }}
+            </li>
+            {{/each}}
+        </ul>
+    </section>
 </section>
 <section class="footer-gap">
     
