@@ -72,14 +72,20 @@
     color: #FFF;
   }
 
-
-
-  @media all and (max-width: 500px){
+  @media all and (max-width:650px){
     .individual-post{
-      width:100%;
+      width:70%;
+    }
+  }
+
+
+
+  @media all and (max-width: 550px){
+    .individual-post{
+      width:80%;
     }
     .new-post-form{
-      width:100%;
+      width:60%;
       
     }
     .post-content{
