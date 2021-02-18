@@ -20,8 +20,8 @@ async function editFormHandler(event) {
       
       if (response.ok) {
 
-        // document.location.replace('/dash/');
-        window.location.reload();
+        document.location.replace('/dash');
+        
         
       } else {
         alert(response.statusText);
