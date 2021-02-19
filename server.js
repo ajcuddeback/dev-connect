@@ -1,6 +1,8 @@
 const express = require("express");
 const sequelize = require("./config/connection");
+const httpsRedirect = require('express-https-redirect');
 const app = express();
+
 
 const stripe = require("stripe")(
   "sk_test_51IJ8N2AIilHitPQWlppuR9Z6W9SzOpgFUrWF2u11MP8yXHygvwx7KQHKeicjtGyAll96ZbZttrnjBIkZrIF37rpb00ozyEmmdj"
@@ -44,6 +46,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
+
+app.use('/', httpsRedirect());
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
